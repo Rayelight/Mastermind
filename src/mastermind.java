@@ -10,12 +10,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-public class mastermind extends JFrame implements ActionListener{
+public class Mastermind extends JFrame{
 
 
 
 
-	public mastermind(){
+	public Mastermind(){
 		this.setTitle("Plateau de Jeu");
 		// dimensionnement et affichage de la fenêtre
 		this.setSize(400, 600);
@@ -34,7 +34,7 @@ public class mastermind extends JFrame implements ActionListener{
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		mastermind m = new mastermind();
+		Mastermind m = new Mastermind();
 
 
 

@@ -3,7 +3,7 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class combinaison extends JPanel{
+public class Combinaison extends JPanel{
 	private JButton monBouton1;
 
 	public combinaison(){

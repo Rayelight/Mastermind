@@ -11,12 +11,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class plateauJeu extends JPanel implements ActionListener{
+public class PlateauJeu extends JPanel implements ActionListener{
 
 
 
 
-	public plateauJeu(){
+	public PlateauJeu(){
 		this.setLayout(null);
 		this.setBackground(Color.yellow);
 
@@ -48,7 +48,7 @@ public class plateauJeu extends JPanel implements ActionListener{
 		//general.setResizable(false);
 		
 
-		plateauJeu grilleJeu = new plateauJeu();
+		PlateauJeu grilleJeu = new PlateauJeu();
 		grilleJeu.setSize(new Dimension(width, (int)(height*0.5)));
 		grilleJeu.setLocation(0,height/2);
 		
