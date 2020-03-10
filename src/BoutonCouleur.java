@@ -1,4 +1,5 @@
+class BoutonCouleur {
 
-public class BoutonCouleur {
 
 }
+ 

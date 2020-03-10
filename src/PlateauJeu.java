@@ -5,13 +5,15 @@ import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.HierarchyBoundsListener;
+import java.awt.event.HierarchyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class PlateauJeu extends JPanel implements ActionListener{
+public class PlateauJeu extends JPanel implements ActionListener, HierarchyBoundsListener{
 
 
 
@@ -19,7 +21,7 @@ public class PlateauJeu extends JPanel implements ActionListener{
 	public PlateauJeu(){
 		this.setLayout(null);
 		this.setBackground(Color.yellow);
-
+		this.add(new Combinaison());
 
 	}
 
@@ -38,7 +40,7 @@ public class PlateauJeu extends JPanel implements ActionListener{
 		//		taille max
 		Rectangle bounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
 		Insets insets = general.getInsets();
-		int width = (int)((bounds.width-(insets.left+insets.right))*0.8);
+		int width = (int)((bounds.width-(insets.left+insets.right))*0.7);
 		int height = bounds.height-(insets.top+insets.bottom);
 		general.setSize(new Dimension(width, height));
 		general.setLocation(0,0);
@@ -47,9 +49,15 @@ public class PlateauJeu extends JPanel implements ActionListener{
 		general.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//general.setResizable(false);
 		
-
+		
+		
+		
+		
+		
+		
+		
 		PlateauJeu grilleJeu = new PlateauJeu();
-		grilleJeu.setSize(new Dimension(width, (int)(height*0.5)));
+		grilleJeu.setSize(new Dimension(general.getWidth(), (int)(general.getHeight()*0.5)));
 		grilleJeu.setLocation(0,height/2);
 		
 		
@@ -61,6 +69,9 @@ public class PlateauJeu extends JPanel implements ActionListener{
 
 		
 		general.setVisible(true);
+		
+		//FenetreJeu simon = new FenetreJeu();
+		//simon.setVisible(true);
 
 
 	}
@@ -83,14 +94,7 @@ public class PlateauJeu extends JPanel implements ActionListener{
 		}
 	}
 
-	/*
-	public void boutonCirculaire(int x_pos, int y_pos) {
-		JButton addBtn = new JButton("+");
-		addBtn.setBounds(x_pos, y_pos, 30, 25);
-		addBtn.setBorder(new RoundedBorder(10)); //10 is the radius
-		addBtn.setForeground(Color.BLUE);
-	}
-	 */
+	
 
 
 	@Override
@@ -99,31 +103,19 @@ public class PlateauJeu extends JPanel implements ActionListener{
 
 	}
 
+
+	@Override
+	public void ancestorMoved(HierarchyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void ancestorResized(HierarchyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 
-/*
-class RoundedBorder implements Border {
-
-	private int radius;
-
-
-	RoundedBorder(int radius) {
-		this.radius = radius;
-	}
-
-
-	public Insets getBorderInsets(Component c) {
-		return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
-	}
-
-
-	public boolean isBorderOpaque() {
-		return true;
-	}
-
-
-	public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-		g.drawRoundRect(x, y, width-1, height-1, radius, radius);
-	}
-}
- */
