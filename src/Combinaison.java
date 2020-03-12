@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.FlowLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 
@@ -14,8 +15,8 @@ public class Combinaison extends JPanel{
 		this.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		//this.setOpaque(false);
 		this.setBackground(Color.green);
-		this.setBounds(0,0,n*(5+50)+5,60);
-
+		this.setSize(4*(10+50)+10,60);
+		this.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		for(int i=0; i<n; i++) {
 			couleurs[i] = new RoundButton(50);

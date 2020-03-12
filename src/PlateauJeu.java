@@ -1,13 +1,13 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
-import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyEvent;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,10 +19,16 @@ public class PlateauJeu extends JPanel implements ActionListener, HierarchyBound
 
 
 	public PlateauJeu(){
-		this.setLayout(null);
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		//this.setLayout(new BorderLayout());
 		this.setBackground(Color.yellow);
-		this.add(new Combinaison());
-
+		
+		Combinaison[] tentatives = new Combinaison[10];
+		for(int i=0; i<10; i++) {
+			this.add(tentatives[i]=new Combinaison());
+			
+		}
+		
 	}
 
 
@@ -39,7 +45,7 @@ public class PlateauJeu extends JPanel implements ActionListener, HierarchyBound
 
 		//		taille max
 		Rectangle bounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
-		Insets insets = general.getInsets();
+		//Insets insets = general.getInsets();
 		int width = bounds.width*7/10;
 		int height = bounds.height;
 		general.setSize(new Dimension(width, height));
@@ -52,7 +58,7 @@ public class PlateauJeu extends JPanel implements ActionListener, HierarchyBound
 		
 		
 //		ContentPane
-		general.setContentPane(new JPanel());
+		//general.setContentPane(new JPanel());
 		general.getContentPane().setLayout(null);
 		general.getContentPane().setBackground(Color.blue);
 		
@@ -60,8 +66,8 @@ public class PlateauJeu extends JPanel implements ActionListener, HierarchyBound
 		
 		
 		PlateauJeu grilleJeu = new PlateauJeu();
-		grilleJeu.setSize(new Dimension( general.getWidth()-(insets.right+insets.left), general.getHeight()-(insets.top+insets.bottom)-40) );
-		grilleJeu.setLocation((general.getWidth()-(insets.right+insets.left)-grilleJeu.getWidth())/2,20);
+		grilleJeu.setSize(new Dimension( general.getContentPane().getWidth()/4, general.getContentPane().getHeight()-80*2) );
+		grilleJeu.setLocation((general.getContentPane().getWidth()-grilleJeu.getWidth())/2,80);
 		general.getContentPane().add(grilleJeu);
 		
 

@@ -11,7 +11,7 @@ import javax.swing.JButton;
 class RoundButton extends JButton {
   public RoundButton(int radius) {
     Dimension size = getPreferredSize();
-    //size.width = size.height = Math.max(size.width,size.height);
+    size.width = size.height = Math.max(size.width,size.height);
     size.width = size.height=radius;
     setPreferredSize(size);
 
