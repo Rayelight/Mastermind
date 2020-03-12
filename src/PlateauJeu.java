@@ -35,13 +35,13 @@ public class PlateauJeu extends JPanel implements ActionListener, HierarchyBound
 		//		plein écran
 		//general.setExtendedState(general.MAXIMIZED_BOTH);
 		//general.setUndecorated(true);		//pour ne pas avoir de bords
-		//general.pack();
+		general.pack();
 
 		//		taille max
 		Rectangle bounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
 		Insets insets = general.getInsets();
-		int width = (int)((bounds.width-(insets.left+insets.right))*0.7);
-		int height = bounds.height-(insets.top+insets.bottom);
+		int width = bounds.width*7/10;
+		int height = bounds.height;
 		general.setSize(new Dimension(width, height));
 		general.setLocation(0,0);
 		
@@ -51,21 +51,19 @@ public class PlateauJeu extends JPanel implements ActionListener, HierarchyBound
 		
 		
 		
-		
+//		ContentPane
+		general.setContentPane(new JPanel());
+		general.getContentPane().setLayout(null);
+		general.getContentPane().setBackground(Color.blue);
 		
 		
 		
 		
 		PlateauJeu grilleJeu = new PlateauJeu();
-		grilleJeu.setSize(new Dimension(general.getWidth(), (int)(general.getHeight()*0.5)));
-		grilleJeu.setLocation(0,height/2);
-		
-		
-		//		ContentPane
-		general.setContentPane(new JPanel());
-		general.getContentPane().setLayout(null);
-		general.getContentPane().setBackground(Color.blue);
+		grilleJeu.setSize(new Dimension( general.getWidth()-(insets.right+insets.left), general.getHeight()-(insets.top+insets.bottom)-40) );
+		grilleJeu.setLocation((general.getWidth()-(insets.right+insets.left)-grilleJeu.getWidth())/2,20);
 		general.getContentPane().add(grilleJeu);
+		
 
 		
 		general.setVisible(true);
