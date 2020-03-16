@@ -31,10 +31,11 @@ public class PlateauJeu extends JPanel implements ActionListener, HierarchyBound
 		}
 		
 	}
-
+	
+	static JFrame general = new JFrame();
 
 	public static void main(String[] args) {
-		JFrame general = new JFrame();
+		
 		general.setTitle("Mastermind");
 
 		// dimensionnement et affichage de la fenêtre
@@ -76,8 +77,11 @@ public class PlateauJeu extends JPanel implements ActionListener, HierarchyBound
 		general.setVisible(true);
 		
 		FenetreJeu simon = new FenetreJeu();
-		simon.setVisible(true);
-
+		//simon.setVisible(true);
+		
+		Options simon2 = new Options();
+		simon2.setVisible(true);
+		
 
 	}
 
@@ -111,7 +115,8 @@ public class PlateauJeu extends JPanel implements ActionListener, HierarchyBound
 
 	@Override
 	public void ancestorMoved(HierarchyEvent e) {
-		// TODO Auto-generated method stub
+		general.pack();
+		general.setVisible(true);
 		
 	}
 
