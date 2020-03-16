@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -19,8 +20,8 @@ public class PlateauJeu extends JPanel implements ActionListener, HierarchyBound
 
 
 	public PlateauJeu(){
-		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		//this.setLayout(new BorderLayout());
+		//this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		this.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 2));
 		this.setBackground(Color.yellow);
 		
 		Combinaison[] tentatives = new Combinaison[10];
@@ -74,8 +75,8 @@ public class PlateauJeu extends JPanel implements ActionListener, HierarchyBound
 		
 		general.setVisible(true);
 		
-		//FenetreJeu simon = new FenetreJeu();
-		//simon.setVisible(true);
+		FenetreJeu simon = new FenetreJeu();
+		simon.setVisible(true);
 
 
 	}

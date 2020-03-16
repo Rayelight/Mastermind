@@ -12,10 +12,10 @@ public class Combinaison extends JPanel{
 	private RoundButton[] couleurs = new RoundButton[n];
 
 	public Combinaison(){
-		this.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		this.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 5));
 		//this.setOpaque(false);
 		this.setBackground(Color.green);
-		this.setSize(4*(10+50)+10,60);
+		//this.setSize(4*(10+50)+10,60);
 		this.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		for(int i=0; i<n; i++) {
