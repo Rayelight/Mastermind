@@ -1,5 +1,5 @@
-// Chargement des bibliothÃ¨ques Swing et AWT
-import java.awt.Color;
+// Chargement des bibliothèques Swing et AWT
+	import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,43 +10,43 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class FenetreJeu extends JFrame implements ActionListener {
-
-	// Les Widgets Ã  dÃ©clarer en dehors du constructeur
-	private JButton Jouer;
-	private JButton Options;
-	private JButton ModeOrdinateur;
-	private JButton Regles;
-	private JButton scores;
+	
+	// Les Widgets à déclarer en dehors du constructeur
+		private JButton Jouer;
+	    private JButton Options;
+	    private JButton ModeOrdinateur;
+	    private JButton Regles;
+	    private JButton scores;
 
 	public FenetreJeu() {
 		this.setTitle("Jeu ");
 		this.setSize(800,800);
-		// Pour placer la fenÃªtre au centre de l'Ã©cran
+		// Pour placer la fenêtre au centre de l'écran
 		this.setLocationRelativeTo(null);
-		// Pour empÃªcher le redimensionnement de la fenÃªtre
+		// Pour empêcher le redimensionnement de la fenêtre
 		this.setResizable(true);
-		// Pour permettre la fermeture de la fenÃªtre lors de l'appui sur la croix rouge
+		// Pour permettre la fermeture de la fenêtre lors de l'appui sur la croix rouge
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		int width=this.getWidth();
 		int height=this.getHeight();
-
-
-
+	
+		
+		
 		/**
 		 * Texte M
 		 */
 		JLabel lettreM = new JLabel();
 		lettreM.setText("M");
-		lettreM.setSize(30,40);
+		lettreM.setSize(60,80);
 		lettreM.setForeground(Color.red);		
 
-
-		/**
+		
+	     /**
 		 * Texte A
 		 */
 		JLabel lettreA = new JLabel();
 		lettreA.setText("A");
-		lettreA.setSize(30,40);
+		lettreA.setSize(60,80);
 		lettreA.setForeground(Color.orange);		
 
 		/**
@@ -54,15 +54,15 @@ public class FenetreJeu extends JFrame implements ActionListener {
 		 */
 		JLabel lettreS = new JLabel();
 		lettreS.setText("S");
-		lettreS.setSize(30,40);
-		lettreS.setForeground(Color.yellow);		
+		lettreS.setSize(60,80);
+		lettreS.setForeground(Color.blue);		
 
 		/**
 		 * Texte T
 		 */
 		JLabel lettreT = new JLabel();
 		lettreT.setText("T");
-		lettreT.setSize(30,40);
+		lettreT.setSize(60,80);
 		lettreT.setForeground(Color.green);		
 
 		/**
@@ -70,7 +70,7 @@ public class FenetreJeu extends JFrame implements ActionListener {
 		 */
 		JLabel lettreE = new JLabel();
 		lettreE.setText("E");
-		lettreE.setSize(30,40);
+		lettreE.setSize(60,80);
 		lettreE.setForeground(Color.black);		
 
 		/**
@@ -78,7 +78,7 @@ public class FenetreJeu extends JFrame implements ActionListener {
 		 */
 		JLabel lettreR = new JLabel();
 		lettreR.setText("R");
-		lettreR.setSize(30,40);
+		lettreR.setSize(60,80);
 		lettreR.setForeground(Color.black);		
 
 		/**
@@ -86,7 +86,7 @@ public class FenetreJeu extends JFrame implements ActionListener {
 		 */
 		JLabel lettreM2 = new JLabel();
 		lettreM2.setText("M");
-		lettreM2.setSize(30,40);
+		lettreM2.setSize(60,80);
 		lettreM2.setForeground(Color.green);		
 
 		/**
@@ -94,15 +94,15 @@ public class FenetreJeu extends JFrame implements ActionListener {
 		 */
 		JLabel lettreI = new JLabel();
 		lettreI.setText("I");
-		lettreI.setSize(30,40);
-		lettreI.setForeground(Color.yellow);		
+		lettreI.setSize(60,80);
+		lettreI.setForeground(Color.blue);		
 
 		/**
 		 * Texte N
 		 */
 		JLabel lettreN = new JLabel();
 		lettreN.setText("N");
-		lettreN.setSize(30,40);
+		lettreN.setSize(60,80);
 		lettreN.setForeground(Color.orange);		
 
 		/**
@@ -110,14 +110,14 @@ public class FenetreJeu extends JFrame implements ActionListener {
 		 */
 		JLabel lettreD = new JLabel();
 		lettreD.setText("D");
-		lettreD.setSize(30,40);
+		lettreD.setSize(60,80);
 		lettreD.setForeground(Color.red);		
-
+		
 		/**
 		 * Texte Mastermind
 		 */
 		JPanel lettreMastermind = new JPanel();
-		lettreMastermind.setBounds(width/2,height/15,30*10,40);		
+		lettreMastermind.setBounds(width/8,height/15,60*10,80);		
 		lettreMastermind.setBackground(Color.white);
 		lettreMastermind.add(lettreM);
 		lettreMastermind.add(lettreA);
@@ -129,29 +129,29 @@ public class FenetreJeu extends JFrame implements ActionListener {
 		lettreMastermind.add(lettreI);
 		lettreMastermind.add(lettreN);
 		lettreMastermind.add(lettreD);
-
+		
 		/**
 		 * Panneau global
 		 */
 		JPanel panneauGlobal = new JPanel();
 		panneauGlobal.setBounds(0,0,400,400);
 		panneauGlobal.setLayout(null);
-		panneauGlobal.setBackground(Color.orange);
+		panneauGlobal.setBackground(Color.white);
 		this.add(panneauGlobal);
 		panneauGlobal.add(lettreMastermind);
-
-
+		
+		
 		/**
 		 * Bouton Jouer
 		 */
 		Jouer = new JButton("Jouer");
 		Jouer.setBounds(20,height/3,180,100);
-		Jouer.setBackground(Color.cyan);
+	    Jouer.setBackground(Color.cyan);
 		Jouer.setForeground(Color.white);
-		/* branchement de l'Ã©couteur*/
+		/* branchement de l'écouteur*/
 		Jouer.addActionListener(this);
 		panneauGlobal.add(Jouer);
-
+		
 		/**
 		 * Bouton Options
 		 */
@@ -159,10 +159,10 @@ public class FenetreJeu extends JFrame implements ActionListener {
 		Options.setBounds(210,height/3,180,100);
 		Options.setBackground(Color.cyan);
 		Options.setForeground(Color.white);
-		/* branchement de l'Ã©couteur*/
+		/* branchement de l'écouteur*/
 		Options.addActionListener(this);
 		panneauGlobal.add(Options);
-
+		
 		/**
 		 * Bouton Mode Ordinateur
 		 */
@@ -170,21 +170,21 @@ public class FenetreJeu extends JFrame implements ActionListener {
 		ModeOrdinateur.setBounds(400,height/3,180,100);
 		ModeOrdinateur.setBackground(Color.cyan);
 		ModeOrdinateur.setForeground(Color.white);
-		/* branchement de l'Ã©couteur*/
+		/* branchement de l'écouteur*/
 		ModeOrdinateur.addActionListener(this);
 		panneauGlobal.add(ModeOrdinateur);
-
+		
 		/**
-		 * Bouton RÃ¨gles
+		 * Bouton Règles
 		 */
 		Regles = new JButton("Regles");
 		Regles.setBounds(590,height/3,180,100);
 		Regles.setBackground(Color.cyan);
 		Regles.setForeground(Color.white);
-		/* branchement de l'Ã©couteur*/
+		/* branchement de l'écouteur*/
 		Regles.addActionListener(this);
 		panneauGlobal.add(Regles);
-
+		
 		/**
 		 * Bouton Tableau des scores
 		 */
@@ -192,21 +192,22 @@ public class FenetreJeu extends JFrame implements ActionListener {
 		scores.setBounds(width/3,height/2,300,70);
 		scores.setBackground(Color.cyan);
 		scores.setForeground(Color.white);
-		/* branchement de l'Ã©couteur*/
+		/* branchement de l'écouteur*/
 		scores.addActionListener(this);
 		panneauGlobal.add(scores);
-
-
-
-
+	
+		
+	
+		
 	}
 
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-
+		
 	}
-
-
+	
+	
 }
+
