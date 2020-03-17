@@ -1,5 +1,6 @@
 // Chargement des biblioth�ques Swing et AWT
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -56,7 +57,8 @@ public class FenetreJeu extends JFrame implements ActionListener {
 		titreMastermind += "<font size='"+taille+"' color=purple>N</font>";
 		titreMastermind += "<font size='"+taille+"' color=fucshia>D</font></html>";
 
-		JLabel titre = new JLabel(titreMastermind);
+		JLabel titre = new JLabel(titreMastermind, JLabel.CENTER);   
+	    titre.setFont(new Font("Serif", Font.PLAIN, 100));
 		titre.setBounds(width/8,height/15,60*10,80);
 		panneauGlobal.add(titre);
 

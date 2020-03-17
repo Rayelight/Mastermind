@@ -126,7 +126,6 @@ public class Options extends JFrame implements ActionListener {
         panneauGlobal.add(Slider2);
 
         
-        this.setVisible(true);
      }  
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

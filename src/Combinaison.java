@@ -13,6 +13,7 @@ public class Combinaison extends JPanel{
 
 	public Combinaison(){
 		this.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 5));
+		//this.setLayout(new GridLayout(1, 4, 5, 5));
 		//this.setOpaque(false);
 		this.setBackground(Color.green);
 		//this.setSize(4*(10+50)+10,60);
