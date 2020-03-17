@@ -47,12 +47,12 @@ public class PlateauJeu extends JPanel implements ActionListener{
 		// 		carreValide Constrains
 		layout.putConstraint(SpringLayout.NORTH, carreValide, 25, SpringLayout.NORTH, this);
 		layout.putConstraint(SpringLayout.SOUTH, carreValide, -25, SpringLayout.SOUTH, this);
-		layout.putConstraint(SpringLayout.EAST, carreValide, -20, SpringLayout.WEST, grilleCouleurs);
+		layout.putConstraint(SpringLayout.EAST, carreValide, -30, SpringLayout.WEST, grilleCouleurs);
 		
 		// 		carrePlacement Constrains
 		layout.putConstraint(SpringLayout.NORTH, carrePlacement, 25, SpringLayout.NORTH, this);
 		layout.putConstraint(SpringLayout.SOUTH, carrePlacement, -25, SpringLayout.SOUTH, this);
-		layout.putConstraint(SpringLayout.WEST, carrePlacement, 20, SpringLayout.EAST, grilleCouleurs);
+		layout.putConstraint(SpringLayout.WEST, carrePlacement, 30, SpringLayout.EAST, grilleCouleurs);
 		
 
 	}

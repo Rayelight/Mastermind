@@ -28,10 +28,11 @@ public class Mastermind extends JFrame implements ActionListener, HierarchyBound
 		plateauJeu = new PlateauJeu();
 		general.setContentPane(plateauJeu);
 		plateauJeu.adjustContraints();
-		general.setVisible(true);
+		//general.setVisible(true);
 
-		//FenetreJeu simon = new FenetreJeu();
-		//simon.setVisible(true);
+		PanneauAccueil accueil = new PanneauAccueil();
+		general.setContentPane(accueil);
+		general.setVisible(true);
 
 		//Options simon2 = new Options();
 		//simon2.setVisible(true);

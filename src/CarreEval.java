@@ -23,9 +23,9 @@ public class CarreEval extends JPanel{
 	public Dimension getPreferredSize(){
 		Insets insets = Mastermind.general.getInsets();
 		int height = Mastermind.general.getHeight()-insets.top-insets.bottom;
-		int grilleCouleursHeight = height-40;
+		int carreEvalHeight = height-40;
 		int boutonsRadius = (height-40-5*Mastermind.nbrTentatives)/Mastermind.nbrTentatives; 
-		return new Dimension(boutonsRadius, grilleCouleursHeight);
+		return new Dimension(boutonsRadius-5, carreEvalHeight);
 
 	}
 }

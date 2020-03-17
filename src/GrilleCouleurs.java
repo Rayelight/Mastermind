@@ -10,8 +10,8 @@ class GrilleCouleurs  extends JPanel{
 
 
 	public GrilleCouleurs() {
-		//grilleCouleurs.setLayout(new BoxLayout(grilleCouleurs, BoxLayout.PAGE_AXIS));
-		//grilleCouleurs.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		//this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		//this.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		this.setLayout(new GridLayout(Mastermind.nbrTentatives, 1));
 		this.setBackground(Color.yellow);
 
