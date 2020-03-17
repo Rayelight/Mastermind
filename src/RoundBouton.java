@@ -13,7 +13,7 @@ class RoundButton extends JButton {
 	public RoundButton(int radius) {
 		Dimension size = getPreferredSize();
 		//size.width = size.height = Math.max(size.width,size.height);
-		size.width = size.height=radius;
+		//size.width = size.height=radius;
 		setPreferredSize(size);
 		//setMargin(new Insets(10, 10, 10, 10));
 

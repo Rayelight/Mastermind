@@ -11,6 +11,8 @@ public class PlateauJeu extends JPanel implements ActionListener{
 
 	SpringLayout layout;
 	GrilleCouleurs grilleCouleurs;
+	CarreEval carrePlacement;
+	CarreEval carreValide;
 
 	public PlateauJeu(){
 		//			Panel Setup
@@ -20,13 +22,14 @@ public class PlateauJeu extends JPanel implements ActionListener{
 		
 		//			Components creation
 		grilleCouleurs = new GrilleCouleurs();
-		
-		//		Bien Placés
-		//		Présents dans le code
+		carrePlacement = new CarreEval();
+		carreValide = new CarreEval();
 		
 		
 		//			Adding components
 		this.add(grilleCouleurs);
+		this.add(carrePlacement);
+		this.add(carreValide);
 		
 		
 		
@@ -41,6 +44,16 @@ public class PlateauJeu extends JPanel implements ActionListener{
 		layout.putConstraint(SpringLayout.SOUTH, grilleCouleurs, -20, SpringLayout.SOUTH, this);
 		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, grilleCouleurs, 0, SpringLayout.HORIZONTAL_CENTER, this);
 
+		// 		carreValide Constrains
+		layout.putConstraint(SpringLayout.NORTH, carreValide, 25, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.SOUTH, carreValide, -25, SpringLayout.SOUTH, this);
+		layout.putConstraint(SpringLayout.EAST, carreValide, -20, SpringLayout.WEST, grilleCouleurs);
+		
+		// 		carrePlacement Constrains
+		layout.putConstraint(SpringLayout.NORTH, carrePlacement, 25, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.SOUTH, carrePlacement, -25, SpringLayout.SOUTH, this);
+		layout.putConstraint(SpringLayout.WEST, carrePlacement, 20, SpringLayout.EAST, grilleCouleurs);
+		
 
 	}
 	

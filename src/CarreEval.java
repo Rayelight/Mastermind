@@ -3,34 +3,29 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Insets;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-class GrilleCouleurs  extends JPanel{
-
-
-	public GrilleCouleurs() {
-		//grilleCouleurs.setLayout(new BoxLayout(grilleCouleurs, BoxLayout.PAGE_AXIS));
-		//grilleCouleurs.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		this.setLayout(new GridLayout(Mastermind.nbrTentatives, 1));
+public class CarreEval extends JPanel{
+	CarreEval(){
+		this.setLayout(new GridLayout(Mastermind.nbrTentatives, 1, 10, 10));
 		this.setBackground(Color.yellow);
 
-		Combinaison[] tentatives = new Combinaison[Mastermind.nbrTentatives];
+		JLabel[] tentatives = new JLabel[Mastermind.nbrTentatives];
 		for(int i=0; i<Mastermind.nbrTentatives; i++) {
-			this.add(tentatives[i]=new Combinaison());
-
+			this.add(tentatives[i]=new JLabel("A", JLabel.CENTER) );
+			tentatives[i].setBackground(Color.blue);
+			tentatives[i].setOpaque(true);
 		}
 	}
-
 	@Override
 	public Dimension getPreferredSize(){
 		Insets insets = Mastermind.general.getInsets();
 		int height = Mastermind.general.getHeight()-insets.top-insets.bottom;
 		int grilleCouleursHeight = height-40;
 		int boutonsRadius = (height-40-5*Mastermind.nbrTentatives)/Mastermind.nbrTentatives; 
-		int grilleCouleursWidth = (boutonsRadius+5)*Mastermind.tailleCombinaison+5; 
-		return new Dimension(grilleCouleursWidth, grilleCouleursHeight);
+		return new Dimension(boutonsRadius, grilleCouleursHeight);
 
 	}
 }
-

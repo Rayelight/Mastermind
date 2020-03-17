@@ -103,7 +103,6 @@ public class Mastermind extends JFrame implements ActionListener, HierarchyBound
 
 	@Override
 	public void componentResized(ComponentEvent e) {
-			plateauJeu.adjustContraints();
             Dimension d=this.getSize();
             Dimension minD=this.getMinimumSize();
             if(d.width<minD.width)
