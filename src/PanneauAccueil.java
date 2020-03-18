@@ -1,6 +1,8 @@
 // Chargement des biblioth�ques Swing et AWT
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -8,8 +10,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel; 
 
@@ -69,9 +71,27 @@ public class PanneauAccueil extends JPanel implements ActionListener {
 		
 		//		Box Boutons centreaux
 		Box boutons = Box.createHorizontalBox();
+		boutons.setLayout(new FlowLayout() {
+			@Override
+			public int getHgap(){
+				Insets insets = Mastermind.general.getInsets();
+	    		int width = Mastermind.general.getWidth()-insets.right-insets.left;
+	    		int boutonWidth = (int) (width/(PanneauAccueil.nombreBoutons*(1+PanneauAccueil.pourcentageEspace)+PanneauAccueil.pourcentageEspace));
+	    		return boutonWidth/8;
+			}
+			
+			@Override
+			public int getVgap(){
+	    		return 0;
+			}
+		});
 		
-
 		
+		//		Ajout des boutons centreaux
+		for(JButton b : boutonsAccueil) {
+			boutons.add(b);
+			b.addActionListener(this);
+		}
 		
 
 		//		Bouton Scores
@@ -109,6 +129,7 @@ public class PanneauAccueil extends JPanel implements ActionListener {
 	    
 		return bouton;
 	}
+	
 
 
 }
