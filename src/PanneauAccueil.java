@@ -1,6 +1,8 @@
 // Chargement des biblioth�ques Swing et AWT
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,10 +17,7 @@ import javax.swing.JPanel;
 public class PanneauAccueil extends JPanel implements ActionListener {
 
 	private static final float CENTRAL_ALIGNMENT = 0;
-	private JButton jouer;
-	private JButton options;
-	private JButton modeOrdinateur;
-	private JButton regles;
+	private JButton[] boutonsAccueil;
 	private JButton scores;
 	
 	static int nombreBoutons=4;
@@ -60,24 +59,28 @@ public class PanneauAccueil extends JPanel implements ActionListener {
 
 		
 
-		 //		Boutons centraux
+		boutonsAccueil = new JButton[PanneauAccueil.nombreBoutons];
 		
-		jouer = new BoutonAccueil("Jouer");
+		 //		Boutons centraux
+		boutonsAccueil[0] = boutonAccueil("Jouer");
+		boutonsAccueil[1] = boutonAccueil("Options");
+		boutonsAccueil[2] = boutonAccueil("Mode Ordinateur");
+		boutonsAccueil[3] = boutonAccueil("Règles");
+		
+		//		Box Boutons centreaux
+		Box boutons = Box.createHorizontalBox();
+		
 
-		options = new BoutonAccueil("Options");
-
-		modeOrdinateur = new BoutonAccueil("ModeOrdinateur");
-
-		regles = new BoutonAccueil("Règles");
-
+		
+		
 
 		//		Bouton Scores
 
-		scores = new BoutonAccueil("Tableau des scores");
+		scores = boutonAccueil("Tableau des scores");
 		scores.setBounds(width/3,height/2,300,70);
 		
 		
-		Box boutons = Box.createHorizontalBox();
+		
 
 	}
 	
@@ -86,6 +89,25 @@ public class PanneauAccueil extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	private JButton boutonAccueil(String texte) {
+	    JButton bouton = new JButton(texte){
+	    	@Override
+	    	public Dimension getPreferredSize(){
+	    		Insets insets = Mastermind.general.getInsets();
+	    		int width = Mastermind.general.getWidth()-insets.right-insets.left;
+	    		int boutonWidth = (int) (width/(PanneauAccueil.nombreBoutons*(1+PanneauAccueil.pourcentageEspace)+PanneauAccueil.pourcentageEspace));
+	    		
+	    		
+	    		return new Dimension(boutonWidth,50);
+
+	    	}
+        };
+        bouton.setBackground(Color.cyan);
+		bouton.setForeground(Color.white);
+	    
+		return bouton;
 	}
 
 
