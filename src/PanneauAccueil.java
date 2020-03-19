@@ -108,12 +108,29 @@ public class PanneauAccueil extends JPanel implements ActionListener {
 
 
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 
+	public void actionPerformed(ActionEvent e) {
+
+		if(e.getSource()==boutonsAccueil[0]) {
+			plateaujeu= new Plateaujeu();
+			this.setVisible(true);
+		}
+		if(e.getSource()==boutonsAccueil[1]) {
+			options= new Options();
+			this.setVisible(true);
+		}
+		if(e.getSource()==boutonsAccueil[2]) {
+			//affichage mode oridnateur 
+		}
+		if(e.getSource()==boutonsAccueil[3]) {
+			//affichage mode regles 
+		}
+		if(e.getSource()==scores) {
+			//affichage tableau des scores
 	}
 
+		
+		
 	private JButton boutonAccueil(String texte) {
 		JButton bouton = new JButton(texte){
 			@Override

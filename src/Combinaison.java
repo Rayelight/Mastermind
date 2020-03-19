@@ -24,4 +24,19 @@ public class Combinaison extends JPanel{
 		}
 
 	}
+	
+    Combinaison[] tentatives = new Combinaison[Mastermind.nbrTentatives];
+	for(int i=0; i<Mastermind.nbrTentatives; i++) {
+		this.add(tentatives[i]=new Combinaison());
+	}	
+		
+	public class test(Combinaison[] tentatives) {
+	    for(int i=0;i<Mastermind.nbrTentatives; i++) {
+	        if(tentatives[i].equals("combinaison exacte?")){
+	        	//disparition du cache noir 
+	
+		
+	        }
+	    }
+	}
 }
