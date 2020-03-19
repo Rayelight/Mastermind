@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
+import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,22 +22,26 @@ public class Mastermind extends JFrame implements ActionListener, HierarchyBound
 	static int tailleCombinaison = 4;
 	static int nbrTentatives=(tailleCombinaison+1)*2;
 	static PlateauJeu plateauJeu;
+	static PanneauAccueil accueil;
 	
 
 	public static void main(String[] args) {
 		
 		plateauJeu = new PlateauJeu();
-		general.setContentPane(plateauJeu);
 		plateauJeu.adjustContraints();
-		//general.setVisible(true);
+		//general.setContentPane(plateauJeu);
 
-		PanneauAccueil accueil = new PanneauAccueil();
+		accueil = new PanneauAccueil();
+		accueil.adjustContraints();
+		accueil.resizeLayoutHgap();
 		general.setContentPane(accueil);
-		general.setVisible(true);
+
 
 		//Options simon2 = new Options();
 		//simon2.setVisible(true);
-
+		
+		general.setVisible(true);
+		
 	}
 
 
@@ -74,10 +79,6 @@ public class Mastermind extends JFrame implements ActionListener, HierarchyBound
 	}
 
 
-
-
-
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -100,18 +101,36 @@ public class Mastermind extends JFrame implements ActionListener, HierarchyBound
 			lesBoutons[i].setBounds(x,y,taille,taille);
 		}
 	}
+	
+	
+	public static int generalWidth() {
+		Insets insets = Mastermind.general.getInsets();
+		int width = Mastermind.general.getWidth()-insets.right-insets.left;
+		return width;
+		
+	}
+	
+	public static int generalHeight() {
+		Insets insets = Mastermind.general.getInsets();
+		int height = Mastermind.general.getHeight()-insets.top-insets.bottom;
+		return height;
+		
+	}
 
 
 	@Override
 	public void componentResized(ComponentEvent e) {
-            Dimension d=this.getSize();
+            //		stop la fenetre a sa taille minimal
+			Dimension d=this.getSize();
             Dimension minD=this.getMinimumSize();
             if(d.width<minD.width)
                 d.width=minD.width;
             if(d.height<minD.height)
                 d.height=minD.height;
             this.setSize(d);
-		
+            
+            //		accueil layout hGap Resize
+            accueil.resizeLayoutHgap();
 	}
 
 

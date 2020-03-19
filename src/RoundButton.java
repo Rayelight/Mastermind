@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Insets;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 
@@ -11,10 +10,8 @@ import javax.swing.JButton;
 @SuppressWarnings("serial")
 class RoundButton extends JButton {
 	public RoundButton(int radius) {
-		Dimension size = getPreferredSize();
 		//size.width = size.height = Math.max(size.width,size.height);
 		//size.width = size.height=radius;
-		setPreferredSize(size);
 		//setMargin(new Insets(10, 10, 10, 10));
 
 		setContentAreaFilled(false);
@@ -42,14 +39,15 @@ class RoundButton extends JButton {
 		return shape.contains(x, y);
 	}
 
+	public static int boutonRadius(){
+		int radius = (Mastermind.generalHeight()-40-10*Mastermind.nbrTentatives)/Mastermind.nbrTentatives;  
+		return radius;
+
+	}
+	
 	@Override
 	public Dimension getPreferredSize(){
-		Insets insets = Mastermind.general.getInsets();
-		int height = Mastermind.general.getHeight()-insets.top-insets.bottom;
-		int radius = (height-40-10*Mastermind.nbrTentatives)/Mastermind.nbrTentatives;  
-
-		return new Dimension(radius, radius);
-
+		return new Dimension(boutonRadius(), boutonRadius());
 	}
 
 }

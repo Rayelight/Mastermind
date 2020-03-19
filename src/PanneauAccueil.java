@@ -1,136 +1,168 @@
 // Chargement des biblioth�ques Swing et AWT
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JPanel; 
+import javax.swing.JPanel;
+import javax.swing.SpringLayout; 
 
 @SuppressWarnings("serial")
 public class PanneauAccueil extends JPanel implements ActionListener {
 
-	private static final float CENTRAL_ALIGNMENT = 0;
+	private JLabel titre;
 	private JButton[] boutonsAccueil;
 	private JButton scores;
-	
+	private JPanel boutons;
+	private SpringLayout layout;
+
 	static int nombreBoutons=4;
-	static double pourcentageEspace =1/8;
-	
-	
+	static double pourcentageEspace =1.0/8.0;
+
+
 	public PanneauAccueil() {
-		
-		int width=Mastermind.general.getWidth();
-		int height=Mastermind.general.getHeight();
 
-
-		this.setLayout(null);
+		layout = new SpringLayout();
+		this.setLayout(layout);
 		this.setBackground(Color.white);
-		//this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
 
-
-
+		//			Boxes Creation
+		//		Titre
 		String titreMastermind = new String();
-		int taille =20;
-		titreMastermind += "<html><font size='"+taille+"' color=red>M</font>";
-		titreMastermind += "<font size='"+taille+"' color=orange>A</font>";
-		titreMastermind += "<font size='"+taille+"' color=yellow>S</font>";
-		titreMastermind += "<font size='"+taille+"' color=lime>T</font>";
-		titreMastermind += "<font size='"+taille+"' color=green>E</font>";
-		titreMastermind += "<font size='"+taille+"' color=navy>R</font>";
-		titreMastermind += "<font size='"+taille+"' color=blue>M</font>";
-		titreMastermind += "<font size='"+taille+"' color=aqua>I</font>";
-		titreMastermind += "<font size='"+taille+"' color=purple>N</font>";
-		titreMastermind += "<font size='"+taille+"' color=fucshia>D</font></html>";
+		titreMastermind += "<html>";
+		titreMastermind += "<font color=red>M</font>";
+		titreMastermind += "<font color=orange>A</font>";
+		titreMastermind += "<font color=yellow>S</font>";
+		titreMastermind += "<font color=lime>T</font>";
+		titreMastermind += "<font color=green>E</font>";
+		titreMastermind += "<font color=navy>R</font>";
+		titreMastermind += "<font color=blue>M</font>";
+		titreMastermind += "<font color=aqua>I</font>";
+		titreMastermind += "<font color=purple>N</font>";
+		titreMastermind += "<font color=fucshia>D</font>";
+		titreMastermind +="</html>";
 
-		JLabel titre = new JLabel(titreMastermind, JLabel.CENTER);   
-	    titre.setFont(new Font("Serif", Font.PLAIN, 120));
-		titre.setBounds(width/2,height/20,60*5,100);
-		titre.setAlignmentX(CENTRAL_ALIGNMENT);
+		titre = new JLabel(titreMastermind, JLabel.CENTER){
+			@Override
+			public Dimension getPreferredSize(){
+				return new Dimension(boutonWidth()*2,boutonHeight());
+			}
+		};   
+		titre.setFont(new Font("Serif", Font.PLAIN, 50));
 		titre.setBorder(BorderFactory.createLineBorder(Color.black));
-		this.add(titre);
 
-		
 
-		boutonsAccueil = new JButton[PanneauAccueil.nombreBoutons];
-		
-		 //		Boutons centraux
+		//		BoutonsAccueil
+		boutonsAccueil = new JButton[nombreBoutons];
+
+		//	Creation Boutons
 		boutonsAccueil[0] = boutonAccueil("Jouer");
 		boutonsAccueil[1] = boutonAccueil("Options");
 		boutonsAccueil[2] = boutonAccueil("Mode Ordinateur");
 		boutonsAccueil[3] = boutonAccueil("Règles");
-		
-		//		Box Boutons centreaux
-		Box boutons = Box.createHorizontalBox();
-		boutons.setLayout(new FlowLayout() {
+
+		//	Box Boutons centreaux
+		boutons = new JPanel() {
 			@Override
-			public int getHgap(){
-				Insets insets = Mastermind.general.getInsets();
-	    		int width = Mastermind.general.getWidth()-insets.right-insets.left;
-	    		int boutonWidth = (int) (width/(PanneauAccueil.nombreBoutons*(1+PanneauAccueil.pourcentageEspace)+PanneauAccueil.pourcentageEspace));
-	    		return boutonWidth/8;
+			public Dimension getPreferredSize(){
+				return new Dimension(Mastermind.generalWidth(), boutonHeight());
 			}
-			
-			@Override
-			public int getVgap(){
-	    		return 0;
-			}
-		});
-		
-		
-		//		Ajout des boutons centreaux
+		};
+		boutons.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+
+		//	Ajout des boutons centreaux
 		for(JButton b : boutonsAccueil) {
 			boutons.add(b);
-			b.addActionListener(this);
 		}
-		
+
 
 		//		Bouton Scores
+		scores = new JButton("Tableau des Scores"){
+			@Override
+			public Dimension getPreferredSize(){
+				return new Dimension(boutonWidth()*2,boutonHeight());
+			}
+		};
+		scores.setBackground(Color.cyan);
+		scores.setForeground(Color.white);
+		scores.addActionListener(this);
 
-		scores = boutonAccueil("Tableau des scores");
-		scores.setBounds(width/3,height/2,300,70);
-		
-		
-		
+
+
+
+		//				Layout construction
+		this.add(titre);
+		this.add(boutons);
+		this.add(scores);
+
+
 
 	}
-	
+
+
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 
 	}
-	
-	private JButton boutonAccueil(String texte) {
-	    JButton bouton = new JButton(texte){
-	    	@Override
-	    	public Dimension getPreferredSize(){
-	    		Insets insets = Mastermind.general.getInsets();
-	    		int width = Mastermind.general.getWidth()-insets.right-insets.left;
-	    		int boutonWidth = (int) (width/(PanneauAccueil.nombreBoutons*(1+PanneauAccueil.pourcentageEspace)+PanneauAccueil.pourcentageEspace));
-	    		
-	    		
-	    		return new Dimension(boutonWidth,50);
 
-	    	}
-        };
-        bouton.setBackground(Color.cyan);
+	private JButton boutonAccueil(String texte) {
+		JButton bouton = new JButton(texte){
+			@Override
+			public Dimension getPreferredSize(){
+				return new Dimension(boutonWidth(), boutonHeight());
+			}
+		};
+		bouton.setBackground(Color.cyan);
 		bouton.setForeground(Color.white);
-	    
+		bouton.addActionListener(this);
+
 		return bouton;
 	}
-	
 
+	public static int boutonHeight() {
+		int boutonHeight = ((Mastermind.generalHeight()*2/3)-50-100-100)/4;
+		return boutonHeight;
+
+	}
+
+	public static int boutonWidth() {
+		int boutonWidth = (int) (Mastermind.generalWidth()/(nombreBoutons*(1+pourcentageEspace)+pourcentageEspace))-30;
+		return boutonWidth;
+
+	}
+	
+	public void adjustContraints() {
+		//			Adjust Constraints
+		// 		Titre
+		layout.putConstraint(SpringLayout.NORTH, titre, 50, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, titre, 0, SpringLayout.HORIZONTAL_CENTER, this);
+
+		// 		Boutons Centreaux
+		layout.putConstraint(SpringLayout.NORTH, boutons, 100, SpringLayout.SOUTH, titre);
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, boutons, 0, SpringLayout.HORIZONTAL_CENTER, this);
+
+		// 		Bouton Score
+		layout.putConstraint(SpringLayout.NORTH, scores, 100, SpringLayout.SOUTH, boutons);
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, scores, 0, SpringLayout.HORIZONTAL_CENTER, this);
+		
+
+	}
+
+
+	public void resizeLayoutHgap() {
+		int hGap = (int) (boutonWidth()*pourcentageEspace);
+		((FlowLayout) boutons.getLayout()).setHgap(hGap);
+
+	}
 
 }
 

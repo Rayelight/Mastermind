@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Insets;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,13 +18,9 @@ public class CarreEval extends JPanel{
 			tentatives[i].setOpaque(true);
 		}
 	}
+	
 	@Override
 	public Dimension getPreferredSize(){
-		Insets insets = Mastermind.general.getInsets();
-		int height = Mastermind.general.getHeight()-insets.top-insets.bottom;
-		int carreEvalHeight = height-40;
-		int boutonsRadius = (height-40-5*Mastermind.nbrTentatives)/Mastermind.nbrTentatives; 
-		return new Dimension(boutonsRadius-5, carreEvalHeight);
-
+		return new Dimension(RoundButton.boutonRadius()-5, Mastermind.generalHeight()-40);
 	}
 }

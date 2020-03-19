@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Insets;
 
 import javax.swing.JPanel;
 
@@ -24,11 +23,8 @@ class GrilleCouleurs  extends JPanel{
 
 	@Override
 	public Dimension getPreferredSize(){
-		Insets insets = Mastermind.general.getInsets();
-		int height = Mastermind.general.getHeight()-insets.top-insets.bottom;
-		int grilleCouleursHeight = height-40;
-		int boutonsRadius = (height-40-5*Mastermind.nbrTentatives)/Mastermind.nbrTentatives; 
-		int grilleCouleursWidth = (boutonsRadius+5)*Mastermind.tailleCombinaison+5; 
+		int grilleCouleursHeight = Mastermind.generalHeight()-40;
+		int grilleCouleursWidth = (RoundButton.boutonRadius()+10)*Mastermind.tailleCombinaison+5; 
 		return new Dimension(grilleCouleursWidth, grilleCouleursHeight);
 
 	}
