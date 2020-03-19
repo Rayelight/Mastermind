@@ -120,7 +120,7 @@ public class Mastermind extends JFrame implements ActionListener, HierarchyBound
 
 	@Override
 	public void componentResized(ComponentEvent e) {
-            //		stop la fenetre a sa taille minimal
+//		stop la fenetre a sa taille minimal
 			Dimension d=this.getSize();
             Dimension minD=this.getMinimumSize();
             if(d.width<minD.width)

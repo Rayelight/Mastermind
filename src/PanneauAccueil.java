@@ -112,12 +112,10 @@ public class PanneauAccueil extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if(e.getSource()==boutonsAccueil[0]) {
-			plateaujeu= new Plateaujeu();
-			this.setVisible(true);
+
 		}
 		if(e.getSource()==boutonsAccueil[1]) {
-			options= new Options();
-			this.setVisible(true);
+			
 		}
 		if(e.getSource()==boutonsAccueil[2]) {
 			//affichage mode oridnateur 
@@ -127,6 +125,7 @@ public class PanneauAccueil extends JPanel implements ActionListener {
 		}
 		if(e.getSource()==scores) {
 			//affichage tableau des scores
+		}
 	}
 
 		
