@@ -4,7 +4,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
  
 @SuppressWarnings("serial")
-public class ResizeLabelFont extends JLabel {
+public class ResizeLabelFont extends JButton {
     public static final int MIN_FONT_SIZE=3;
     public static final int MAX_FONT_SIZE=240;
     Graphics g;
@@ -12,8 +12,7 @@ public class ResizeLabelFont extends JLabel {
     public ResizeLabelFont(String text) {
         super(text);
         init();
-        adaptLabelFont(ResizeLabelFont.this);
-    
+        adaptLabelFont(ResizeLabelFont.this);    
     }
  
     protected void init() {
@@ -24,7 +23,7 @@ public class ResizeLabelFont extends JLabel {
         });
     }
  
-    protected void adaptLabelFont(JLabel l) {
+    protected void adaptLabelFont(JButton l) {
         if (g==null) {
             return;
         }
@@ -47,7 +46,7 @@ public class ResizeLabelFont extends JLabel {
         repaint();
     }
  
-    private Dimension getTextSize(JLabel l, Font f) {
+    private Dimension getTextSize(JButton l, Font f) {
         Dimension size=new Dimension();
         g.setFont(f);
         FontMetrics fm=g.getFontMetrics(f);
@@ -68,7 +67,7 @@ public class ResizeLabelFont extends JLabel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
         frame.getContentPane().add(label);
-        frame.pack();
+        frame.pack();  
         frame.setSize(300,300);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
