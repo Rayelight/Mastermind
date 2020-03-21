@@ -9,6 +9,8 @@ import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 class RoundButton extends JButton {
+	private couleurs;
+	
 	public RoundButton(int radius) {
 		//size.width = size.height = Math.max(size.width,size.height);
 		//size.width = size.height=radius;
