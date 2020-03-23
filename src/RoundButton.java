@@ -9,19 +9,26 @@ import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 class RoundButton extends JButton {
-	private couleurs;
+	private Color couleur;
 	
-	public RoundButton(int radius) {
+	public RoundButton() {
 		//size.width = size.height = Math.max(size.width,size.height);
 		//size.width = size.height=radius;
 		//setMargin(new Insets(10, 10, 10, 10));
+		this.couleur=Color.lightGray;
+
+		setContentAreaFilled(false);
+	}
+	
+	public RoundButton(Color couleur) {
+		this.couleur=couleur;
 
 		setContentAreaFilled(false);
 	}
 
 	protected void paintComponent(Graphics g) {
 		if (getModel().isArmed()) {
-			g.setColor(Color.lightGray);
+			g.setColor(couleur);
 		} else {
 			g.setColor(getBackground());
 		}
