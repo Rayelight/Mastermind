@@ -1,0 +1,59 @@
+FontDynamicResizing:
+https://docs.oracle.com/javase/8/docs/api/java/awt/Font.html
+https://docs.oracle.com/javase/tutorial/2d/text/measuringtext.html
+http://imss-www.upmf-grenoble.fr/prevert/Prog/Java/swing/FontMetrics.html
+https://stackoverflow.com/questions/2843601/java-fontmetrics-without-graphics/18123024
+https://www.programcreek.com/java-api-examples/?class=android.view.Display&method=getMetrics
+https://www.programcreek.com/java-api-examples/?class=sun.font.FontDesignMetrics&method=getMetrics
+https://forum.hardware.fr/hfr/Programmation/Java/connaitre-taille-pixel-sujet_35862_1.htm
+https://stackoverflow.com/questions/55776646/how-to-get-the-size-of-string-when-its-rendered-as-html
+https://www.developpez.net/forums/d28459/java/interfaces-graphiques-java/awt-swing/composants/jlabel-lui-donner-taille-occupee-texte/
+http://java.mesexemples.com/swing/java-modifier-la-police-le-style-et-la-taille-des-caracteres/
+https://www.developpez.net/forums/d36783/java/interfaces-graphiques-java/awt-swing/composants/debutant-jlabel-taille-texte/
+	http://java-sl.com/tip_adapt_label_font_size.html
+	https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-the-maximum-size
+	https://docs.oracle.com/javase/8/docs/technotes/guides/2d/spec/j2d-fonts.html
+
+
+DynamicResizing and JFrame Ratio:
+https://stackoverflow.com/questions/24804742/which-method-runs-when-the-frame-is-resized-in-java
+https://docs.oracle.com/javase/7/docs/api/java/awt/Toolkit.html
+	https://stackoverflow.com/questions/24842077/how-to-call-componentresized-method-just-once-when-user-stops-holding-mouse-but
+https://www.erpgreat.com/java/detect-that-jframe-is-being-resized.htm
+https://gist.github.com/fmarot/f04346d0e989baef1f56ffd83bbf764d
+	http://www.java2s.com/Questions_And_Answers/Swing/JFrame/Resize.htm
+https://stackoverflow.com/questions/19865022/how-do-i-resize-a-jframe-while-maintaining-aspect-ratio
+https://stackoverflow.com/questions/12485555/how-to-correctly-set-minimum-sizes-in-java
+	https://stackoverflow.com/questions/27544569/java-how-to-control-jpanel-aspect-ratio
+
+Multicolor JLabel
+http://1bestcsharp.blogspot.com/2015/03/java-how-to-change-jlabel-font-color-name-size-style-in-java.html
+	https://stackoverflow.com/questions/6856120/building-html-in-java-code-only
+
+Layout Managers
+
+
+ContentPane and GUI
+https://stackoverflow.com/questions/2742270/jframe-setbackground-not-working-why
+	https://www.lri.fr/~anab/teaching/DevLog/cours5-IG.pdf
+	https://www.jmdoudoux.fr/java/dej/chap-swing.htm
+
+
+Round Button
+https://stackoverflow.com/questions/423950/rounded-swing-jbutton-using-java
+
+GitHub
+	https://openclassrooms.com/fr/courses/2342361-gerez-votre-code-avec-git-et-github?status=published
+
+
+Eclipse
+
+
+Mode PleinEcran
+	https://www.clubic.com/forum/t/java-jframe-et-ouverture-directe-en-plein-ecran/254493/5
+	https://www.programcreek.com/java-api-examples/?class=javax.swing.JFrame&method=setExtendedState
+https://docs.oracle.com/javase/7/docs/api/java/awt/Frame.html
+	https://stackoverflow.com/questions/11570356/jframe-in-full-screen-java
+
+
+
