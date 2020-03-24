@@ -32,7 +32,6 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 
 
 		accueil.adjustContraints();
-		accueil.boutonsContraints();
 		general.setContentPane(accueil);
 
 

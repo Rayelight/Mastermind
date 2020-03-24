@@ -2,14 +2,19 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SpringLayout; 
+import javax.swing.SpringLayout;
+
 
 @SuppressWarnings("serial")
 public class PanneauAccueil extends JPanel implements ActionListener{
@@ -49,12 +54,34 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 		titreMastermind +="</html>";
 
 		titre = new JLabel(titreMastermind, JLabel.CENTER){
+			Graphics g; 
+			
 			@Override
 			public Dimension getPreferredSize(){
 				return new Dimension(boutonWidth()*2,boutonHeight()*3/2);
 			}
-		};   
-		titre.setFont(new Font("Serif", Font.PLAIN, 50));
+			
+			public int fontSize(){
+				Font f = new Font("Serif", Font.PLAIN, boutonWidth()/4);
+				FontMetrics fm = g.getFontMetrics(f);
+				int size = fm.stringWidth("blablabla");
+				System.out.println(size);
+				return size;
+			}
+			
+			protected void paintComponent(Graphics g) {
+		        super.paintComponent(g);
+		        this.g=g;
+		    }
+			
+		};
+		titre.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+            	titre.setFont(new Font("Serif", Font.PLAIN, boutonWidth()/4));
+                titre.repaint();
+            }
+        });
 		titre.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		
