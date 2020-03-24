@@ -54,31 +54,18 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 		titreMastermind +="</html>";
 
 		titre = new JLabel(titreMastermind, JLabel.CENTER){
-			Graphics g; 
-			
+
 			@Override
 			public Dimension getPreferredSize(){
 				return new Dimension(boutonWidth()*2,boutonHeight()*3/2);
 			}
-			
-			public int fontSize(){
-				Font f = new Font("Serif", Font.PLAIN, boutonWidth()/4);
-				FontMetrics fm = g.getFontMetrics(f);
-				int size = fm.stringWidth("blablabla");
-				System.out.println(size);
-				return size;
-			}
-			
-			protected void paintComponent(Graphics g) {
-		        super.paintComponent(g);
-		        this.g=g;
-		    }
+
 			
 		};
 		titre.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-            	titre.setFont(new Font("Serif", Font.PLAIN, boutonWidth()/4));
+            	titre.setFont(new Font("Serif", Font.PLAIN, boutonHeight()));
                 titre.repaint();
             }
         });
@@ -107,8 +94,15 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 			}
 		};
 		scores.setBackground(Color.cyan);
-		scores.setForeground(Color.white);
+		scores.setForeground(Color.black);
 		scores.addActionListener(this);
+		scores.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+            	scores.setFont(new Font("Serif", Font.BOLD, boutonHeight()/2));
+                scores.repaint();
+            }
+        });
 
 
 
@@ -155,9 +149,17 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 			}
 		};
 		bouton.setBackground(Color.cyan);
-		bouton.setForeground(Color.white);
+		bouton.setForeground(Color.black);
 		bouton.addActionListener(this);
-
+		
+		bouton.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+            	bouton.setFont(new Font("Serif", Font.BOLD, boutonHeight()*5/12));
+                bouton.repaint();
+            }
+        });
+		
 		return bouton;
 	}
 
