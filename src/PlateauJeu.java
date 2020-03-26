@@ -2,27 +2,20 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
-import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
-public class PlateauJeu extends JPanel implements ActionListener, ComponentListener{
+public class PlateauJeu extends ContraintsJPanel implements ActionListener{
 
 
-	SpringLayout layout;
 	GrilleCouleurs grilleCouleurs;
 	CarreEval carrePlacement;
 	CarreEval carreValide;
 
 	public PlateauJeu(){
-		//			Panel Setup
-		layout = new SpringLayout();
-		this.setLayout(layout);
+		//			Panel Setup	
 		this.setBackground(Color.red);
-		this.addComponentListener(this);
 		
 		//			Components creation
 		grilleCouleurs = new GrilleCouleurs();
@@ -34,6 +27,8 @@ public class PlateauJeu extends JPanel implements ActionListener, ComponentListe
 		this.add(grilleCouleurs);
 		this.add(carrePlacement);
 		this.add(carreValide);
+		
+		
 		
 		
 	}
@@ -68,34 +63,6 @@ public class PlateauJeu extends JPanel implements ActionListener, ComponentListe
 	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension((int) (Mastermind.generalWidth()*0.7),Mastermind.generalHeight());
-	}
-
-
-	@Override
-	public void componentResized(ComponentEvent e) {
-		this.adjustContraints();
-		
-	}
-
-
-	@Override
-	public void componentMoved(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void componentShown(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void componentHidden(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 

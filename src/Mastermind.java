@@ -46,6 +46,7 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 		//simon2.setVisible(true);
 
 		general.setVisible(true);
+		general.setSize(general.getPreferredSize());
 
 	}
 
@@ -133,17 +134,20 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 		double maxRatio = 16.0/9.0;
 		double maxHeight=general.getHeight();
 		double maxWidth =maxHeight*maxRatio;
-		if(general.getWidth()/general.getHeight()>maxRatio)
+		if((double)general.getWidth()/(double)general.getHeight()>maxRatio)
 			this.setSize(new Dimension((int)maxWidth, (int)maxHeight));
 
 		//minimum ratio set to 1
 		double minRatio = 1.0;
 		double minWidth=general.getWidth();
 		double minHeight =minWidth/minRatio;
-		if(general.getWidth()/general.getHeight()<minRatio)
+		if((double)general.getWidth()/(double)general.getHeight()<minRatio)
 			this.setSize(new Dimension((int)minWidth, (int)minHeight));
 
-
+		
+		//adjustPanelContraints
+		//if(getContentPane() instanceof ContraintsJPanel)
+			//((ContraintsJPanel) getContentPane()).adjustContraints();
 	}
 
 
