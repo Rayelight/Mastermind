@@ -36,10 +36,10 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 		//general.setContentPane(plateauJeu);
 		
 		
-		//general.setContentPane(panneauJeu);
+		general.setContentPane(panneauJeu);
 
 
-		general.setContentPane(accueil);
+		//general.setContentPane(accueil);
 
 
 		//Options simon2 = new Options();
