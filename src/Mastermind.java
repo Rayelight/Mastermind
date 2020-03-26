@@ -18,20 +18,27 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 
 	static Mastermind general = new Mastermind();
 	static int nbrCouleurs = 8;
-	static int tailleCombinaison = 4;
+	static int tailleCombinaison = 6;
 	static int nbrTentatives=(tailleCombinaison+1)*2;
+	static Color[] couleurs = {	Color.red, Color.orange, 
+			Color.yellow, Color.gray, 
+			Color.green, Color.blue, 
+			Color.pink, Color.white,
+			Color.magenta, Color.cyan};
 	static PlateauJeu plateauJeu = new PlateauJeu();
-	static PanneauAccueil accueil = new PanneauAccueil();;
+	static PanneauAccueil accueil = new PanneauAccueil();
+	static PanneauJeu panneauJeu = new PanneauJeu();
+	
 
 
 	public static void main(String[] args) {
 
-
-		plateauJeu.adjustContraints();
 		//general.setContentPane(plateauJeu);
+		
+		
+		//general.setContentPane(panneauJeu);
 
 
-		accueil.adjustContraints();
 		general.setContentPane(accueil);
 
 
@@ -57,7 +64,7 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 		//Insets insets = this.getInsets();
 		int width = bounds.width*7/10;
 		int height = bounds.height;
-		this.setSize(new Dimension(width, height));
+		this.setPreferredSize(new Dimension(width, height));
 		//this.setSize(800,600);
 		this.setMinimumSize(new Dimension(800,600));
 		this.setLocation(0,0);
@@ -67,7 +74,7 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 		this.setTitle("Mastermind");
 		Toolkit.getDefaultToolkit().setDynamicLayout( false );
 		//this.setResizable(false);
-
+		this.pack();
 
 
 		//		ContentPane
@@ -135,10 +142,6 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 		double minHeight =minWidth/minRatio;
 		if(general.getWidth()/general.getHeight()<minRatio)
 			this.setSize(new Dimension((int)minWidth, (int)minHeight));
-
-		//accueil layout Resize
-		accueil.adjustContraints();
-		accueil.revalidate();
 
 
 	}

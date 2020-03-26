@@ -2,28 +2,33 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Shape;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
 
 import javax.swing.JButton;
 
 
 @SuppressWarnings("serial")
-class RoundButton extends JButton {
+class RoundButton extends JButton implements ActionListener {
 	private Color couleur;
+	private boolean typeJeu;
 	
 	public RoundButton() {
 		//size.width = size.height = Math.max(size.width,size.height);
 		//size.width = size.height=radius;
 		//setMargin(new Insets(10, 10, 10, 10));
 		this.couleur=Color.lightGray;
-
+		this.typeJeu = true;
 		setContentAreaFilled(false);
+		addActionListener(this);
 	}
 	
 	public RoundButton(Color couleur) {
 		this.couleur=couleur;
-
+		this.typeJeu = false;
 		setContentAreaFilled(false);
+		addActionListener(this);
 	}
 
 	protected void paintComponent(Graphics g) {
@@ -57,6 +62,12 @@ class RoundButton extends JButton {
 	@Override
 	public Dimension getPreferredSize(){
 		return new Dimension(boutonRadius(), boutonRadius());
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -8,8 +8,7 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class Combinaison extends JPanel{
-	private int n=4;
-	private RoundButton[] couleurs = new RoundButton[n];
+	private RoundButton[] couleurs = new RoundButton[Mastermind.tailleCombinaison];
 
 	public Combinaison(){
 		this.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 5));
@@ -17,7 +16,7 @@ public class Combinaison extends JPanel{
 		this.setBackground(Color.green);
 		//this.setBorder(BorderFactory.createLineBorder(Color.black));
 
-		for(int i=0; i<n; i++) {
+		for(int i=0; i<Mastermind.tailleCombinaison; i++) {
 			couleurs[i] = new RoundButton();
 			couleurs[i].setBackground(Color.gray);
 			this.add(couleurs[i]);

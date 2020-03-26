@@ -2,12 +2,11 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -17,7 +16,7 @@ import javax.swing.SpringLayout;
 
 
 @SuppressWarnings("serial")
-public class PanneauAccueil extends JPanel implements ActionListener{
+public class PanneauAccueil extends JPanel implements ActionListener, ComponentListener{
 
 	private JLabel titre;
 	private JButton[] boutonsAccueil;
@@ -33,11 +32,12 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 		layout = new SpringLayout();
 		this.setLayout(layout);
 		this.setBackground(Color.white);
-		
+		this.addComponentListener(this);
+
 
 
 		//			Boxes Creation
-		
+
 		//		Titre
 		String titreMastermind = new String();
 		titreMastermind += "<html>";
@@ -60,19 +60,19 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 				return new Dimension(boutonWidth()*2,boutonHeight()*3/2);
 			}
 
-			
+
 		};
 		titre.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-            	titre.setFont(new Font("Serif", Font.PLAIN, boutonHeight()));
-                titre.repaint();
-            }
-        });
+				titre.setFont(new Font("Serif", Font.PLAIN, boutonHeight()));
+				titre.repaint();
+			}
+		});
 		titre.setBorder(BorderFactory.createLineBorder(Color.black));
 
-		
-		
+
+
 
 		//		BoutonsAccueil
 		boutonsAccueil = new JButton[nombreBoutons];
@@ -83,8 +83,8 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 		boutonsAccueil[2] = boutonAccueil("Mode Ordinateur");
 		boutonsAccueil[3] = boutonAccueil("Règles");
 
-		
-		
+
+
 
 		//		Bouton Scores
 		scores = new JButton("Tableau des Scores"){
@@ -99,10 +99,10 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 		scores.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-            	scores.setFont(new Font("Serif", Font.BOLD, boutonHeight()/2));
-                scores.repaint();
-            }
-        });
+				scores.setFont(new Font("Serif", Font.BOLD, boutonHeight()/2));
+				scores.repaint();
+			}
+		});
 
 
 
@@ -151,20 +151,19 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 		bouton.setBackground(Color.cyan);
 		bouton.setForeground(Color.black);
 		bouton.addActionListener(this);
-		
+
 		bouton.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-            	bouton.setFont(new Font("Serif", Font.BOLD, boutonHeight()*5/12));
-                bouton.repaint();
-            }
-        });
-		
+				bouton.setFont(new Font("Serif", Font.BOLD, boutonHeight()*5/12));
+				bouton.repaint();
+			}
+		});
+
 		return bouton;
 	}
 
 	public static int boutonHeight() {
-		//int boutonHeight = (int) (((Mastermind.generalHeight())-50-100-100)*2/3/(3.5));
 		int boutonHeight = boutonWidth()/4;
 		return boutonHeight;
 
@@ -175,7 +174,7 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 		return boutonWidth;
 
 	}
-	
+
 
 	public void adjustContraints() {
 		//			Adjust Constraints
@@ -217,10 +216,46 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 		return hGap;
 
 	}
-	
+
 	public static int boutonsVgap() {
 		int vGap = (Mastermind.generalHeight()*2/3-4*boutonHeight())/5;
 		return vGap;
+
+	}
+
+
+
+
+	@Override
+	public void componentResized(ComponentEvent e) {
+		this.adjustContraints();
+
+	}
+
+
+
+
+	@Override
+	public void componentMoved(ComponentEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+
+
+
+	@Override
+	public void componentShown(ComponentEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+
+
+
+	@Override
+	public void componentHidden(ComponentEvent e) {
+		// TODO Auto-generated method stub
 
 	}
 

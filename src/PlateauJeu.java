@@ -1,12 +1,15 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
-public class PlateauJeu extends JPanel implements ActionListener{
+public class PlateauJeu extends JPanel implements ActionListener, ComponentListener{
 
 
 	SpringLayout layout;
@@ -19,6 +22,7 @@ public class PlateauJeu extends JPanel implements ActionListener{
 		layout = new SpringLayout();
 		this.setLayout(layout);
 		this.setBackground(Color.red);
+		this.addComponentListener(this);
 		
 		//			Components creation
 		grilleCouleurs = new GrilleCouleurs();
@@ -30,8 +34,6 @@ public class PlateauJeu extends JPanel implements ActionListener{
 		this.add(grilleCouleurs);
 		this.add(carrePlacement);
 		this.add(carreValide);
-		
-		
 		
 		
 	}
@@ -47,12 +49,12 @@ public class PlateauJeu extends JPanel implements ActionListener{
 		// 		carreValide Constrains
 		layout.putConstraint(SpringLayout.NORTH, carreValide, 25, SpringLayout.NORTH, this);
 		layout.putConstraint(SpringLayout.SOUTH, carreValide, -25, SpringLayout.SOUTH, this);
-		layout.putConstraint(SpringLayout.EAST, carreValide, -30, SpringLayout.WEST, grilleCouleurs);
+		layout.putConstraint(SpringLayout.EAST, carreValide, RoundButton.boutonRadius(), SpringLayout.WEST, grilleCouleurs);
 		
 		// 		carrePlacement Constrains
 		layout.putConstraint(SpringLayout.NORTH, carrePlacement, 25, SpringLayout.NORTH, this);
 		layout.putConstraint(SpringLayout.SOUTH, carrePlacement, -25, SpringLayout.SOUTH, this);
-		layout.putConstraint(SpringLayout.WEST, carrePlacement, 30, SpringLayout.EAST, grilleCouleurs);
+		layout.putConstraint(SpringLayout.WEST, carrePlacement, RoundButton.boutonRadius(), SpringLayout.EAST, grilleCouleurs);
 		
 
 	}
@@ -61,6 +63,39 @@ public class PlateauJeu extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public Dimension getPreferredSize() {
+		return new Dimension((int) (Mastermind.generalWidth()*0.7),Mastermind.generalHeight());
+	}
+
+
+	@Override
+	public void componentResized(ComponentEvent e) {
+		this.adjustContraints();
+		
+	}
+
+
+	@Override
+	public void componentMoved(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void componentShown(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void componentHidden(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

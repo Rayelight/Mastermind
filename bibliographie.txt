@@ -16,6 +16,7 @@ https://www.developpez.net/forums/d36783/java/interfaces-graphiques-java/awt-swi
 
 
 DynamicResizing and JFrame Ratio:
+	https://stackoverflow.com/questions/2303305/window-resize-event
 https://stackoverflow.com/questions/24804742/which-method-runs-when-the-frame-is-resized-in-java
 https://docs.oracle.com/javase/7/docs/api/java/awt/Toolkit.html
 	https://stackoverflow.com/questions/24842077/how-to-call-componentresized-method-just-once-when-user-stops-holding-mouse-but
@@ -25,28 +26,72 @@ https://gist.github.com/fmarot/f04346d0e989baef1f56ffd83bbf764d
 https://stackoverflow.com/questions/19865022/how-do-i-resize-a-jframe-while-maintaining-aspect-ratio
 https://stackoverflow.com/questions/12485555/how-to-correctly-set-minimum-sizes-in-java
 	https://stackoverflow.com/questions/27544569/java-how-to-control-jpanel-aspect-ratio
+	https://www.codeproject.com/Tips/5247835/Resizing-Frame-and-Controls-with-the-Same-Ratio-in
+https://stackoverflow.com/questions/30611975/giving-a-jpanel-a-percentage-based-width
+https://stackoverflow.com/questions/2781939/setting-minimum-size-limit-for-a-window-in-java-swing
+	https://stackoverflow.com/questions/16075022/making-a-jpanel-square
+	http://www.aidewindows.net/materiel_ecran-taille.php
+	https://stackoverflow.com/questions/30198953/how-to-dynamically-control-auto-resize-components-in-java-swing
+	https://stackoverflow.com/questions/27544569/java-how-to-control-jpanel-aspect-ratio
+
 
 Multicolor JLabel
 http://1bestcsharp.blogspot.com/2015/03/java-how-to-change-jlabel-font-color-name-size-style-in-java.html
 	https://stackoverflow.com/questions/6856120/building-html-in-java-code-only
+	https://htmlcolorcodes.com/fr/
+	https://www.tutorialspoint.com/how-can-we-implement-a-jlabel-text-with-different-color-and-font-in-java
+
 
 Layout Managers
+https://javatutorial.net/java-swing-jframe-layouts
+	http://imss-www.upmf-grenoble.fr/prevert/Prog/Java/swing/gestionPlace.html
+	https://docs.oracle.com/javase/tutorial/uiswing/layout/visual.html
+	https://docs.oracle.com/javase/tutorial/uiswing/layout/layoutlist.html
+	https://docs.oracle.com/javase/7/docs/api/javax/swing/SpringLayout.Constraints.html
+https://stackoverflow.com/questions/12048047/how-to-get-gridbaglayout-to-respect-minimum-size-of-a-button-or-panel/16298700#16298700
+https://docs.oracle.com/javase/7/docs/api/java/awt/Dimension.html
+https://docs.oracle.com/javase/7/docs/api/javax/swing/JComponent.html
+	https://www.cis.upenn.edu/~bcpierce/courses/629/jdkdocs/api/java.awt.FlowLayout.html
+	http://www.fredosaurus.com/notes-java/GUI/layouts/42boxlayout-spacing.html
+	https://www.cs.tut.fi/lintula/manual/java/tutorial/uiswing/layout/box.html
+	https://www.tutorialspoint.com/swing/swing_springlayout.htm
+	https://stackoverflow.com/questions/21622148/how-can-i-center-align-a-component-with-springlayout
+https://stackoverflow.com/questions/24839283/forcing-jpanel-with-gridlayout-to-update-resize
+
+
 
 
 ContentPane and GUI
+https://docs.oracle.com/javase/tutorial/uiswing/components/frame.html
+	https://docs.oracle.com/javase/tutorial/uiswing/components/toplevel.html#contentpane
 https://stackoverflow.com/questions/2742270/jframe-setbackground-not-working-why
 	https://www.lri.fr/~anab/teaching/DevLog/cours5-IG.pdf
 	https://www.jmdoudoux.fr/java/dej/chap-swing.htm
+https://stackoverflow.com/questions/18628062/what-difference-does-add-method-make-over-setcontentpane
+https://gfx.developpez.com/tutoriel/java/swing/swing-threading/
+	http://echo.nextapp.com/content/echo2/doc/api/2.1/public/app/index.html?nextapp/echo2/app/ContentPane.html
+
+
 
 
 Round Button
 https://stackoverflow.com/questions/423950/rounded-swing-jbutton-using-java
+	https://docs.oracle.com/javase/7/docs/api/javax/swing/ButtonModel.html
+https://happycoding.io/examples/java/swing/circle-button
+	https://www.roseindia.net/tutorial/java/swing/createRoundButton.html
+	
+
 
 GitHub
 	https://openclassrooms.com/fr/courses/2342361-gerez-votre-code-avec-git-et-github?status=published
+	http://johnatten.com/2012/09/08/basic-git-command-line-reference-for-windows-users/#BASH-NAVIGATE-FILE-SYSTEM
+
 
 
 Eclipse
+	https://github.com/collab-uniba/socialcde4eclipse/wiki/How-to-import-a-GitHub-project-into-Eclipse
+	https://waytolearnx.com/2018/11/eclipse-les-raccourcis-clavier-pour-programmer-rapidement.html
+	https://thierry-leriche-dessirier.developpez.com/tutoriels/eclipse/raccourcis/
 
 
 Mode PleinEcran
@@ -54,6 +99,54 @@ Mode PleinEcran
 	https://www.programcreek.com/java-api-examples/?class=javax.swing.JFrame&method=setExtendedState
 https://docs.oracle.com/javase/7/docs/api/java/awt/Frame.html
 	https://stackoverflow.com/questions/11570356/jframe-in-full-screen-java
+	https://www.tutorialspoint.com/how-to-set-fullscreen-mode-for-java-swing-application
 
+
+
+Collections Java
+	https://openclassrooms.com/fr/courses/1826586-java-et-les-collections
+	https://fr.wikibooks.org/wiki/Programmation_Java/Collections
+https://www.java2novice.com/java-collections-and-util/hashmap/entry-set/
+https://www.geeksforgeeks.org/hashmap-keyset-method-in-java/
+https://www.reddit.com/r/learnprogramming/comments/30uhjc/how_do_i_get_the_nth_term_of_a_map/
+	https://java2blog.com/hashmap-in-java-with-examples/
+
+
+
+Mastermind
+http://www.cs.uni.edu/~wallingf/teaching/cs3530/resources/knuth-mastermind.pdf
+https://www.quora.com/What-is-the-lowest-guaranteed-number-of-tries-one-has-to-do-to-solve-a-Mastermind-game-with-6-colors
+	https://www.dcode.fr/combinaisons
+https://arxiv.org/pdf/1305.1010.pdf
+	https://www.dcode.fr/solveur-mastermind
+	https://nebupookins.github.io/JS-Mastermind-Solver/
+	http://www.normalesup.org/~vernade/td6.pdf
+
+
+
+pack() Methode
+https://stackoverflow.com/questions/22982295/what-does-pack-do
+https://www.tutorialspoint.com/when-can-we-use-the-pack-method-in-java
+https://hajsoftutorial.com/jframe-pack/
+https://www.roseindia.net/java/example/java/swing/packvssetsize.shtml
+https://docs.oracle.com/javase/8/docs/api/java/awt/Window.html#pack--
+https://stackoverflow.com/questions/22982295/what-does-pack-do
+
+
+Insets
+	https://stackoverflow.com/questions/12711822/insets-top-left-bottom-right-all-zero
+https://coderanch.com/t/594500/java/Setting-frame-correct-size
+	https://docs.oracle.com/javase/7/docs/api/java/awt/Insets.html
+https://stackoverflow.com/questions/1954674/can-i-make-swing-jbuttons-have-smaller-margins
+
+
+Overriding and Graphics advices
+http://web.archive.org/web/20100207211337/http://www.jguru.com/faq/view.jsp?EID=237070
+https://stackoverflow.com/questions/10866762/use-of-overriding-getpreferredsize-instead-of-using-setpreferredsize-for-fix
+	https://stackoverflow.com/questions/7229226/should-i-avoid-the-use-of-setpreferredmaximumminimumsize-methods-in-java-swi	
+	http://web.archive.org/web/20110614145256/http://wiki.java.net/twiki/bin/view/Javadesktop/SwingLabsImperialRules?TWIKISID=e1a6667476691b56753dc9b0744828c6#Do_not_use_component_setXXSize
+
+HotKeys
+	https://www.codejava.net/java-se/swing/setting-shortcut-key-and-hotkey-for-menu-item-and-button-in-swing
 
 
