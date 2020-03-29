@@ -6,16 +6,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 
 @SuppressWarnings("serial")
-public class PanneauAccueil extends ContraintsJPanel implements ActionListener{
+public class PanneauAccueil extends JPanel implements ActionListener{
 
 	private JLabel titre;
 	private JButton[] boutonsAccueil;
@@ -24,7 +24,7 @@ public class PanneauAccueil extends ContraintsJPanel implements ActionListener{
 	private SpringLayout layout;
 
 	static int nombreBoutons=4;
-	static double pourcentageEspace =1d/4d;
+	static double pourcentageEspace =1.0/4.0;
 
 
 
@@ -38,7 +38,6 @@ public class PanneauAccueil extends ContraintsJPanel implements ActionListener{
 			@Override
 			public void componentResized(ComponentEvent e) {
             	adjustContraints();
-            	System.out.println("actve");
             }
         });
 		
@@ -149,6 +148,7 @@ public class PanneauAccueil extends ContraintsJPanel implements ActionListener{
 
 
 
+	//Création des Boutons et paramétrisation
 	private JButton boutonAccueil(String texte) {
 		JButton bouton = new JButton(texte){
 			@Override
@@ -171,19 +171,45 @@ public class PanneauAccueil extends ContraintsJPanel implements ActionListener{
 		return bouton;
 	}
 
+	//Hauteur d'un bouton
 	public static int boutonHeight() {
 		int boutonHeight = boutonWidth()/4;
 		return boutonHeight;
 
 	}
 
+	//Largeur d'un bouton
 	public static int boutonWidth() {
 		int boutonWidth = (Mastermind.generalWidth()-(nombreBoutons+1)*boutonsHgap())/nombreBoutons;
 		return boutonWidth;
 
 	}
 	
+	
+	//Position de l'axe central vertical des boutons
+	public static int centreHbouton(int i) {
+		int centreHbouton = boutonsHgap()+boutonWidth()/2+i*(boutonsHgap()+boutonWidth()) ;
+		return centreHbouton;
 
+	}
+
+
+	//Distance Horizontale entre les boutons
+	public static int boutonsHgap() {
+		int hGap = (int) (Mastermind.generalWidth()*pourcentageEspace/(pourcentageEspace*(nombreBoutons+1)+nombreBoutons));
+		return hGap;
+
+	}
+	
+	//Distance Verticale entre les widgets
+	public static int boutonsVgap() {
+		int vGap = (int) (((Mastermind.generalHeight()*2.0/3.0)-boutonHeight()*4.0)/5.0);
+		return vGap;
+
+	}
+	
+	
+	
 	public void adjustContraints() {
 		//			Adjust Constraints
 		// 		Titre
@@ -211,25 +237,7 @@ public class PanneauAccueil extends ContraintsJPanel implements ActionListener{
 	}
 
 
-	public static int centreHbouton(int i) {
-		int centreHbouton = boutonsHgap()+boutonWidth()/2+i*(boutonsHgap()+boutonWidth()) ;
-		return centreHbouton;
-
-	}
-
-
-
-	public static int boutonsHgap() {
-		int hGap = (int) (Mastermind.generalWidth()*pourcentageEspace/(pourcentageEspace*(nombreBoutons+1)+nombreBoutons));
-		return hGap;
-
-	}
 	
-	public static int boutonsVgap() {
-		int vGap = (Mastermind.generalHeight()*2/3-4*boutonHeight())/5;
-		return vGap;
-
-	}
 
 }
 

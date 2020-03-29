@@ -18,7 +18,7 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 
 	static Mastermind general = new Mastermind();
 	static int nbrCouleurs = 8;
-	static int tailleCombinaison = 6;
+	static int tailleCombinaison = 4;
 	static int nbrTentatives=(tailleCombinaison+1)*2;
 	static Color[] couleurs = {	Color.red, Color.orange, 
 			Color.yellow, Color.gray, 
@@ -36,10 +36,10 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 		//general.setContentPane(plateauJeu);
 		
 		
-		//general.setContentPane(panneauJeu);
+		general.setContentPane(panneauJeu);
 
-
-		general.setContentPane(accueil);
+		
+		//general.setContentPane(accueil);
 
 
 		//Options simon2 = new Options();
@@ -138,7 +138,7 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 			this.setSize(new Dimension((int)maxWidth, (int)maxHeight));
 
 		//minimum ratio set to 1
-		double minRatio = 1.0;
+		double minRatio = 8.0/6.0;
 		double minWidth=general.getWidth();
 		double minHeight =minWidth/minRatio;
 		if((double)general.getWidth()/(double)general.getHeight()<minRatio)

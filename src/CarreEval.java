@@ -10,6 +10,7 @@ public class CarreEval extends JPanel{
 	CarreEval(){
 		this.setLayout(new GridLayout(Mastermind.nbrTentatives, 1, 10, 10));
 		this.setBackground(Color.yellow);
+		this.setOpaque(false);
 
 		JLabel[] tentatives = new JLabel[Mastermind.nbrTentatives];
 		for(int i=0; i<Mastermind.nbrTentatives; i++) {
