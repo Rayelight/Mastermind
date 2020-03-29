@@ -26,18 +26,13 @@ public class Combinaison extends JPanel{
 	
 	/**
 	 * Compare la combinaison du joueur avec la combinaison exacte
-	 * M�thode qui renvoie le nombre de couleurs bien plac�es
+	 * Méthode qui renvoie le nombre de couleurs bien plac�es
 	 */
-	public static int compteur(RoundButton[]combinaison1, RoundButton []combinaison2,int n) {
-		//Le tableau doublon permet d'eviter de compter plusieurs fois une couleur
-		boolean[]doublon=new boolean[n];
+	public int nbrCouleursValides(Combinaison  combiJeu) {
 		int res=0;
-		for(int i=0; i<n ; i++) {
-			if(combinaison1[i]==combinaison2[i]) {
-				doublon[i]=true;		
+		for(int i=0; i<Mastermind.tailleCombinaison ; i++) {
+			if(this.couleurs[Mastermind.tailleCombinaison].getCouleur() == combiJeu.couleurs[Mastermind.tailleCombinaison].getCouleur()) {	
 				res++;
-			}else {
-				doublon[i]=false;
 		    }
 		}
 		return res;
@@ -45,18 +40,16 @@ public class Combinaison extends JPanel{
 
 	/**
 	 * Compare la combinaison du joueur avec la combinaison exacte
-	 * M�thode qui renvoie le nombre de couleurs devin�es mais mal plac�es
+	 * Méthode qui renvoie le nombre de couleurs devinées mais mal plac�es
 	 */
-	public static int compteur2 (RoundButton[]combinaison1, RoundButton []combinaison2,int n) {
+	public int nbrCouleursPresent (Combinaison combiJeu) {
 		int res=0;
-		boolean[]doublon=new boolean[n];
 		int j=0;
 		boolean malplace=false;
-		for(int i=0; i<n; i++) {
-			if(combinaison1[i]!=combinaison2[i]) {
-				while(j<n && !malplace) {
-					if(!doublon[j] && combinaison1[i]==combinaison2[j]) {
-						doublon[i]=true;
+		for(int i=0; i<Mastermind.tailleCombinaison; i++) {
+			if(combiJeu.couleurs[Mastermind.tailleCombinaison].getCouleur()!=this.couleurs[Mastermind.tailleCombinaison].getCouleur()) {
+				while(j<Mastermind.tailleCombinaison && !malplace) {
+					if(combiJeu.couleurs[Mastermind.tailleCombinaison].getCouleur()==this.couleurs[Mastermind.tailleCombinaison].getCouleur()) {				
 						malplace=true;
 						res++;
 					}

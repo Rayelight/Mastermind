@@ -70,5 +70,10 @@ class RoundButton extends JButton implements ActionListener {
 		
 	}
 
+	public Color getCouleur() {
+		return couleur;
+	}
+
+
 }
 

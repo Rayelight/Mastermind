@@ -2,6 +2,8 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,6 +18,8 @@ public class Options extends JFrame implements ActionListener {
 	// Les Widgets � d�clarer en dehors du constructeur
         private JButton Scores;
         private JButton Settings;
+        private JCheckBox checkBox1;
+        private JCheckBox checkBox2;
 
     
     public Options() {
@@ -116,24 +120,75 @@ public class Options extends JFrame implements ActionListener {
         panneauGlobal.add(checkBox2);
 
         
-        //Curseurs
-        
-        JSlider Slider1 = new JSlider(6, 12, 8);
-        Slider1.setBounds(150,270, 150,50);
-        JSlider Slider2 = new JSlider(2, 8, 4);
-        Slider2.setBounds(150,330, 150,50);
-        panneauGlobal.add(Slider1);
-        panneauGlobal.add(Slider2);
+        //Curseurs ( nombre de couleurs disponibles)
+        int min = 6;
+        int max = 10;
+        int init = 8; 
+       JSlider slidercouleursdispo = new JSlider (JSlider.HORIZONTAL,min, max, init);
+       slidercouleursdispo.setMajorTickSpacing (1);
+       slidercouleursdispo.setPaintTicks (true);
+       slidercouleursdispo.setPaintLabels (true);
+       slidercouleursdispo.setBounds(150,270, 150,50);
+       panneauGlobal.add(slidercouleursdispo);
 
+        //Curseurs ( nombre de couleurs par combinaison)
+         int mini = 2;
+         int maxi =6;
+         int initi = 4;    
+        JSlider slidercouleurscombi = new JSlider (JSlider.HORIZONTAL,mini, maxi, initi);
+        slidercouleurscombi.setMajorTickSpacing (1);
+        slidercouleurscombi.setPaintTicks (true);
+        slidercouleurscombi.setPaintLabels (true);
+        slidercouleurscombi.setBounds(150,330, 150,50);
+        panneauGlobal.add(slidercouleurscombi);
         
-     }  
+        
+        slidercouleursdispo.addChangeListener(new ChangeListener() {
+	      public void stateChanged(ChangeEvent event) {
+	        int valeur = slidercouleursdispo.getValue();
+	        if (valeur == 6) {
+	        	Mastermind.nbrCouleurs=6;
+	        } else if (valeur == 7) {
+	        	Mastermind.nbrCouleurs=7;
+	        } else if (valeur == 8) {
+	        	Mastermind.nbrCouleurs=8;
+	        } else if  (valeur == 9){
+	        	Mastermind.nbrCouleurs=9;
+	        }else if  (valeur == 10) {
+	        Mastermind.nbrCouleurs=10;
+	        }
+	        }
+        });  
+        
+        slidercouleurscombi.addChangeListener(new ChangeListener() {
+	      public void stateChanged(ChangeEvent event) {
+	        int valeur = slidercouleurscombi.getValue();
+	        if (valeur == 2) {
+	          Mastermind.tailleCombinaison=2;
+	        } else if (valeur == 3) {
+	        	Mastermind.tailleCombinaison=3;
+	        } else if (valeur == 4) {
+	        	Mastermind.tailleCombinaison=4;
+	        } else if(valeur == 5) {
+	        	Mastermind.tailleCombinaison=5;
+	        }else if (valeur == 6) {
+	        	Mastermind.tailleCombinaison=6;	        
+	        }
+	      }
+        }); 
+    }       
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource()==checkBox1) {
+			//affichage des aides
+		}
+		if(e.getSource()==checkBox2) {
+			//possibilité de mettre 2 couleurs dans ses combinaisons 
+		}
 }
-
+	
 }
-
 
 
 
