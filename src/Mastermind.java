@@ -16,27 +16,29 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Mastermind extends JFrame implements ActionListener, ComponentListener{
 
-	static Mastermind general = new Mastermind();
+	//Fenetre
+	private static Mastermind general = new Mastermind();
+	
+	//Paramètres
 	static int nbrCouleurs = 8;
 	static int tailleCombinaison = 4;
+	static boolean multiCOlor = false;
 	static int nbrTentatives=(tailleCombinaison+1)*2;
 	static Color[] couleurs = {	Color.red, Color.orange, 
 			Color.yellow, Color.gray, 
 			Color.green, Color.blue, 
 			Color.pink, Color.white,
 			Color.magenta, Color.cyan};
-	static PlateauJeu plateauJeu = new PlateauJeu();
+	
+	//Panneaux
 	static PanneauAccueil accueil = new PanneauAccueil();
 	static PanneauJeu panneauJeu = new PanneauJeu();
 	
 
 
 	public static void main(String[] args) {
-
-		general.setContentPane(plateauJeu);
 		
-		
-		//general.setContentPane(panneauJeu);
+		general.setContentPane(panneauJeu);
 
 		//general.setContentPane(accueil);
 

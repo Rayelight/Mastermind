@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
-public class PaletteCouleurs extends JPanel implements ActionListener{
+public class PaletteCouleurs extends JPanel{
 
 
 	SpringLayout layout;
@@ -23,7 +23,7 @@ public class PaletteCouleurs extends JPanel implements ActionListener{
 		//			Panel Setup
 		layout = new SpringLayout();
 		this.setLayout(layout);
-		this.setBackground(Color.magenta);
+		this.setBackground(Color.pink);
 
 		//		Components creation
 		JLabel titre = new JLabel("Couleurs:"){
@@ -67,12 +67,10 @@ public class PaletteCouleurs extends JPanel implements ActionListener{
 
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 
+	public Dimension getPreferredSize() {
+		return new Dimension((int) (Mastermind.generalWidth()*0.3),(int) (Mastermind.generalHeight()*2.0/7.0));
 	}
-
 
 
 }

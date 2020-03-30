@@ -1,23 +1,24 @@
 import java.awt.Color;
 import java.awt.Dimension;
 
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class PanneauMenu extends JPanel{
+public class BareMenu extends JPanel{
 
 
-	public PanneauMenu(){
+	public BareMenu(){
 		//			Panel Setup
+		this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
 		this.setBackground(Color.magenta);
 
 		//		Components creation
-
+		PaletteCouleurs paletteCouleurs = new PaletteCouleurs();
 
 
 		//			Adding components
-
-
+		this.add(paletteCouleurs);
 
 
 	}
