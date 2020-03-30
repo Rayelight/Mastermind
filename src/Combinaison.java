@@ -45,14 +45,17 @@ public class Combinaison extends JPanel{
 	public int nbrCouleursPresentes (Combinaison combiJeu) {
 		int res=0;
 		int j=0;
-		boolean malplace=false;
 		for(int i=0; i<Mastermind.tailleCombinaison ; i++) {
+			boolean malplace=false;
 			if(combiJeu.couleurs[i].getCouleur()!=this.couleurs[i].getCouleur()) {
 				while(j<Mastermind.tailleCombinaison && !malplace) {
 					if(combiJeu.couleurs[i].getCouleur()==this.couleurs[j].getCouleur()) {				
 						malplace=true;
 						res++;
-					}
+						if(Mastermind.multiCOlor==true){					
+							break;
+						}
+					}					
 					j++;	
 				}	
 		    }		
