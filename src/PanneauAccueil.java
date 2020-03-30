@@ -196,14 +196,14 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 
 	//Distance Horizontale entre les boutons
 	public static int boutonsHgap() {
-		int hGap = (int) Math.round(Mastermind.generalWidth()*pourcentageEspace/(pourcentageEspace*(nombreBoutons+1)+nombreBoutons));
+		int hGap = (int) (Mastermind.generalWidth()*pourcentageEspace/(pourcentageEspace*(nombreBoutons+1)+nombreBoutons));
 		return hGap;
 
 	}
 	
 	//Distance Verticale entre les widgets
 	public static int boutonsVgap() {
-		int vGap = (int) Math.round(((Mastermind.generalHeight()*2.0/3.0)-boutonHeight()*4.0)/5.0);
+		int vGap = (int) ((Mastermind.generalHeight()*2.0/3.0-boutonHeight()*4.0)/5.0);
 		return vGap;
 
 	}
