@@ -13,15 +13,15 @@ public class PanneauJeu extends JPanel implements ActionListener{
 	public PanneauJeu(){
 		//			Panel Setup
 		this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
-		this.setBackground(Color.pink);
+		this.setBackground(Color.orange);
 		
 		//			Components creation
 		PlateauJeu plateauJeu = new PlateauJeu();
-		PanneauMenu panneauMenu = new PanneauMenu();
+		BareMenu bareMenu = new BareMenu();
 		
 		//			Adding components
 		this.add(plateauJeu);
-		this.add(panneauMenu);
+		this.add(bareMenu);
 		
 
 		

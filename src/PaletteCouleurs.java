@@ -2,8 +2,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
@@ -13,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
-public class PaletteCouleurs extends JPanel implements ActionListener{
+public class PaletteCouleurs extends JPanel{
 
 
 	SpringLayout layout;
@@ -23,7 +21,7 @@ public class PaletteCouleurs extends JPanel implements ActionListener{
 		//			Panel Setup
 		layout = new SpringLayout();
 		this.setLayout(layout);
-		this.setBackground(Color.magenta);
+		this.setBackground(Color.pink);
 
 		//		Components creation
 		JLabel titre = new JLabel("Couleurs:"){
@@ -57,7 +55,6 @@ public class PaletteCouleurs extends JPanel implements ActionListener{
 
 
 
-
 	}
 
 
@@ -67,12 +64,8 @@ public class PaletteCouleurs extends JPanel implements ActionListener{
 
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 
-	}
-
+	
 
 
 }

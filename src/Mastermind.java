@@ -16,33 +16,35 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Mastermind extends JFrame implements ActionListener, ComponentListener{
 
-	static Mastermind general = new Mastermind();
+	//Fenetre
+	private static Mastermind general = new Mastermind();
+	
+	//Paramètres
 	static int nbrCouleurs = 8;
 	static int tailleCombinaison = 4;
+	static boolean multiCOlor = false;
 	static int nbrTentatives=(tailleCombinaison+1)*2;
 	static Color[] couleurs = {	Color.red, Color.orange, 
 			Color.yellow, Color.gray, 
 			Color.green, Color.blue, 
 			Color.pink, Color.white,
 			Color.magenta, Color.cyan};
-	static PlateauJeu plateauJeu = new PlateauJeu();
+	
+	//Panneaux
 	static PanneauAccueil accueil = new PanneauAccueil();
 	static PanneauJeu panneauJeu = new PanneauJeu();
 	
 
 
 	public static void main(String[] args) {
-
-		general.setContentPane(plateauJeu);
 		
-		
-		//general.setContentPane(panneauJeu);
+		general.setContentPane(panneauJeu);
 
-		//general.setContentPane(accueil);
+		general.setContentPane(accueil);
 
 
-		Options simon2 = new Options();
-		simon2.setVisible(true);
+		//Options simon2 = new Options();
+		//simon2.setVisible(true);
 
 		general.setVisible(true);
 		general.setSize(general.getPreferredSize());
@@ -78,7 +80,6 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 
 
 		//		ContentPane
-		//this.getContentPane().setLayout(null);
 		this.getContentPane().setBackground(Color.blue);
 		this.addComponentListener(this);
 
@@ -144,9 +145,10 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 			this.setSize(new Dimension((int)minWidth, (int)minHeight));
 
 		
-		//adjustPanelContraints
-		//if(getContentPane() instanceof ContraintsJPanel)
-			//((ContraintsJPanel) getContentPane()).adjustContraints();
+		//testingSizes
+		//System.out.println(generalWidth());
+		//System.out.println((int) Math.round(generalWidth()*0.3));
+		//System.out.println((int) Math.round(generalWidth()*0.7));
 	}
 
 

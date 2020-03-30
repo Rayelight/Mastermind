@@ -1,3 +1,15 @@
+<<<<<<< HEAD
 /Options$1.class
 /Options$2.class
 /PlateauJeu$1.class
+=======
+/BareMenu.class
+/BareMenu$1.class
+/StatistiquesPartie.class
+/BoutonsJeu.class
+/HiddenCombiPanel.class
+/StatsPartie.class
+/BareMenu$2.class
+/BareMenu$3.class
+/BareMenu$4.class
+>>>>>>> 24c3cfce62cd899afbcf7963708e554d6f824c7e
