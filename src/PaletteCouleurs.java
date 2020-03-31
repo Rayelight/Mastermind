@@ -31,8 +31,8 @@ public class PaletteCouleurs extends JPanel{
 			}
 		};
 		titre.setOpaque(false);
-		titre.setForeground(Color.orange);
-		titre.setBorder(BorderFactory.createLineBorder(Color.orange));
+		titre.setForeground(Color.red);
+		titre.setBorder(BorderFactory.createLineBorder(Color.red));
 		titre.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
