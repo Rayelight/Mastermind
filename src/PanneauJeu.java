@@ -17,7 +17,7 @@ public class PanneauJeu extends JPanel implements ActionListener{
 		
 		//			Components creation
 		PlateauJeu plateauJeu = new PlateauJeu();
-		BareMenu bareMenu = new BareMenu();
+		BarreMenu bareMenu = new BarreMenu();
 		
 		//			Adding components
 		this.add(plateauJeu);

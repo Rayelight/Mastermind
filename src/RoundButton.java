@@ -27,6 +27,7 @@ class RoundButton extends JButton implements ActionListener {
 	public RoundButton(Color couleur) {
 		this.couleur=couleur;
 		this.typeJeu = false;
+		setBackground(this.couleur);
 		setContentAreaFilled(false);
 		addActionListener(this);
 	}
@@ -54,7 +55,7 @@ class RoundButton extends JButton implements ActionListener {
 	}
 
 	public static int boutonRadius(){
-		int radius = (Mastermind.generalHeight()-40-10*Mastermind.nbrTentatives)/Mastermind.nbrTentatives;  
+		int radius = Combinaison.combinaisonHeight()-10;  
 		return radius;
 
 	}
