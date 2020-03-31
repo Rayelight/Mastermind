@@ -99,42 +99,42 @@ public class Options extends JFrame implements ActionListener {
 		int min = 6;
 		int max = 10;
 		int init = 8; 
-		JSlider slidercouleursdispo = new JSlider (JSlider.HORIZONTAL,min, max, init);
-		slidercouleursdispo.setMajorTickSpacing(2);
-		slidercouleursdispo.setMinorTickSpacing(0);
-		slidercouleursdispo.setSnapToTicks(true);
-		slidercouleursdispo.setPaintTicks (true);
-		slidercouleursdispo.setPaintLabels (true);
-		slidercouleursdispo.setBounds(150,270, 150,50);
-		slidercouleursdispo.addChangeListener(new ChangeListener() {
+		JSlider sliderNbrCouleurs = new JSlider (JSlider.HORIZONTAL,min, max, init);
+		sliderNbrCouleurs.setMajorTickSpacing(2);
+		sliderNbrCouleurs.setMinorTickSpacing(0);
+		sliderNbrCouleurs.setSnapToTicks(true);
+		sliderNbrCouleurs.setPaintTicks (true);
+		sliderNbrCouleurs.setPaintLabels (true);
+		sliderNbrCouleurs.setBounds(150,270, 150,50);
+		sliderNbrCouleurs.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent event) {
-				//int valeur = slidercouleurscombi.getValue();
+				//int valeur = sliderTailleCombi.getValue();
 				int valeur = ((JSlider) event.getSource()).getValue();
 				Mastermind.nbrCouleurs=valeur;
 			}
 		});  
-		panneauGlobal.add(slidercouleursdispo);
+		panneauGlobal.add(sliderNbrCouleurs);
 
 		//Curseurs ( nombre de couleurs par combinaison)
 		int mini = 3;
 		int maxi =6;
 		int initi = 4;    
-		JSlider slidercouleurscombi = new JSlider (JSlider.HORIZONTAL,mini, maxi, initi);
-		slidercouleurscombi.setMajorTickSpacing (1);
-		slidercouleurscombi.setMinorTickSpacing(0);
-		slidercouleurscombi.setSnapToTicks(true);
-		slidercouleurscombi.setPaintTicks (true);
-		slidercouleurscombi.setPaintLabels (true);
-		slidercouleurscombi.setBounds(150,330, 150,50);
-		slidercouleurscombi.addChangeListener(new ChangeListener() {
+		JSlider sliderTailleCombi = new JSlider (JSlider.HORIZONTAL,mini, maxi, initi);
+		sliderTailleCombi.setMajorTickSpacing (1);
+		sliderTailleCombi.setMinorTickSpacing(0);
+		sliderTailleCombi.setSnapToTicks(true);
+		sliderTailleCombi.setPaintTicks (true);
+		sliderTailleCombi.setPaintLabels (true);
+		sliderTailleCombi.setBounds(150,330, 150,50);
+		sliderTailleCombi.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent event) {
-				//int valeur = slidercouleurscombi.getValue();
+				//int valeur = sliderTailleCombi.getValue();
 				int valeur = ((JSlider) event.getSource()).getValue();
 				Mastermind.tailleCombinaison=valeur;
 				
 			}
 		}); 
-		panneauGlobal.add(slidercouleurscombi);
+		panneauGlobal.add(sliderTailleCombi);
 	
 	}       
 	@Override
@@ -167,6 +167,7 @@ private JLabel textOption (String texte) {
 	};
 	text.setBackground(Color.blue);
 	text.setForeground(Color.white);
+	text.setOpaque(true);;
 	
 	return text;
 }

@@ -76,9 +76,15 @@ public class PlateauJeu extends JPanel implements ActionListener{
 
 	@Override
 	public Dimension getPreferredSize() {
-		return new Dimension((int) (Mastermind.generalWidth()*0.7),Mastermind.generalHeight());
+		return new Dimension(gameWidth(),Mastermind.generalHeight());
 	}
+	
+	
+	public static int gameWidth(){
+		int width = (int) Math.round(Mastermind.generalWidth()*0.7);  
+		return width;
 
+	}
 
 
 }

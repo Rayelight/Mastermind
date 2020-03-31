@@ -23,6 +23,12 @@ public class Combinaison extends JPanel{
 
 	}
 	
+	public static int combinaisonHeight(){
+		int height = (int)Math.round((double)GrilleCouleurs.gridColorHeight()/Mastermind.nbrTentatives);
+		return height;
+
+	}
+	
 	
 	/**
 	 * Compare la combinaison du joueur avec la combinaison exacte
@@ -45,14 +51,15 @@ public class Combinaison extends JPanel{
 	public int nbrCouleursPresentes (Combinaison combiJeu) {
 		int res=0;
 		int j=0;
+		boolean malPlace;
 		for(int i=0; i<Mastermind.tailleCombinaison ; i++) {
-			boolean malplace=false;
+			malPlace=false;
 			if(combiJeu.couleurs[i].getCouleur()!=this.couleurs[i].getCouleur()) {
-				while(j<Mastermind.tailleCombinaison && !malplace) {
+				while(j<Mastermind.tailleCombinaison && !malPlace) {
 					if(combiJeu.couleurs[i].getCouleur()==this.couleurs[j].getCouleur()) {				
-						malplace=true;
+						malPlace=true;
 						res++;
-						if(Mastermind.multiCOlor==true){					
+						if(Mastermind.multiColor){					
 							break;
 						}
 					}					

@@ -15,7 +15,7 @@ class GrilleCouleurs  extends JPanel{
 		this.setBackground(Color.yellow);
 
 		Combinaison[] tentatives = new Combinaison[Mastermind.nbrTentatives];
-		for(int i=0; i<Mastermind.nbrTentatives; i++) {
+		for(int i=Mastermind.nbrTentatives-1; i>=0; i--) {
 			this.add(tentatives[i]=new Combinaison());
 
 		}
@@ -23,10 +23,20 @@ class GrilleCouleurs  extends JPanel{
 
 	@Override
 	public Dimension getPreferredSize(){
-		int grilleCouleursHeight = Mastermind.generalHeight()-40;
+		return new Dimension(gridColorWidth(), gridColorHeight());
+	}
+	
+	public static int gridColorWidth(){
 		int grilleCouleursWidth = (RoundButton.boutonRadius()+10)*Mastermind.tailleCombinaison+5; 
-		return new Dimension(grilleCouleursWidth, grilleCouleursHeight);
+		return grilleCouleursWidth;
 
 	}
+	
+	public static int gridColorHeight(){
+		int grilleCouleursHeight = Mastermind.generalHeight()-40;
+		return grilleCouleursHeight;
+
+	}
+	
 }
 

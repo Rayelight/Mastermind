@@ -13,7 +13,7 @@ public class CarreEval extends JPanel{
 		this.setOpaque(false);
 
 		JLabel[] tentatives = new JLabel[Mastermind.nbrTentatives];
-		for(int i=0; i<Mastermind.nbrTentatives; i++) {
+		for(int i=Mastermind.nbrTentatives-1; i>=0; i--) {
 			this.add(tentatives[i]=new JLabel("A", JLabel.CENTER) );
 			tentatives[i].setBackground(Color.blue);
 			tentatives[i].setOpaque(true);
@@ -22,6 +22,6 @@ public class CarreEval extends JPanel{
 	
 	@Override
 	public Dimension getPreferredSize(){
-		return new Dimension(RoundButton.boutonRadius()-5, Mastermind.generalHeight()-40);
+		return new Dimension(RoundButton.boutonRadius()-5, GrilleCouleurs.gridColorHeight());
 	}
 }

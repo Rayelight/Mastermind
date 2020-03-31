@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -19,12 +20,11 @@ public class PaletteCouleurs extends JPanel{
 
 	public PaletteCouleurs(){
 		//			Panel Setup
-		layout = new SpringLayout();
-		this.setLayout(layout);
+		this.setLayout(new BorderLayout());
 		this.setBackground(Color.pink);
 
 		//		Components creation
-		JLabel titre = new JLabel("Couleurs:"){
+		JLabel titre = new JLabel("Couleurs:", JLabel.CENTER){
 			@Override
 			public Dimension getPreferredSize(){
 				return new Dimension(RoundButton.boutonRadius()*4,RoundButton.boutonRadius());
@@ -36,7 +36,7 @@ public class PaletteCouleurs extends JPanel{
 		titre.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-            	titre.setFont(new Font("Serif", Font.BOLD, RoundButton.boutonRadius()));
+            	titre.setFont(new Font("Serif", Font.PLAIN, RoundButton.boutonRadius()));
                 titre.repaint();
             }
         });
@@ -45,6 +45,7 @@ public class PaletteCouleurs extends JPanel{
 		
 		JPanel boutonsPannel = new JPanel();
 		boutonsPannel.setLayout(new FlowLayout());
+		boutonsPannel.setOpaque(false);
 		for(int i=0; i<Mastermind.nbrCouleurs; i++) {
 			boutonsPannel.add(new RoundButton(Mastermind.couleurs[i]));
 		}
@@ -52,7 +53,8 @@ public class PaletteCouleurs extends JPanel{
 
 
 		//			Adding components
-
+		this.add(titre, BorderLayout.PAGE_START);
+		this.add(boutonsPannel, BorderLayout.CENTER);
 
 
 	}
