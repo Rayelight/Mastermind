@@ -1,24 +1,19 @@
 // Chargement des biblioth�ques Swing et AWT
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JCheckBox;
 import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+
 
 @SuppressWarnings("serial")
-public class Options extends JFrame implements ActionListener {
+public class Options extends JFrame implements ActionListener  {
 
 	// Les Widgets � d�clarer en dehors du constructeur
 	
@@ -94,8 +89,7 @@ public class Options extends JFrame implements ActionListener {
 		panneauGlobal.add(checkBox1);
 		panneauGlobal.add(checkBox2);
 
-
-		//Curseurs ( nombre de couleurs disponibles)
+	//Curseurs ( nombre de couleurs disponibles)
 		int min = 6;
 		int max = 10;
 		int init = 8; 
@@ -107,12 +101,9 @@ public class Options extends JFrame implements ActionListener {
 		slidercouleursdispo.setPaintLabels (true);
 		slidercouleursdispo.setBounds(150,270, 150,50);
 		slidercouleursdispo.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent event) {
-				//int valeur = slidercouleurscombi.getValue();
-				int valeur = ((JSlider) event.getSource()).getValue();
-				Mastermind.nbrCouleurs=valeur;
-			}
-		});  
+			this.stateChanged();
+		    }
+		);  
 		panneauGlobal.add(slidercouleursdispo);
 
 		//Curseurs ( nombre de couleurs par combinaison)
@@ -126,16 +117,23 @@ public class Options extends JFrame implements ActionListener {
 		slidercouleurscombi.setPaintTicks (true);
 		slidercouleurscombi.setPaintLabels (true);
 		slidercouleurscombi.setBounds(150,330, 150,50);
-		slidercouleurscombi.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent event) {
+	    slidercouleurscombi.addChangeListener(this() {
+			this.stateChanged();			
+			}
+		); 
+		
+		panneauGlobal.add(slidercouleurscombi);
+	
+		public void stateChanged(ChangeEvent event) {
+			if((JSlider) event.getSource()==slidercouleurscombi) {
 				//int valeur = slidercouleurscombi.getValue();
 				int valeur = ((JSlider) event.getSource()).getValue();
 				Mastermind.tailleCombinaison=valeur;
-				
+			}else if((JSlider) event.getSource()==slidercouleursdispo) {
+				int valeur = ((JSlider) event.getSource()).getValue();
+				Mastermind.nbrCouleurs=valeur;
 			}
-		}); 
-		panneauGlobal.add(slidercouleurscombi);
-	
+		}
 	}       
 	@Override
 	public void actionPerformed(ActionEvent e) {
