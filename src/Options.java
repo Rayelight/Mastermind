@@ -13,6 +13,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 
+
 @SuppressWarnings("serial")
 public class Options extends JFrame implements ActionListener, ChangeListener  {
 
@@ -130,6 +131,18 @@ public class Options extends JFrame implements ActionListener, ChangeListener  {
 		slidercouleurscombi.setBounds(150,330, 150,50);
 		slidercouleurscombi.addChangeListener(this); 
 		panneauGlobal.add(slidercouleurscombi);
+<<<<<<< HEAD
+	}
+		public void stateChanged(ChangeEvent event) {
+			int valeur = ((JSlider) event.getSource()).getValue();
+			
+				Mastermind.nbrCouleurs=valeur;
+
+		}       
+	
+		@Override
+		public void actionPerformed(ActionEvent e) {
+=======
 
 	}
 
@@ -139,6 +152,7 @@ public class Options extends JFrame implements ActionListener, ChangeListener  {
 		Mastermind.nbrCouleurs=valeur;
 
 	}       
+>>>>>>> 647dea987d53576a73171e4cf921885c03047029
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

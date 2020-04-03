@@ -37,6 +37,14 @@ class GrilleCouleurs  extends JPanel{
 		return grilleCouleursHeight;
 
 	}
+	public boolean finjeu() {
+		//TODO: nbrCouleursValides
+		boolean res=false;
+		//if(Mastermind.tailleCombinaison==Combinaison.nbrCouleursValides()) {
+				res=true;			
+		return res;
+	    }
+	}
 	
-}
+
 
