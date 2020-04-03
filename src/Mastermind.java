@@ -149,6 +149,7 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 		//System.out.println(general.getWidth());
 		//System.out.println(general.getHeight());
 		//System.out.println((double)general.getWidth()/(double)general.getHeight());
+
 	}
 
 

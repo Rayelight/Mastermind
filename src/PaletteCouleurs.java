@@ -4,8 +4,6 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -19,7 +17,6 @@ public class PaletteCouleurs extends JPanel{
 	JPanel boutonsPannel;
 	FlowLayout boutonsLayout = new FlowLayout(FlowLayout.CENTER, 20, 10);
 
-	private Thread t;
 
 	public PaletteCouleurs(){
 		//			Panel Setup
@@ -28,8 +25,7 @@ public class PaletteCouleurs extends JPanel{
 		this.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-				t = new Thread(new Resized());
-				t.start();
+				adjustContraints();
 
 			}
 		});
@@ -75,27 +71,20 @@ public class PaletteCouleurs extends JPanel{
 		//			Adjust Constraints
 
 
+
 		int hInset = hInset();
-		int vInset = (BarreMenu.singleMenuHeight()-3*RoundButton.boutonRadius())/4;
+		int vInset = (int) Math.round((BarreMenu.singleMenuHeight()-RoundButton.boutonRadius()*7.0/2.0)/4.0);
 
 		boutonsLayout.setVgap(vInset);
 		boutonsLayout.setHgap(hInset);
+		//boutonsLayout =new FlowLayout(FlowLayout.CENTER, hInset, vInset);
 		this.setBorder(BorderFactory.createEmptyBorder(vInset,0,0,0));
 		titre.setBorder(new CompoundBorder(BorderFactory.createEmptyBorder(0, titre.getHeight()*3/2, 0, titre.getHeight()*3/2), BorderFactory.createLineBorder(Color.red)));
 		//boutonsPannel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 
-		//System.out.println(hInset);
-
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		this.repaint();
-
-
 	}
+
+
 
 
 
@@ -106,11 +95,6 @@ public class PaletteCouleurs extends JPanel{
 	}
 
 
-	class Resized implements Runnable{
-		public void run() {
-			adjustContraints();                   
-		}               
-	}    
 
 
 }
