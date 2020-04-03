@@ -20,7 +20,7 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 	private JLabel titre;
 	private JButton[] boutonsAccueil;
 	private JButton scores;
-	
+
 	private SpringLayout layout;
 
 	static int nombreBoutons=4;
@@ -28,23 +28,23 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 
 
 
-		
+
 	public PanneauAccueil() {
-		
+
 		layout = new SpringLayout();
 		this.setLayout(layout);
 		this.setBackground(Color.white);
 		this.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-            	adjustContraints();
-            }
-        });
-		
+				adjustContraints();
+			}
+		});
+
 
 
 		//			Boxes Creation
-		
+
 		//		Titre
 		String titreMastermind = new String();
 		titreMastermind += "<html>";
@@ -67,19 +67,19 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 				return new Dimension(boutonWidth()*2,boutonHeight()*3/2);
 			}
 
-			
+
 		};
 		titre.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-            	titre.setFont(new Font("Serif", Font.PLAIN, boutonHeight()));
-                titre.repaint();
-            }
-        });
+				titre.setFont(new Font("Serif", Font.PLAIN, boutonHeight()));
+				titre.repaint();
+			}
+		});
 		titre.setBorder(BorderFactory.createLineBorder(Color.black));
 
-		
-		
+
+
 
 		//		BoutonsAccueil
 		boutonsAccueil = new JButton[nombreBoutons];
@@ -90,8 +90,8 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 		boutonsAccueil[2] = boutonAccueil("Mode Ordinateur");
 		boutonsAccueil[3] = boutonAccueil("Règles");
 
-		
-		
+
+
 
 		//		Bouton Scores
 		scores = new JButton("Tableau des Scores"){
@@ -106,10 +106,10 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 		scores.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-            	scores.setFont(new Font("Serif", Font.BOLD, boutonHeight()/2));
-                scores.repaint();
-            }
-        });
+				scores.setFont(new Font("Serif", Font.BOLD, boutonHeight()/2));
+				scores.repaint();
+			}
+		});
 
 
 
@@ -159,15 +159,15 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 		bouton.setBackground(Color.cyan);
 		bouton.setForeground(Color.black);
 		bouton.addActionListener(this);
-		
+
 		bouton.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-            	bouton.setFont(new Font("Serif", Font.BOLD, boutonHeight()*5/12));
-                bouton.repaint();
-            }
-        });
-		
+				bouton.setFont(new Font("Serif", Font.BOLD, boutonHeight()*5/12));
+				bouton.repaint();
+			}
+		});
+
 		return bouton;
 	}
 
@@ -184,8 +184,8 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 		return boutonWidth;
 
 	}
-	
-	
+
+
 	//Position de l'axe central vertical des boutons
 	public static int centreHbouton(int i) {
 		int centreHbouton = boutonsHgap()+boutonWidth()/2+i*(boutonsHgap()+boutonWidth()) ;
@@ -200,16 +200,16 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 		return hGap;
 
 	}
-	
+
 	//Distance Verticale entre les widgets
 	public static int boutonsVgap() {
 		int vGap = (int) ((Mastermind.generalHeight()*2.0/3.0-boutonHeight()*4.0)/5.0);
 		return vGap;
 
 	}
-	
-	
-	
+
+
+
 	public void adjustContraints() {
 		//			Adjust Constraints
 		// 		Titre
@@ -237,7 +237,7 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 	}
 
 
-	
+
 
 }
 

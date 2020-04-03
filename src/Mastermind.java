@@ -20,7 +20,7 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 	private static Mastermind general = new Mastermind();
 	
 	//Paramètres
-	static int nbrCouleurs = 8;
+	static int nbrCouleurs = 10;
 	static int tailleCombinaison = 6;
 	static boolean multiColor = false;
 	static int nbrTentatives=(tailleCombinaison+1)*2;
@@ -131,7 +131,7 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 	@Override
 	public void componentResized(ComponentEvent e) {
 		//maximum ratio
-		double maxRatio = 17.0/9.0;
+		double maxRatio = 16.8/9.0;
 		double maxHeight=general.getHeight();
 		double maxWidth =maxHeight*maxRatio;
 		if((double)general.getWidth()/(double)general.getHeight()>maxRatio)
@@ -146,9 +146,9 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 
 		
 		//testingSizes
-		//System.out.println(generalWidth());
-		//System.out.println((int) Math.round(generalWidth()*0.3));
-		//System.out.println((int) Math.round(generalWidth()*0.7));
+		//System.out.println(general.getWidth());
+		//System.out.println(general.getHeight());
+		//System.out.println((double)general.getWidth()/(double)general.getHeight());
 	}
 
 

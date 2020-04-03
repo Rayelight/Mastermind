@@ -38,12 +38,17 @@ class RoundButton extends JButton implements ActionListener {
 		} else {
 			g.setColor(getBackground());
 		}
-		g.fillOval(0, 0, getSize().width, getSize().height);
+		g.fillOval(0, 0, getSize().width-1, getSize().height-1);
 	}
 
 	protected void paintBorder(Graphics g) {
-		g.setColor(getForeground());
-		g.drawOval(0, 0, getSize().width, getSize().height);
+		
+		if (getModel().isArmed()) {
+			g.setColor(Color.white);
+		} else {
+			g.setColor(getForeground());
+		}
+		g.drawOval(0, 0, getSize().width-1, getSize().height-1);
 	}
 
 	Shape shape;

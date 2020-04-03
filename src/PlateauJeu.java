@@ -81,7 +81,7 @@ public class PlateauJeu extends JPanel implements ActionListener{
 	
 	
 	public static int gameWidth(){
-		int width = (int) Math.round(Mastermind.generalWidth()*0.7);  
+		int width = (int) Math.round(Mastermind.generalWidth()*0.68);  
 		return width;
 
 	}
