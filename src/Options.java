@@ -131,48 +131,51 @@ public class Options extends JFrame implements ActionListener, ChangeListener  {
 		slidercouleurscombi.addChangeListener(this); 
 		panneauGlobal.add(slidercouleurscombi);
 
-		public void stateChanged(ChangeEvent event) {
-			int valeur = ((JSlider) event.getSource()).getValue();
+	}
+
+	public void stateChanged(ChangeEvent event) {
+		int valeur = ((JSlider) event.getSource()).getValue();
+
+		Mastermind.nbrCouleurs=valeur;
+
+	}       
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+		if(e.getSource()==checkBox1) {
+			//enable bouton aide
 			
-				Mastermind.nbrCouleurs=valeur;
-
-		}       
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-
-			if(e.getSource()==checkBox1) {
-				//affichage des aides
-			}
-			if(e.getSource()==checkBox2) {
-				//possibilité de mettre 2 couleurs dans ses combinaisons 
-			}
 		}
-
-
-
-		//Création des Boutons 
-		private JButton boutonOption (String texte) {
-			JButton bouton = new JButton(texte){
-			};
-			bouton.setBackground(Color.blue);
-			bouton.setForeground(Color.white);
-			bouton.addActionListener(this);
-
-			return bouton;
-		}
-
-		//Création des textes 
-		private JLabel textOption (String texte) {
-			JLabel text = new JLabel(texte){
-			};
-			text.setBackground(Color.blue);
-			text.setForeground(Color.white);
-			text.setOpaque(true);;
-
-			return text;
+		if(e.getSource()==checkBox2) {
+			//possibilité de mettre 2 couleurs dans ses combinaisons 
 		}
 	}
+
+
+
+	//Création des Boutons 
+	private JButton boutonOption (String texte) {
+		JButton bouton = new JButton(texte){
+		};
+		bouton.setBackground(Color.blue);
+		bouton.setForeground(Color.white);
+		bouton.addActionListener(this);
+
+		return bouton;
+	}
+
+	//Création des textes 
+	private JLabel textOption (String texte) {
+		JLabel text = new JLabel(texte){
+		};
+		text.setBackground(Color.blue);
+		text.setForeground(Color.white);
+		text.setOpaque(true);;
+
+		return text;
+	}
+}
 
 
 

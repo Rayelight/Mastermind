@@ -38,9 +38,9 @@ public class HiddenCombiPanel extends JPanel{
 
 	public void adjustContraints() {
 		//			Adjust Constraints
-		int vInset = (BarreMenu.menuWidth()-GrilleCouleurs.gridColorWidth())/2;
-		int hInset = (this.getHeight()-Combinaison.combinaisonHeight())/2;
-		this.setBorder(BorderFactory.createEmptyBorder(hInset,vInset,hInset,vInset));
+		int hInset = (BarreMenu.menuWidth()-GrilleCouleurs.gridColorWidth())/2;
+		int vInset = (this.getHeight()-Combinaison.combinaisonHeight())/2;
+		this.setBorder(BorderFactory.createEmptyBorder(vInset,hInset,vInset,hInset));
 
 	}
 }
