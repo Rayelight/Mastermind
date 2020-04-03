@@ -69,7 +69,6 @@ public class Combinaison extends JPanel{
 		}
 		return res;
 	}
-   
 }
 	
 
