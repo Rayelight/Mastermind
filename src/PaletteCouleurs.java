@@ -41,7 +41,7 @@ public class PaletteCouleurs extends JPanel{
 		titre = new JLabel("Couleurs", JLabel.CENTER){
 			@Override
 			public Dimension getPreferredSize() {
-				return new Dimension(RoundButton.boutonRadius()*4,RoundButton.boutonRadius()*3/2);
+				return new Dimension(RoundButton.boutonRadius()*4,RoundButton.boutonRadius());
 			}
 		};
 		titre.setOpaque(false);
@@ -104,7 +104,7 @@ public class PaletteCouleurs extends JPanel{
 	}
 	
 	public int vInset() {
-		int vInset = (int) Math.round((BarreMenu.singleMenuHeight()-RoundButton.boutonRadius()*7.0/2.0)/4.0);
+		int vInset = (int) Math.round((BarreMenu.singleMenuHeight()-RoundButton.boutonRadius()*3.0)/4.0);
 		return vInset;
 	}
 	
