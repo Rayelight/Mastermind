@@ -1,5 +1,8 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -7,32 +10,41 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class BarreMenu extends JPanel{
 
-
+	
+	HiddenCombiPanel hiddenCombiPanel;
+	PaletteCouleurs paletteCouleurs;
+	StatsPartie gameStats;
+	BoutonsJeu panelBoutons;
+	
+	
+	
+	
 	public BarreMenu(){
 		//			Panel Setup
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.setBackground(Color.magenta);
 
+
 		//		Components creation
-		HiddenCombiPanel hiddenCombiPanel = new HiddenCombiPanel() {
+		hiddenCombiPanel = new HiddenCombiPanel() {
 			public Dimension getPreferredSize(){
 				return new Dimension(menuWidth(),Mastermind.generalHeight()-3*singleMenuHeight());
 			}
 		};
 		
-		PaletteCouleurs paletteCouleurs = new PaletteCouleurs() {
+		paletteCouleurs = new PaletteCouleurs() {
 			public Dimension getPreferredSize(){
 				return new Dimension(menuWidth(),singleMenuHeight());
 			}
 		};
 		
-		StatsPartie gameStats = new StatsPartie() {
+		gameStats = new StatsPartie() {
 			public Dimension getPreferredSize(){
 				return new Dimension(menuWidth(),singleMenuHeight());
 			}
 		};
 		
-		BoutonsJeu panelBoutons = new BoutonsJeu() {
+		panelBoutons = new BoutonsJeu() {
 			public Dimension getPreferredSize(){
 				return new Dimension(menuWidth(),singleMenuHeight());
 			}

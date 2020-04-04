@@ -31,14 +31,14 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 			Color.magenta, Color.cyan};
 	
 	//Panneaux
-	//static PanneauAccueil accueil = new PanneauAccueil();
-	//static PanneauJeu panneauJeu = new PanneauJeu();
+	static PanneauAccueil accueil = new PanneauAccueil();
+	static PanneauJeu panneauJeu = new PanneauJeu();
 	
 
 
 	public static void main(String[] args) {
 		
-		//general.setContentPane(panneauJeu);
+		general.setContentPane(panneauJeu);
 
 		//general.setContentPane(accueil);
 
