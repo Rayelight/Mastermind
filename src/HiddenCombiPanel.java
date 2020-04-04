@@ -21,7 +21,6 @@ public class HiddenCombiPanel extends JPanel{
             	adjustContraints();
             }
         });
-		this.adjustContraints();
 		
 
 		//		Components creation

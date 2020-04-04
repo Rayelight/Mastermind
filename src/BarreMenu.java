@@ -1,8 +1,5 @@
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;

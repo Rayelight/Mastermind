@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -8,7 +9,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
-import javax.swing.border.CompoundBorder;
 
 @SuppressWarnings("serial")
 public class PaletteCouleurs extends JPanel{
@@ -38,13 +38,20 @@ public class PaletteCouleurs extends JPanel{
 
 		//		Components creation and adding
 		//Titre
-		titre = new JLabel("Couleurs", JLabel.CENTER);
+		titre = new JLabel("Couleurs", JLabel.CENTER){
+			@Override
+			public Dimension getPreferredSize() {
+				return new Dimension(RoundButton.boutonRadius()*4,RoundButton.boutonRadius()*3/2);
+			}
+		};
 		titre.setOpaque(false);
 		titre.setForeground(Color.red);
+		titre.setBorder(BorderFactory.createLineBorder(Color.red));
 		titre.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
 				titre.setFont(new Font("Serif", Font.PLAIN, RoundButton.boutonRadius()));
+				titre.revalidate();
 				titre.repaint();
 			}
 		});
@@ -65,24 +72,13 @@ public class PaletteCouleurs extends JPanel{
 
 
 	public void adjustContraints() {
-
-
+		
 		//			Adjust Constraints
 		boutonsContraints();
 
-		// 		carreValide Constrains
-		//layout.putConstraint(SpringLayout.NORTH, carreValide, 25, SpringLayout.NORTH, this);
-		//layout.putConstraint(SpringLayout.SOUTH, carreValide, -25, SpringLayout.SOUTH, this);
-		//layout.putConstraint(SpringLayout.EAST, carreValide, -RoundButton.boutonRadius(), SpringLayout.WEST, grilleCouleurs);
-
-
-
-		
-
-		//boutonsLayout =new FlowLayout(FlowLayout.CENTER, hInset, vInset);
-		this.setBorder(BorderFactory.createEmptyBorder(vInset(),0,0,0));
-		titre.setBorder(new CompoundBorder(BorderFactory.createEmptyBorder(0, titre.getHeight()*3/2, 0, titre.getHeight()*3/2), BorderFactory.createLineBorder(Color.red)));
-		//boutonsPannel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+		// 		titre
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, titre, 0, SpringLayout.HORIZONTAL_CENTER, this);
+		layout.putConstraint(SpringLayout.NORTH, titre, vInset(), SpringLayout.NORTH, this);
 
 	}
 	
@@ -94,7 +90,7 @@ public class PaletteCouleurs extends JPanel{
 			int hContraint = hInset()+(i%boutonsPerLine())*(hInset()+RoundButton.boutonRadius());
 			
 			layout.putConstraint(SpringLayout.NORTH, boutonsSelection[i], vContraint, SpringLayout.SOUTH, titre);
-			layout.putConstraint(SpringLayout.WEST, boutonsSelection[i], hContraint, SpringLayout.WEST, titre);
+			layout.putConstraint(SpringLayout.WEST, boutonsSelection[i], hContraint, SpringLayout.WEST, this);
 		}
 
 	}
