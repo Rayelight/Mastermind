@@ -23,6 +23,8 @@ public class Options extends JFrame implements ActionListener, ChangeListener  {
 	private JCheckBox checkBox2;
 	private JButton[] boutonOption;
 	private JLabel[] textOption;
+	private JSlider slidercouleurscombi;
+	private JSlider slidercouleursdispo;
 
 	public Options() {
 
@@ -131,7 +133,6 @@ public class Options extends JFrame implements ActionListener, ChangeListener  {
 		slidercouleurscombi.setBounds(150,330, 150,50);
 		slidercouleurscombi.addChangeListener(this); 
 		panneauGlobal.add(slidercouleurscombi);
-<<<<<<< HEAD
 	}
 		public void stateChanged(ChangeEvent event) {
 			int valeur = ((JSlider) event.getSource()).getValue();
@@ -140,19 +141,12 @@ public class Options extends JFrame implements ActionListener, ChangeListener  {
 
 		}       
 	
-		@Override
-		public void actionPerformed(ActionEvent e) {
-=======
-
-	}
-
 	public void stateChanged(ChangeEvent event) {
 		int valeur = ((JSlider) event.getSource()).getValue();
 
 		Mastermind.nbrCouleurs=valeur;
 
 	}       
->>>>>>> 647dea987d53576a73171e4cf921885c03047029
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -160,10 +154,18 @@ public class Options extends JFrame implements ActionListener, ChangeListener  {
 		if(e.getSource()==checkBox1) {
 			//enable bouton aide
 			
-		}
-		if(e.getSource()==checkBox2) {
+		}if(e.getSource()==checkBox2) {
 			//possibilité de mettre 2 couleurs dans ses combinaisons 
+			Mastermind.multiColor=true;
+		}if(e.getSource()==boutonOption[1]){
+			int nombrecouleurs=4;
+			nombrecouleurs=slidercouleurscombi.getValue();
+			int couleursdispo=6;
+			couleursdispo=slidercouleursdispo.getValue();
+			checkBox2
+			
 		}
+		
 	}
 
 
