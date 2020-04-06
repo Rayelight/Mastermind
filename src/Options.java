@@ -23,6 +23,8 @@ public class Options extends JFrame implements ActionListener, ChangeListener  {
 	private JCheckBox checkBox2;
 	private JButton[] boutonOption;
 	private JLabel[] textOption;
+	JSlider sliderTailleCombi;
+	JSlider sliderNbrCouleurs;
 
 	public Options() {
 
@@ -96,17 +98,8 @@ public class Options extends JFrame implements ActionListener, ChangeListener  {
 		int max = 10;
 		int init = 8; 
 
-		JSlider slidercouleursdispo = new JSlider (JSlider.HORIZONTAL,min, max, init);
-		slidercouleursdispo.setMajorTickSpacing(2);
-		slidercouleursdispo.setMinorTickSpacing(0);
-		slidercouleursdispo.setSnapToTicks(true);
-		slidercouleursdispo.setPaintTicks (true);
-		slidercouleursdispo.setPaintLabels (true);
-		slidercouleursdispo.setBounds(150,270, 150,50);
-		slidercouleursdispo.addChangeListener(this);  
-		panneauGlobal.add(slidercouleursdispo);
 
-		JSlider sliderNbrCouleurs = new JSlider (JSlider.HORIZONTAL,min, max, init);
+		sliderNbrCouleurs = new JSlider (JSlider.HORIZONTAL,min, max, init);
 		sliderNbrCouleurs.setMajorTickSpacing(2);
 		sliderNbrCouleurs.setMinorTickSpacing(0);
 		sliderNbrCouleurs.setSnapToTicks(true);
@@ -122,44 +115,37 @@ public class Options extends JFrame implements ActionListener, ChangeListener  {
 		int maxi =6;
 		int initi = 4;    
 
-		JSlider slidercouleurscombi = new JSlider (JSlider.HORIZONTAL,mini, maxi, initi);
-		slidercouleurscombi.setMajorTickSpacing (1);
-		slidercouleurscombi.setMinorTickSpacing(0);
-		slidercouleurscombi.setSnapToTicks(true);
-		slidercouleurscombi.setPaintTicks (true);
-		slidercouleurscombi.setPaintLabels (true);
-		slidercouleurscombi.setBounds(150,330, 150,50);
-		slidercouleurscombi.addChangeListener(this); 
-		panneauGlobal.add(slidercouleurscombi);
-<<<<<<< HEAD
-	}
-		public void stateChanged(ChangeEvent event) {
-			int valeur = ((JSlider) event.getSource()).getValue();
-			
-				Mastermind.nbrCouleurs=valeur;
-
-		}       
-	
-		@Override
-		public void actionPerformed(ActionEvent e) {
-=======
+		sliderTailleCombi = new JSlider (JSlider.HORIZONTAL,mini, maxi, initi);
+		sliderTailleCombi.setMajorTickSpacing (1);
+		sliderTailleCombi.setMinorTickSpacing(0);
+		sliderTailleCombi.setSnapToTicks(true);
+		sliderTailleCombi.setPaintTicks (true);
+		sliderTailleCombi.setPaintLabels (true);
+		sliderTailleCombi.setBounds(150,330, 150,50);
+		sliderTailleCombi.addChangeListener(this); 
+		panneauGlobal.add(sliderTailleCombi);
 
 	}
+
+
 
 	public void stateChanged(ChangeEvent event) {
-		int valeur = ((JSlider) event.getSource()).getValue();
-
-		Mastermind.nbrCouleurs=valeur;
+		JSlider sliderName = (JSlider)event.getSource();
+		int valeur = sliderName.getValue();
+		if(sliderName==sliderTailleCombi)
+			Mastermind.tailleCombinaison=valeur;
+		if(sliderName==sliderNbrCouleurs)
+			Mastermind.nbrCouleurs=valeur;
 
 	}       
->>>>>>> 647dea987d53576a73171e4cf921885c03047029
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
 		if(e.getSource()==checkBox1) {
 			//enable bouton aide
-			
+
 		}
 		if(e.getSource()==checkBox2) {
 			//possibilité de mettre 2 couleurs dans ses combinaisons 

@@ -24,24 +24,29 @@ public class BarreMenu extends JPanel{
 
 		//		Components creation
 		hiddenCombiPanel = new HiddenCombiPanel() {
+			@Override
 			public Dimension getPreferredSize(){
 				return new Dimension(menuWidth(),Mastermind.generalHeight()-3*singleMenuHeight());
 			}
 		};
 		
 		paletteCouleurs = new PaletteCouleurs() {
+			@Override
 			public Dimension getPreferredSize(){
 				return new Dimension(menuWidth(),singleMenuHeight());
 			}
 		};
 		
 		gameStats = new StatsPartie() {
+			@Override
 			public Dimension getPreferredSize(){
 				return new Dimension(menuWidth(),singleMenuHeight());
 			}
 		};
+
 		
 		panelBoutons = new BoutonsJeu() {
+			@Override
 			public Dimension getPreferredSize(){
 				return new Dimension(menuWidth(),singleMenuHeight());
 			}

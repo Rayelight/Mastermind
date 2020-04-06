@@ -38,10 +38,10 @@ public class PaletteCouleurs extends JPanel{
 
 		//		Components creation and adding
 		//Titre
-		titre = new JLabel("Couleurs", JLabel.CENTER){
+		titre = new JLabel("Palette Couleurs", JLabel.CENTER){
 			@Override
 			public Dimension getPreferredSize() {
-				return new Dimension(RoundButton.boutonRadius()*4,RoundButton.boutonRadius());
+				return new Dimension(RoundButton.boutonRadius()*8,RoundButton.boutonRadius());
 			}
 		};
 		titre.setOpaque(false);

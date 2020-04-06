@@ -20,8 +20,8 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 	private static Mastermind general = new Mastermind();
 	
 	//Paramètres
-	static int nbrCouleurs = 8;
-	static int tailleCombinaison = 4;
+	static int nbrCouleurs = 10;
+	static int tailleCombinaison = 8;
 	static boolean multiColor = false;
 	static int nbrTentatives=(tailleCombinaison+1)*2;
 	static Color[] couleurs = {	Color.red, Color.orange, 
