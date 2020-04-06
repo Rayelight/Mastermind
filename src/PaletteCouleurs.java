@@ -1,116 +1,119 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.CompoundBorder;
+import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
 public class PaletteCouleurs extends JPanel{
 
 	JLabel titre;
 	JPanel boutonsPannel;
-	FlowLayout boutonsLayout = new FlowLayout(FlowLayout.CENTER, 20, 10);
+	SpringLayout layout;
+	private RoundButton[] boutonsSelection= new RoundButton[Mastermind.nbrCouleurs];
 
-	private Thread t;
 
 	public PaletteCouleurs(){
 		//			Panel Setup
 		this.setLayout(new BorderLayout());
 		this.setBackground(Color.pink);
+		layout = new SpringLayout();
+		this.setLayout(layout);
 		this.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-				t = new Thread(new Resized());
-				t.start();
+				adjustContraints();
+				revalidate();
+				repaint();
 
 			}
 		});
 
 
-		//		Components creation
+		//		Components creation and adding
 		//Titre
-		titre = new JLabel("Couleurs", JLabel.CENTER);
-
+		titre = new JLabel("Palette Couleurs", JLabel.CENTER){
+			@Override
+			public Dimension getPreferredSize() {
+				return new Dimension(RoundButton.boutonRadius()*8,RoundButton.boutonRadius());
+			}
+		};
 		titre.setOpaque(false);
 		titre.setForeground(Color.red);
+		titre.setBorder(BorderFactory.createLineBorder(Color.red));
 		titre.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
 				titre.setFont(new Font("Serif", Font.PLAIN, RoundButton.boutonRadius()));
+				titre.revalidate();
 				titre.repaint();
 			}
 		});
 
+		this.add(titre);
 
 
-		//Boutons Pannel
-		boutonsPannel = new JPanel();
-		boutonsPannel.setBackground(Color.yellow);
-		boutonsPannel.setLayout(boutonsLayout);
-		boutonsPannel.setOpaque(true);
+		//Boutons Selection
+
 		for(int i=0; i<Mastermind.nbrCouleurs; i++) {
-			boutonsPannel.add(new RoundButton(Mastermind.couleurs[i]));
+			this.add(boutonsSelection[i] = new RoundButton(Mastermind.couleurs[i]));
 		}
 
 
-
-		//			Adding components
-		this.add(titre, BorderLayout.PAGE_START);
-		this.add(boutonsPannel, BorderLayout.CENTER);
 
 
 	}
 
 
 	public void adjustContraints() {
-
+		
 		//			Adjust Constraints
+		boutonsContraints();
 
-
-		int hInset = hInset();
-		int vInset = (BarreMenu.singleMenuHeight()-3*RoundButton.boutonRadius())/4;
-
-		boutonsLayout.setVgap(vInset);
-		boutonsLayout.setHgap(hInset);
-		this.setBorder(BorderFactory.createEmptyBorder(vInset,0,0,0));
-		titre.setBorder(new CompoundBorder(BorderFactory.createEmptyBorder(0, titre.getHeight()*3/2, 0, titre.getHeight()*3/2), BorderFactory.createLineBorder(Color.red)));
-		//boutonsPannel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-
-		//System.out.println(hInset);
-
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		this.repaint();
-
+		// 		titre
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, titre, 0, SpringLayout.HORIZONTAL_CENTER, this);
+		layout.putConstraint(SpringLayout.NORTH, titre, vInset(), SpringLayout.NORTH, this);
 
 	}
+	
+	public void boutonsContraints() {
+		//			Boutons Constraints
+		for(int i=0; i<Mastermind.nbrCouleurs; i++) {
+			
+			int vContraint = vInset()+(i/boutonsPerLine())*(vInset()+RoundButton.boutonRadius());
+			int hContraint = hInset()+(i%boutonsPerLine())*(hInset()+RoundButton.boutonRadius());
+			
+			layout.putConstraint(SpringLayout.NORTH, boutonsSelection[i], vContraint, SpringLayout.SOUTH, titre);
+			layout.putConstraint(SpringLayout.WEST, boutonsSelection[i], hContraint, SpringLayout.WEST, this);
+		}
+
+	}
+
 
 
 
 	public int hInset() {
-		int boutonPerLine = (int)Math.round(Mastermind.nbrCouleurs/2.0);
-		int hInset = (BarreMenu.menuWidth()-RoundButton.boutonRadius()*boutonPerLine)/(boutonPerLine+1);
+		int hInset = (BarreMenu.menuWidth()-RoundButton.boutonRadius()*boutonsPerLine())/(boutonsPerLine()+1);
 		return hInset;
+	}
+	
+	public int vInset() {
+		int vInset = (int) Math.round((BarreMenu.singleMenuHeight()-RoundButton.boutonRadius()*3.0)/4.0);
+		return vInset;
+	}
+	
+	public int boutonsPerLine() {
+		int boutonsPerLine = (int)Math.round(Mastermind.nbrCouleurs/2.0);
+		return boutonsPerLine;
 	}
 
 
-	class Resized implements Runnable{
-		public void run() {
-			adjustContraints();                   
-		}               
-	}    
 
 
 }
