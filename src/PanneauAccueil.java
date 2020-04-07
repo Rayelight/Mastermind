@@ -136,7 +136,7 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 
 		}
 		if(e.getSource()==boutonsAccueil[2]) {
-			//affichage mode oridnateur 
+			//affichage mode ordinateur 
 		}
 		if(e.getSource()==boutonsAccueil[3]) {
 			//affichage mode regles 
