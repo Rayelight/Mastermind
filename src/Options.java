@@ -19,14 +19,15 @@ public class Options extends JFrame implements ActionListener, ChangeListener  {
 
 	// Les Widgets � d�clarer en dehors du constructeur
 
-	private JCheckBox checkBox1;
-	private JCheckBox checkBox2;
+	private JCheckBox checkboxaides;
+	private JCheckBox checkboxmulticolor;
 	private JButton[] boutonOption;
 	private JLabel[] textOption;
 	private JSlider slidercouleurscombi;
 	private JSlider slidercouleursdispo;
 	JSlider sliderTailleCombi;
 	JSlider sliderNbrCouleurs;
+
 
 
 	public Options() {
@@ -63,7 +64,7 @@ public class Options extends JFrame implements ActionListener, ChangeListener  {
 
 		// Texte Option
 
-		textOption = new JLabel[5];
+		textOption = new JLabel[4];
 
 		//	Creation des differents textes
 		textOption[0] = textOption("Activer les aides dans le jeu");
@@ -82,19 +83,23 @@ public class Options extends JFrame implements ActionListener, ChangeListener  {
 		textOption[3].setBounds(400,330,300,50);
 		panneauGlobal.add(textOption[3]);
 
-		textOption[4] = textOption("Options");
-		textOption[4].setBounds(350,20,350,50);
-		panneauGlobal.add(textOption[4]);
+		//Afiichage du titre Options
+		
+		JLabel titreOption= new JLabel("Options");
+		titreOption.setBounds(350,20,600,100);
+		titreOption.setBackground(Color.white);
+		titreOption.setForeground(Color.blue);	
+		panneauGlobal.add(titreOption);
 
 
 		// Checkbox
 
-		JCheckBox checkBox1 = new JCheckBox("");
-		checkBox1.setBounds(200,150, 50,50);
-		JCheckBox checkBox2 = new JCheckBox("");
-		checkBox2.setBounds(200,210, 50,50);
-		panneauGlobal.add(checkBox1);
-		panneauGlobal.add(checkBox2);
+		JCheckBox checkboxaides = new JCheckBox("");
+		checkboxaides.setBounds(200,150, 50,50);
+		JCheckBox checkboxmulticolor = new JCheckBox("");
+		checkboxmulticolor.setBounds(200,210, 50,50);
+		panneauGlobal.add(checkboxaides);
+		panneauGlobal.add(checkboxmulticolor);
 
 		//Curseurs ( nombre de couleurs disponibles)
 		int min = 6;
@@ -113,21 +118,13 @@ public class Options extends JFrame implements ActionListener, ChangeListener  {
 		panneauGlobal.add(sliderNbrCouleurs);
 
 
+
 		//Curseurs ( nombre de couleurs par combinaison)
 		int mini = 3;
 		int maxi =6;
 		int initi = 4;    
 
 
-		JSlider slidercouleurscombi = new JSlider (JSlider.HORIZONTAL,mini, maxi, initi);
-		slidercouleurscombi.setMajorTickSpacing (1);
-		slidercouleurscombi.setMinorTickSpacing(0);
-		slidercouleurscombi.setSnapToTicks(true);
-		slidercouleurscombi.setPaintTicks (true);
-		slidercouleurscombi.setPaintLabels (true);
-		slidercouleurscombi.setBounds(150,330, 150,50);
-		slidercouleurscombi.addChangeListener(this); 
-		panneauGlobal.add(slidercouleurscombi);
 
 		sliderTailleCombi = new JSlider (JSlider.HORIZONTAL,mini, maxi, initi);
 		sliderTailleCombi.setMajorTickSpacing (1);
@@ -159,24 +156,27 @@ public class Options extends JFrame implements ActionListener, ChangeListener  {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		if(e.getSource()==checkBox1) {
+		if(e.getSource()==checkboxaides) {
 			//enable bouton aide
 			
-		}if(e.getSource()==checkBox2) {
-
-
 		}
-		if(e.getSource()==checkBox2) {
-
 			//possibilité de mettre 2 couleurs dans ses combinaisons 
-			Mastermind.multiColor=true;
-		}if(e.getSource()==boutonOption[1]){
-			int nombrecouleurs=4;
-			nombrecouleurs=slidercouleurscombi.getValue();
-			int couleursdispo=6;
-			couleursdispo=slidercouleursdispo.getValue();
-			//checkBox2
+			if(e.getSource()==checkboxmulticolor){
+				checkboxmulticolor.setSelected(true);
+				Mastermind.multiColor=true;
+			}else {
+				checkboxmulticolor.setSelected(false);
+				Mastermind.multiColor=false;				
+			}
 			
+		if(e.getSource()==boutonOption[1]){
+			sliderNbrCouleurs.setValue(4);
+			sliderTailleCombi.setValue(6);
+    		sliderNbrCouleurs.paintAll(sliderNbrCouleurs.getGraphics());
+    		sliderTailleCombi.paintAll(sliderTailleCombi.getGraphics());
+            checkboxmulticolor.setSelected(false);
+            checkboxaides.setSelected(false);
+
 		}
 		
 	}
