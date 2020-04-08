@@ -118,6 +118,7 @@ public class Options extends JFrame implements ActionListener, ChangeListener  {
 		panneauGlobal.add(sliderNbrCouleurs);
 
 
+
 		//Curseurs ( nombre de couleurs par combinaison)
 		int mini = 3;
 		int maxi =6;
@@ -161,18 +162,21 @@ public class Options extends JFrame implements ActionListener, ChangeListener  {
 		}
 			//possibilité de mettre 2 couleurs dans ses combinaisons 
 			if(e.getSource()==checkboxmulticolor){
-				checkboxmulticolor.setSelected(false);
-				Mastermind.multiColor=false;
-			}else {
 				checkboxmulticolor.setSelected(true);
-				Mastermind.multiColor=true;				
+				Mastermind.multiColor=true;
+			}else {
+				checkboxmulticolor.setSelected(false);
+				Mastermind.multiColor=false;				
 			}
 			
 		if(e.getSource()==boutonOption[1]){
-			slidercouleurscombi.setValue(4);
-            slidercouleursdispo.setValue(6);
+			sliderNbrCouleurs.setValue(4);
+			sliderTailleCombi.setValue(6);
+    		sliderNbrCouleurs.paintAll(sliderNbrCouleurs.getGraphics());
+    		sliderTailleCombi.paintAll(sliderTailleCombi.getGraphics());
             checkboxmulticolor.setSelected(false);
             checkboxaides.setSelected(false);
+
 		}
 		
 	}
