@@ -37,6 +37,7 @@ class GrilleCouleurs  extends JPanel{
 		return grilleCouleursHeight;
 
 	}
+	
 	public boolean finjeu() {
 		//TODO: nbrCouleursValides
 		boolean res=false;

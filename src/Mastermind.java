@@ -85,7 +85,6 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 		this.getContentPane().setBackground(Color.blue);
 		this.addComponentListener(this);
 
-
 	}
 
 
