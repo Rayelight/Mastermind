@@ -33,20 +33,17 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 	//Panneaux
 	static PanneauAccueil accueil = new PanneauAccueil();
 	static PanneauJeu panneauJeu = new PanneauJeu();
+	static PanneauOptions options= new PanneauOptions();
 	
 
 
 	public static void main(String[] args) {
 		
 
-		general.setContentPane(panneauJeu);
-
-
+		//general.setContentPane(panneauJeu);
 		//general.setContentPane(accueil);
+		general.setContentPane(options);
 
-
-		Options simon2 = new Options();
-		simon2.setVisible(true);
 
 		general.setVisible(true);
 		general.setSize(general.getPreferredSize());
@@ -84,7 +81,6 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 		//		ContentPane
 		this.getContentPane().setBackground(Color.blue);
 		this.addComponentListener(this);
-
 
 	}
 
