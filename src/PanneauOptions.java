@@ -20,10 +20,11 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 	private JCheckBox checkBoxAides;
 	private JCheckBox checkBoxMultiColor;
-	private JButton[] boutonOption;
-	private JLabel[] textOption;
+	private JButton[] boutonOption = new JButton[2];
+	private JLabel[] textOption = new JLabel[4];
 	private JSlider sliderTailleCombi;
 	private JSlider sliderNbrCouleurs;
+	private JLabel titreOption;
 
 
 
@@ -35,7 +36,6 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 
 		//Boutons Option
-		boutonOption = new JButton[2];
 
 		//	Creation Boutons
 		boutonOption[0] = boutonOption("DeleteScores");
@@ -48,11 +48,10 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 		// Texte Option
 
-		textOption = new JLabel[4];
 
 		//	Creation des differents textes
 		textOption[0] = textOption("Activer les aides dans le jeu");
-		textOption[0].setBounds(400,150,300,50);
+		textOption[0].setBounds(400,150,400,50);
 		this.add(textOption[0]);
 
 		textOption[1] = textOption("Combinaison avec plus d'une fois la m�me couleur(Default False)");
@@ -60,16 +59,16 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		this.add(textOption[1]);
 
 		textOption[2] = textOption("Nombre de couleurs disponibles(Default 8)");
-		textOption[2].setBounds(400,270,300,50);
+		textOption[2].setBounds(400,270,400,50);
 		this.add(textOption[2]);
 
 		textOption[3] = textOption("Nombre de couleurs par combinaison(Default 4)");
-		textOption[3].setBounds(400,330,300,50);
+		textOption[3].setBounds(400,330,400,50);
 		this.add(textOption[3]);
 
 		//Afiichage du titre Options
 
-		JLabel titreOption= new JLabel("Options");
+		titreOption= new JLabel("Options");
 		titreOption.setBounds(350,20,600,100);
 		titreOption.setBackground(Color.white);
 		titreOption.setForeground(Color.blue);	

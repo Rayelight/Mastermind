@@ -40,9 +40,9 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 	public static void main(String[] args) {
 		
 
-		//general.setContentPane(panneauJeu);
+		general.setContentPane(panneauJeu);
 		//general.setContentPane(accueil);
-		general.setContentPane(options);
+		//general.setContentPane(options);
 
 
 		general.setVisible(true);
