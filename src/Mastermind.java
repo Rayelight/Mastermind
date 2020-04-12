@@ -4,31 +4,28 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class Mastermind extends JFrame implements ActionListener, ComponentListener{
+public class Mastermind extends JFrame implements ComponentListener{
 
 	//Fenetre
 	private static Mastermind general = new Mastermind();
 	
 	//Paramètres
-	static int nbrCouleurs = 10;
-	static int tailleCombinaison = 8;
-	static boolean multiColor = false;
-	static int nbrTentatives=(tailleCombinaison+1)*2;
-	static Color[] couleurs = {	Color.red, Color.orange, 
-			Color.yellow, Color.gray, 
-			Color.green, Color.blue, 
-			Color.pink, Color.white,
-			Color.magenta, Color.cyan};
+	protected static int nbrCouleurs = 6;
+	protected static int tailleCombinaison = 4;
+	protected static boolean multiColor = false;
+	protected static int nbrTentatives=(tailleCombinaison+1)*2;
+	protected static Color[] couleurs = {	Color.red, Color.orange, 
+											Color.yellow, Color.gray, 
+											Color.green, Color.blue, 
+											Color.pink, Color.white,
+											Color.magenta, Color.cyan};
 	
 	//Panneaux
 	static PanneauAccueil accueil = new PanneauAccueil();
@@ -47,6 +44,7 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 
 		general.setVisible(true);
 		general.setSize(general.getPreferredSize());
+		panneauJeu.lancerJeu();
 
 	}
 
@@ -85,26 +83,32 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 	}
 
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 
+
+	//			PanneauJeu Récupération
+	public static PanneauJeu getPanneauJeu() {
+		return panneauJeu;
 	}
 
 
 	public void placementBoutons(){
 		final int difficulte = 5;
-		JButton[] lesBoutons;
-		JPanel panneauDeBoutons = new JPanel();
-		lesBoutons =new JButton[(int) Math.pow(difficulte, 2)];
+		JButton[] lesBoutons =new JButton[(int) Math.pow(difficulte, 2)];
+		
 		for(int i=0; i<lesBoutons.length; i++) {
-			lesBoutons[i]= new JButton("");
-			lesBoutons[i].addActionListener(this);
-			panneauDeBoutons.add(lesBoutons[i]);
-			int taille=(510-10*(difficulte+1))/difficulte;
-			int x=10+(taille+10)*(i%5);
-			int y=10+(taille+10)*((i-i%5)/5);
-			lesBoutons[i].setBounds(x,y,taille,taille);
+			int xEspace = 5;
+			int yEspace = 5;
+			
+			int x0 = 10;
+			int y0 = 10;
+			
+			int tailleX = 500;
+			int tailleY = 500;
+			
+			int x=x0+(tailleX+xEspace)*(i%difficulte);
+			int y=y0+(tailleY+yEspace)*(i/difficulte);
+			
+			lesBoutons[i].setBounds(x,y,tailleX,tailleY);
 		}
 	}
 
@@ -170,6 +174,58 @@ public class Mastermind extends JFrame implements ActionListener, ComponentListe
 		// TODO Auto-generated method stub
 
 	}
+
+	//			Parametres Getters
+	public static int getNbrCouleurs() {
+		return nbrCouleurs;
+	}
+
+
+	public static int getTailleCombinaison() {
+		return tailleCombinaison;
+	}
+
+
+	public static boolean isMultiColor() {
+		return multiColor;
+	}
+
+
+	public static int getNbrTentatives() {
+		return nbrTentatives;
+	}
+
+
+	public static Color[] getCouleurs() {
+		return couleurs;
+	}
+
+
+	//			Parametres Setters
+	public static void setNbrCouleurs(int nbrCouleurs) {
+		Mastermind.nbrCouleurs = nbrCouleurs;
+	}
+
+
+	public static void setTailleCombinaison(int tailleCombinaison) {
+		Mastermind.tailleCombinaison = tailleCombinaison;
+	}
+
+
+	public static void setMultiColor(boolean multiColor) {
+		Mastermind.multiColor = multiColor;
+	}
+
+
+	public static void setNbrTentatives(int nbrTentatives) {
+		Mastermind.nbrTentatives = nbrTentatives;
+	}
+
+
+	public static void setCouleurs(Color[] couleurs) {
+		Mastermind.couleurs = couleurs;
+	}
+	
 
 }
 

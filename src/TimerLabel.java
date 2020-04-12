@@ -42,6 +42,6 @@ public class TimerLabel extends JLabel {
 
 	@Override
 	public String getText() {
-			return "Temps de jeu: "+getTime();
+		return "Temps de jeu: "+getTime();
 	}
 }

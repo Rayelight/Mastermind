@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class HiddenCombiPanel extends JPanel{
 	
+	Combinaison hiddenCombi;
 
 
 	public HiddenCombiPanel(){
@@ -24,7 +25,7 @@ public class HiddenCombiPanel extends JPanel{
 		
 
 		//		Components creation
-		Combinaison hiddenCombi=new Combinaison();
+		hiddenCombi = new Combinaison();
 		
 		
 

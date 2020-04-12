@@ -2,21 +2,24 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
-public class PaletteCouleurs extends JPanel{
+public class PaletteCouleurs extends JPanel implements ActionListener{
 
-	JLabel titre;
-	JPanel boutonsPannel;
-	SpringLayout layout;
+	private JLabel titre;
+	private SpringLayout layout;
 	private RoundButton[] boutonsSelection= new RoundButton[Mastermind.nbrCouleurs];
+	private ButtonGroup boutonsGroup = new ButtonGroup();
 
 
 	public PaletteCouleurs(){
@@ -41,7 +44,7 @@ public class PaletteCouleurs extends JPanel{
 		titre = new JLabel("Palette Couleurs", JLabel.CENTER){
 			@Override
 			public Dimension getPreferredSize() {
-				return new Dimension(RoundButton.boutonRadius()*8,RoundButton.boutonRadius());
+				return new Dimension(RoundButton.boutonRadius()*Mastermind.tailleCombinaison,RoundButton.boutonRadius());
 			}
 		};
 		titre.setOpaque(false);
@@ -50,7 +53,7 @@ public class PaletteCouleurs extends JPanel{
 		titre.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-				titre.setFont(new Font("Serif", Font.PLAIN, RoundButton.boutonRadius()));
+				titre.setFont(new Font("Serif", Font.PLAIN, (int) (titre.getWidth()/8.0)));
 				titre.revalidate();
 				titre.repaint();
 			}
@@ -63,6 +66,8 @@ public class PaletteCouleurs extends JPanel{
 
 		for(int i=0; i<Mastermind.nbrCouleurs; i++) {
 			this.add(boutonsSelection[i] = new RoundButton(Mastermind.couleurs[i]));
+			boutonsSelection[i].addActionListener(this);
+			boutonsGroup.add(boutonsSelection[i]);
 		}
 
 
@@ -112,6 +117,16 @@ public class PaletteCouleurs extends JPanel{
 		int boutonsPerLine = (int)Math.round(Mastermind.nbrCouleurs/2.0);
 		return boutonsPerLine;
 	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		RoundButton selectedBouton = (RoundButton)e.getSource();
+		boutonsGroup.setSelected(selectedBouton.getModel(), true);
+		Mastermind.getPanneauJeu().setSelectedColor(selectedBouton.getCouleur());
+		
+	}
+
 
 
 

@@ -2,34 +2,26 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Shape;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
 
 import javax.swing.JButton;
 
 
 @SuppressWarnings("serial")
-class RoundButton extends JButton implements ActionListener {
+class RoundButton extends JButton {
 	private Color couleur;
-	private boolean typeJeu;
 	
 	public RoundButton() {
 		//size.width = size.height = Math.max(size.width,size.height);
 		//size.width = size.height=radius;
 		//setMargin(new Insets(10, 10, 10, 10));
 		this.couleur=Color.lightGray;
-		this.typeJeu = true;
 		setContentAreaFilled(false);
-		addActionListener(this);
 	}
 	
 	public RoundButton(Color couleur) {
+		this();
 		this.couleur=couleur;
-		this.typeJeu = false;
-		setBackground(this.couleur);
-		setContentAreaFilled(false);
-		addActionListener(this);
 	}
 
 	protected void paintComponent(Graphics g) {
@@ -43,7 +35,7 @@ class RoundButton extends JButton implements ActionListener {
 
 	protected void paintBorder(Graphics g) {
 		
-		if (getModel().isArmed()) {
+		if (getModel().isArmed()||isSelected()) {
 			g.setColor(Color.white);
 		} else {
 			g.setColor(getForeground());
@@ -58,7 +50,14 @@ class RoundButton extends JButton implements ActionListener {
 		}
 		return shape.contains(x, y);
 	}
-
+	
+	@Override
+	public Color getBackground() {
+		return this.couleur;
+	}
+	
+	
+	
 	public static int boutonRadius(){
 		int radius = Combinaison.combinaisonHeight()-10;  
 		return radius;
@@ -70,18 +69,12 @@ class RoundButton extends JButton implements ActionListener {
 		return new Dimension(boutonRadius(), boutonRadius());
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(this.typeJeu) {
-			
-		}else {
-			
-		}
-		
-	}
-
 	public Color getCouleur() {
 		return couleur;
+	}
+
+	public void setCouleur(Color couleur) {
+		this.couleur = couleur;
 	}
 
 

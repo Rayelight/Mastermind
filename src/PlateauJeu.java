@@ -12,15 +12,15 @@ import javax.swing.SpringLayout;
 public class PlateauJeu extends JPanel implements ActionListener{
 
 
-	GrilleCouleurs grilleCouleurs;
+	protected GrilleCouleurs grilleCouleurs;
 	CarreEval carrePlacement;
-	CarreEval carreValide;
+	CarreEval carrePresence;
 
 	protected SpringLayout layout;
 	
 	public PlateauJeu(){
 		//			Panel Setup	
-		this.setBackground(Color.red);
+		this.setBackground(Color.orange);
 		layout = new SpringLayout();
 		this.setLayout(layout);
 		this.addComponentListener(new ComponentAdapter() {
@@ -33,14 +33,14 @@ public class PlateauJeu extends JPanel implements ActionListener{
 		
 		//			Components creation
 		grilleCouleurs = new GrilleCouleurs();
-		carrePlacement = new CarreEval();
-		carreValide = new CarreEval();
+		carrePlacement = new CarreEval(true);
+		carrePresence = new CarreEval(false);
 
 
 		//			Adding components
 		this.add(grilleCouleurs);
 		this.add(carrePlacement);
-		this.add(carreValide);
+		this.add(carrePresence);
 
 
 
@@ -55,10 +55,10 @@ public class PlateauJeu extends JPanel implements ActionListener{
 		layout.putConstraint(SpringLayout.SOUTH, grilleCouleurs, -20, SpringLayout.SOUTH, this);
 		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, grilleCouleurs, 0, SpringLayout.HORIZONTAL_CENTER, this);
 
-		// 		carreValide Constrains
-		layout.putConstraint(SpringLayout.NORTH, carreValide, 25, SpringLayout.NORTH, this);
-		layout.putConstraint(SpringLayout.SOUTH, carreValide, -25, SpringLayout.SOUTH, this);
-		layout.putConstraint(SpringLayout.EAST, carreValide, -RoundButton.boutonRadius(), SpringLayout.WEST, grilleCouleurs);
+		// 		carrePresence Constrains
+		layout.putConstraint(SpringLayout.NORTH, carrePresence, 25, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.SOUTH, carrePresence, -25, SpringLayout.SOUTH, this);
+		layout.putConstraint(SpringLayout.EAST, carrePresence, -RoundButton.boutonRadius(), SpringLayout.WEST, grilleCouleurs);
 
 		// 		carrePlacement Constrains
 		layout.putConstraint(SpringLayout.NORTH, carrePlacement, 25, SpringLayout.NORTH, this);

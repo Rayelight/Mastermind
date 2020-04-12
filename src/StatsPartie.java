@@ -39,12 +39,24 @@ public class StatsPartie extends JPanel{
 
 		//		Components creation
 		//	Nombre de coup
-		nbrCoupsLabel = new JLabel("Nombre de coups: ") {
+		nbrCoupsLabel = new JLabel() {
 			@Override
 			public Dimension getPreferredSize() {
 
 
 				return new Dimension(BarreMenu.menuWidth()-40,labelsHeight());
+			}
+
+			@Override
+			public String getText() {
+				int tentatives;
+				try {
+					tentatives =Mastermind.getPanneauJeu().getTentativeActif()+1;
+				}catch(Exception e) {
+					tentatives=1;
+				}
+				return "Nombre de coups: "+tentatives;
+
 			}
 		};
 		nbrCoupsLabel.setBackground(Color.black);
@@ -111,15 +123,15 @@ public class StatsPartie extends JPanel{
 		//	nbrCoupsLabel
 		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, nbrCoupsLabel, 0, SpringLayout.HORIZONTAL_CENTER, this);
 		layout.putConstraint(SpringLayout.NORTH, nbrCoupsLabel, 20, SpringLayout.NORTH, this);
-		
+
 		//timerLabel
 		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, timerLabel, 0, SpringLayout.HORIZONTAL_CENTER, this);
 		layout.putConstraint(SpringLayout.NORTH, timerLabel, 20, SpringLayout.SOUTH, nbrCoupsLabel);
-		
+
 		//restartBouton
 		layout.putConstraint(SpringLayout.EAST, restartBouton, -10, SpringLayout.HORIZONTAL_CENTER, this);
 		layout.putConstraint(SpringLayout.NORTH, restartBouton, 20, SpringLayout.SOUTH, timerLabel);
-		
+
 		//devoileCombiBouton
 		layout.putConstraint(SpringLayout.WEST, devoileCombiBouton, 20, SpringLayout.EAST, restartBouton);
 		layout.putConstraint(SpringLayout.NORTH, devoileCombiBouton, 20, SpringLayout.SOUTH, timerLabel);
