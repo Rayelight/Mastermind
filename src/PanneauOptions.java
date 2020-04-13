@@ -2,6 +2,8 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -13,8 +15,9 @@ import javax.swing.event.ChangeListener;
 
 
 
+
 @SuppressWarnings("serial")
-public class PanneauOptions extends JPanel implements ActionListener, ChangeListener  {
+public class PanneauOptions extends JPanel implements ActionListener, ChangeListener , ItemListener  {
 
 	// Les Widgets � d�clarer en dehors du constructeur
 
@@ -80,10 +83,12 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		checkBoxAides = new JCheckBox("");
 		checkBoxAides.setBounds(200,150, 50,50);
 		checkBoxAides.setSelected(false);
+		checkBoxAides.addItemListener(this);
 		
 		checkBoxMultiColor = new JCheckBox("");
 		checkBoxMultiColor.setBounds(200,210, 50,50);
 		checkBoxMultiColor.setSelected(false);
+		checkBoxMultiColor.addItemListener(this);
 		this.add(checkBoxAides);
 		this.add(checkBoxMultiColor);
 
@@ -125,7 +130,20 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 	}
 
-
+	
+public void itemStateChanged(ItemEvent event) {
+	JCheckBox checkboxname=(JCheckBox)event.getSource();
+	boolean valeur=checkboxname.isSelected();
+	if(checkboxname==checkBoxMultiColor && valeur==true) {
+		Mastermind.multiColor=true;
+	}if(checkboxname==checkBoxMultiColor && valeur==false){
+		Mastermind.multiColor=false;
+	}if(checkboxname==checkBoxAides && valeur==true){
+		//affichage du panneau regles
+	}if(checkboxname==checkBoxAides && valeur==false){
+		//enlever le panneau regles 
+	}
+}
 
 
 	public void stateChanged(ChangeEvent event) {
@@ -141,16 +159,6 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
-		if(e.getSource()==checkBoxAides) {
-			//enable bouton aide
-
-		}
-		//possibilité de mettre 2 couleurs dans ses combinaisons 
-		if(e.getSource()==checkBoxMultiColor){
-						
-		}
-
 		if(e.getSource()==boutonOption[1]){
 			sliderNbrCouleurs.setValue(8);
 			sliderTailleCombi.setValue(4);
@@ -158,7 +166,6 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 			sliderTailleCombi.paintAll(sliderTailleCombi.getGraphics());
 			checkBoxMultiColor.setSelected(false);
 			checkBoxAides.setSelected(false);
-
 		}
 
 	}
