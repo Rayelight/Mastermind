@@ -42,13 +42,14 @@ public class PanneauJeu extends JPanel{
 		Combinaison combiJeu = plateauJeu.grilleCouleurs.tentatives[tentativeActif];
 		Combinaison combiCache = barreMenu.hiddenCombiPanel.hiddenCombi;
 		
-		int nbrPresentes = combiCache.nbrCouleursPresentes(combiJeu);
-		int nbrPlacees = combiCache.nbrCouleursPlacees(combiJeu);
+		//int nbrPresentes = combiCache.nbrCouleursPresentes(combiJeu);
+		//int nbrPlacees = combiCache.nbrCouleursPlacees(combiJeu);
+		int[] evalCombi = Combinaison.evalCombi(combiJeu, combiCache);
 		
-		plateauJeu.carrePresence.tentatives[tentativeActif].setText(""+nbrPresentes);
-		plateauJeu.carrePlacement.tentatives[tentativeActif].setText(""+nbrPlacees);
+		plateauJeu.carrePresence.tentatives[tentativeActif].setText(""+evalCombi[1]);
+		plateauJeu.carrePlacement.tentatives[tentativeActif].setText(""+evalCombi[0]);
 		
-		boolean fini = testFinjeu(nbrPlacees);
+		boolean fini = testFinjeu(evalCombi[0]);
 		
 		if(!fini)
 			activeNextTentative();

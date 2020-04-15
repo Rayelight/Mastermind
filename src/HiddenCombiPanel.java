@@ -25,7 +25,8 @@ public class HiddenCombiPanel extends JPanel{
 		
 
 		//		Components creation
-		hiddenCombi = new Combinaison();
+		Color[] couleurs = {Color.red, Color.red, Color.yellow, Color.green};
+		hiddenCombi = new Combinaison(couleurs);
 		
 		
 
