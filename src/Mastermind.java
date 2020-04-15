@@ -19,11 +19,11 @@ public class Mastermind extends JFrame implements ComponentListener{
 	//Paramètres
 	protected static int nbrCouleurs = 6;
 	protected static int tailleCombinaison = 4;
-	protected static boolean multiColor = false;
+	protected static boolean multiColor = true;
 	protected static int nbrTentatives=(tailleCombinaison+1)*2;
-	protected static Color[] couleurs = {	Color.red, Color.orange, 
-											Color.yellow, Color.gray, 
-											Color.green, Color.blue, 
+	protected static Color[] couleurs = {	Color.red, Color.green, 
+											Color.yellow, Color.blue, 
+											Color.orange, Color.gray, 
 											Color.pink, Color.white,
 											Color.magenta, Color.cyan};
 	
@@ -45,6 +45,8 @@ public class Mastermind extends JFrame implements ComponentListener{
 		general.setVisible(true);
 		general.setSize(general.getPreferredSize());
 		panneauJeu.lancerJeu();
+		
+		System.out.println(ModeOrdinateur.generationCombis().size());
 
 	}
 

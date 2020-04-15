@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class Combinaison extends JPanel implements ActionListener{
-	
+
 	private RoundButton[] couleurs = new RoundButton[Mastermind.tailleCombinaison];
 
 	public Combinaison(){
@@ -26,15 +26,22 @@ public class Combinaison extends JPanel implements ActionListener{
 		setEnabled(false);
 
 	}
-	
+
+	public Combinaison(Color[] couleurs) {
+		this();
+		for(int i=0; i<Mastermind.tailleCombinaison; i++) {
+			this.couleurs[i].setCouleur(couleurs[i]);
+		}
+	}
+
 	public void setEnabled(boolean b){
 		for(int i=0; i<Mastermind.tailleCombinaison; i++) {
 			couleurs[i].setEnabled(b);
 		}
 
 	}
-	
-	
+
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -45,7 +52,7 @@ public class Combinaison extends JPanel implements ActionListener{
 			testFinTentative();
 		}
 	}
-	
+
 	private void testFinTentative() {
 		boolean finTentative = true;
 		for(int i=0; i<Mastermind.tailleCombinaison; i++) {
@@ -55,7 +62,7 @@ public class Combinaison extends JPanel implements ActionListener{
 				break;
 			}
 		}
-		
+
 		//Disable actifTentative
 		if(finTentative) {
 			setEnabled(false);
@@ -69,24 +76,24 @@ public class Combinaison extends JPanel implements ActionListener{
 
 	}
 
-	
+
 	/**
 	 * Compare la combinaison du joueur avec la combinaison exacte
-	 * Méthode qui renvoie le nombre de couleurs bien plac�es
+	 * Méthode qui renvoie le nombre de couleurs bien placees
 	 */
 	public int nbrCouleursPlacees(Combinaison  combiJeu) {
 		int res=0;
 		for(int i=0; i<Mastermind.tailleCombinaison ; i++) {
 			if(this.couleurs[i].getCouleur() == combiJeu.couleurs[i].getCouleur()) {	
 				res++;
-		    }
+			}
 		}
 		return res;
 	}
 
 	/**
 	 * Compare la combinaison du joueur avec la combinaison exacte
-	 * Méthode qui renvoie le nombre de couleurs devinées mais mal plac�es
+	 * Méthode qui renvoie le nombre de couleurs devinées mais mal placees
 	 */
 	public int nbrCouleursPresentes (Combinaison combiJeu) {
 		int res=0;
@@ -94,7 +101,7 @@ public class Combinaison extends JPanel implements ActionListener{
 			boolean malPlace=false;
 			int j=0;
 			if(combiJeu.couleurs[i].getCouleur()!=this.couleurs[i].getCouleur()) {
-				while(j<Mastermind.tailleCombinaison && !malPlace) {
+				while(j<Mastermind.tailleCombinaison ) {
 					if(combiJeu.couleurs[i].getCouleur()==this.couleurs[j].getCouleur()) {				
 						malPlace=true;
 						res++;
@@ -104,13 +111,52 @@ public class Combinaison extends JPanel implements ActionListener{
 					}					
 					j++;	
 				}	
-		    }		
+			}		
 		}
 		return res;
 	}
 
+
+	public static int[] evalCombi(Combinaison  combiJeu, Combinaison combiCache) {
+		Color[] couleursJeu= combiJeu.getCouleurs();
+		Color[] couleursCache= combiCache.getCouleurs();
+
+		int[] eval = {0,0};
+
+		//		Couleurs bien Placées
+		for(int i=0; i<Mastermind.tailleCombinaison ; i++) {
+			if(couleursJeu[i] == couleursCache[i]) {	
+				couleursJeu[i]=Color.lightGray;
+				couleursCache[i]= Color.darkGray;
+				eval[0]++;
+			}
+		}
+
+		//		Couleurs Présentes
+		for(int i=0; i<Mastermind.tailleCombinaison ; i++) {
+			for(int j=0; j<Mastermind.tailleCombinaison ; j++) {
+				if(couleursJeu[i] == couleursCache[j]) {	
+					couleursJeu[i]=Color.lightGray;
+					couleursCache[j]= Color.darkGray;
+					eval[1]++;
+				}
+			}
+		}
+
+		return eval;
+	}
+
+	private Color[] getCouleurs() {
+		Color[] couleurs = new Color[Mastermind.tailleCombinaison];
+		for(int i=0; i<couleurs.length ; i++) {
+			couleurs[i]=this.couleurs[i].getCouleur();	
+		}
+
+		return couleurs;
+	}
+
 }
-	
+
 
 
 
