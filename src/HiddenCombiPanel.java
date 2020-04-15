@@ -43,4 +43,5 @@ public class HiddenCombiPanel extends JPanel{
 		this.setBorder(BorderFactory.createEmptyBorder(vInset,hInset,vInset,hInset));
 
 	}
+	
 }

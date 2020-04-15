@@ -134,10 +134,8 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 public void itemStateChanged(ItemEvent event) {
 	JCheckBox checkboxname=(JCheckBox)event.getSource();
 	boolean valeur=checkboxname.isSelected();
-	if(checkboxname==checkBoxMultiColor && valeur==true) {
-		Mastermind.multiColor=true;
-	}if(checkboxname==checkBoxMultiColor && valeur==false){
-		Mastermind.multiColor=false;
+	if(checkboxname==checkBoxMultiColor) {
+		Mastermind.multiColor=valeur;
 	}if(checkboxname==checkBoxAides && valeur==true){
 		//affichage du panneau regles
 	}if(checkboxname==checkBoxAides && valeur==false){
