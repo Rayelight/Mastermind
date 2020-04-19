@@ -1,17 +1,18 @@
 import java.awt.Color;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
+import java.util.LinkedList;
 
 public class ModeOrdinateur {
-	public static HashMap<Color[], Integer> generationCombis(){
+	
+	public static LinkedList<Color[]> generationCombis(){
 		int nbrCouleurs =Mastermind.getNbrCouleurs();
 		int tailleCombi =Mastermind.getTailleCombinaison();
 		boolean multiColor = Mastermind.multiColor;
 		
 		//			Initialisation
-		LinkedHashMap<Color[], Integer> listeCombi = new LinkedHashMap<>();
+		//LinkedHashMap<Color[], Integer> listeCombi = new LinkedHashMap<>();
+		LinkedList<Color[]> listeCombi = new LinkedList<>();
 		
 		int[] combi = new int[tailleCombi];
 		Arrays.fill(combi, 0);
@@ -19,10 +20,17 @@ public class ModeOrdinateur {
 		
 		
 		//			Création Combinaisons
+		//Compteur incrementé de 1 à chaque boucle
+		//Les digits de ce derniers vont de 0 à nbrCouleurs-1
+		//La boucle est répété autant e fois que de combinaisons possibles
+		//Les combinaisons avec plusieurs fois la même couleurs sont comptabilisées
+		//(selon l'activation du mode multiColor)
 		while(a<Math.pow(nbrCouleurs, tailleCombi)){
 			//		Ajout de la combinaison
-			if(multiColor||combi.length==countDistinct(combi))
-				listeCombi.put(clone(combi), null);
+			if(multiColor||combi.length==countDistinct(combi)) {
+				//listeCombi.put(clone(combi), null);
+				listeCombi.add(clone(combi));
+			}
 
 			
 			//		Incrémentation Combinaison
@@ -42,6 +50,9 @@ public class ModeOrdinateur {
 		
 	}
 	
+	
+	//Compte le nombre de couleurs distinctes dans une combinaison
+	//Permet de déterminer par la suite si la combinaison respecte le mode multiColor
 	public static int countDistinct(int arr[]) { 
  
         HashSet<Integer> hs = new HashSet<Integer>(); 
@@ -56,6 +67,8 @@ public class ModeOrdinateur {
         return hs.size();      
     } 
 	
+	
+	//Cree une copie de la combinaison numérique sous forme de tableau de couleurs
 	public static Color[] clone(int combi[]) { 
 		Color[] combiColor = new Color[combi.length]; 
 		
@@ -67,4 +80,24 @@ public class ModeOrdinateur {
 		
 		return combiColor; 
     } 
+	
+	
+	//Permet d'éliminer les combinaisons non valides 
+	//selon le résultat obtenu en comparant une tentative avec la combiCache
+	//Pour se faire on utilise la réciprocité de la méthode de comparaison des combinaisons
+	//Les combinaisons valides auront de ce fait le même résultat en les comparant à la dernière tentative
+	//que le résultat obtenu en comparant cette dernière avec la combiCache
+	public static void eliminerInvalides(LinkedList<Color[]> listeCombi, Color[] prop, int[] evalCombi) { 
+		int i=0;
+		while(i<listeCombi.size()) {
+			if(Combinaison.evalCombi(listeCombi.get(i), prop)!=evalCombi) {
+				listeCombi.remove(i);
+			}else {
+				i++;
+			}
+		}
+
+    } 
+	
+	
 }

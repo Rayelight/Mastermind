@@ -117,9 +117,7 @@ public class Combinaison extends JPanel implements ActionListener{
 	}
 
 
-	public static int[] evalCombi(Combinaison  combiJeu, Combinaison combiCache) {
-		Color[] couleursJeu= combiJeu.getCouleurs();
-		Color[] couleursCache= combiCache.getCouleurs();
+	public static int[] evalCombi(Color[] couleursJeu, Color[] couleursCache) {
 
 		int[] eval = {0,0};
 
@@ -145,8 +143,9 @@ public class Combinaison extends JPanel implements ActionListener{
 
 		return eval;
 	}
-
-	private Color[] getCouleurs() {
+	
+	//Renvoie une copie du tableau de Couleurs de la combinaison
+	public Color[] getCouleurs() {
 		Color[] couleurs = new Color[Mastermind.tailleCombinaison];
 		for(int i=0; i<couleurs.length ; i++) {
 			couleurs[i]=this.couleurs[i].getCouleur();	

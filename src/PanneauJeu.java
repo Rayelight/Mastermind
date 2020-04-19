@@ -44,7 +44,7 @@ public class PanneauJeu extends JPanel{
 		
 		//int nbrPresentes = combiCache.nbrCouleursPresentes(combiJeu);
 		//int nbrPlacees = combiCache.nbrCouleursPlacees(combiJeu);
-		int[] evalCombi = Combinaison.evalCombi(combiJeu, combiCache);
+		int[] evalCombi = Combinaison.evalCombi(combiJeu.getCouleurs(), combiCache.getCouleurs());
 		
 		plateauJeu.carrePresence.tentatives[tentativeActif].setText(""+evalCombi[1]);
 		plateauJeu.carrePlacement.tentatives[tentativeActif].setText(""+evalCombi[0]);

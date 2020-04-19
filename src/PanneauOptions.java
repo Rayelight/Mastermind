@@ -84,7 +84,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		checkBoxAides.setBounds(200,150, 50,50);
 		checkBoxAides.setSelected(false);
 		checkBoxAides.addItemListener(this);
-		
+
 		checkBoxMultiColor = new JCheckBox("");
 		checkBoxMultiColor.setBounds(200,210, 50,50);
 		checkBoxMultiColor.setSelected(false);
@@ -92,7 +92,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		this.add(checkBoxAides);
 		this.add(checkBoxMultiColor);
 
-		//Curseurs ( nombre de couleurs disponibles)
+		//Curseurs (nombre de couleurs disponibles)
 		int min = 6;
 		int max = 10;
 		int init = 8; 
@@ -130,20 +130,20 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 	}
 
-	
-public void itemStateChanged(ItemEvent event) {
-	JCheckBox checkboxname=(JCheckBox)event.getSource();
-	boolean valeur=checkboxname.isSelected();
-	if(checkboxname==checkBoxMultiColor && valeur==true) {
-		Mastermind.multiColor=true;
-	}if(checkboxname==checkBoxMultiColor && valeur==false){
-		Mastermind.multiColor=false;
-	}if(checkboxname==checkBoxAides && valeur==true){
-		//affichage du panneau regles
-	}if(checkboxname==checkBoxAides && valeur==false){
-		//enlever le panneau regles 
+
+	public void itemStateChanged(ItemEvent event) {
+		JCheckBox checkboxname=(JCheckBox)event.getSource();
+		boolean valeur=checkboxname.isSelected();
+		if(checkboxname==checkBoxMultiColor && valeur==true) {
+			Mastermind.multiColor=true;
+		}if(checkboxname==checkBoxMultiColor && valeur==false){
+			Mastermind.multiColor=false;
+		}if(checkboxname==checkBoxAides && valeur==true){
+			//affichage du panneau regles
+		}if(checkboxname==checkBoxAides && valeur==false){
+			//enlever le panneau regles 
+		}
 	}
-}
 
 
 	public void stateChanged(ChangeEvent event) {
