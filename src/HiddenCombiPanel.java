@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class HiddenCombiPanel extends JPanel{
-	
+
 	Combinaison hiddenCombi;
 
 
@@ -19,17 +19,17 @@ public class HiddenCombiPanel extends JPanel{
 		this.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-            	adjustContraints();
-            }
-        });
-		
+				adjustContraints();
+			}
+		});
+
 
 		//		Components creation
 
 		Color[] couleurs = HiddenCombiPanel.combiAleatoire();
 		hiddenCombi = new Combinaison(couleurs);
-		
-		
+
+
 
 		//			Adding components
 		this.add(hiddenCombi, BorderLayout.CENTER);
@@ -45,19 +45,21 @@ public class HiddenCombiPanel extends JPanel{
 		this.setBorder(BorderFactory.createEmptyBorder(vInset,hInset,vInset,hInset));
 
 	}
+
 	public static Color[] combiAleatoire() {
-		Color [] aleatoire = {};
+		Color [] aleatoire = new Color[Mastermind.tailleCombinaison];
 		if(Mastermind.multiColor==true) {
-			for(int i=0;i<=Mastermind.tailleCombinaison;i++) {
-				 aleatoire[i]=Mastermind.couleurs[(int)Math.random()*Mastermind.nbrCouleurs-1];
+			for(int i=0;i<Mastermind.tailleCombinaison;i++) {
+				aleatoire[i]=Mastermind.couleurs[(int)(Math.random()*Mastermind.nbrCouleurs)];
 			}
 		}if(Mastermind.multiColor==false) {
 			do {
 				for(int i=0;i<=Mastermind.tailleCombinaison;i++) {
-					aleatoire[i]=Mastermind.couleurs[(int)Math.random()*Mastermind.nbrCouleurs-1];
-			    }				
+					aleatoire[i]=Mastermind.couleurs[(int)(Math.random()*Mastermind.nbrCouleurs)];
+				}				
 			}while(aleatoire[0]!=aleatoire[1] && aleatoire[0]!=aleatoire[2] &&aleatoire[0]!=aleatoire[3] &&aleatoire[1]!=aleatoire[2] &&aleatoire[1]!=aleatoire[3] &&aleatoire[2]!=aleatoire[3] ); 		
 		}
 		return aleatoire;
 	}
+
 }
