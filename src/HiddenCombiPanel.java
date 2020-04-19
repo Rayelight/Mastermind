@@ -25,7 +25,8 @@ public class HiddenCombiPanel extends JPanel{
 		
 
 		//		Components creation
-		Color[] couleurs = {Color.red, Color.red, Color.yellow, Color.green};
+
+		Color[] couleurs = HiddenCombiPanel.combiAleatoire();
 		hiddenCombi = new Combinaison(couleurs);
 		
 		
@@ -43,5 +44,20 @@ public class HiddenCombiPanel extends JPanel{
 		int vInset = (this.getHeight()-Combinaison.combinaisonHeight())/2;
 		this.setBorder(BorderFactory.createEmptyBorder(vInset,hInset,vInset,hInset));
 
+	}
+	public static Color[] combiAleatoire() {
+		Color [] aleatoire = {};
+		if(Mastermind.multiColor==true) {
+			for(int i=0;i<=Mastermind.tailleCombinaison;i++) {
+				 aleatoire[i]=Mastermind.couleurs[(int)Math.random()*Mastermind.nbrCouleurs-1];
+			}
+		}if(Mastermind.multiColor==false) {
+			do {
+				for(int i=0;i<=Mastermind.tailleCombinaison;i++) {
+					aleatoire[i]=Mastermind.couleurs[(int)Math.random()*Mastermind.nbrCouleurs-1];
+			    }				
+			}while(aleatoire[0]!=aleatoire[1] && aleatoire[0]!=aleatoire[2] &&aleatoire[0]!=aleatoire[3] &&aleatoire[1]!=aleatoire[2] &&aleatoire[1]!=aleatoire[3] &&aleatoire[2]!=aleatoire[3] ); 		
+		}
+		return aleatoire;
 	}
 }

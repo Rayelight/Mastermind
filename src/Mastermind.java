@@ -46,7 +46,7 @@ public class Mastermind extends JFrame implements ComponentListener{
 		general.setSize(general.getPreferredSize());
 		panneauJeu.lancerJeu();
 		
-		System.out.println(ModeOrdinateur.generationCombis().size());
+		//System.out.println(ModeOrdinateur.generationCombis().size());
 
 	}
 

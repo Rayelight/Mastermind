@@ -146,6 +146,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 	}
 
 
+
 	public void stateChanged(ChangeEvent event) {
 		JSlider sliderName = (JSlider)event.getSource();
 		int valeur = sliderName.getValue();
