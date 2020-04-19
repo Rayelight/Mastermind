@@ -48,11 +48,11 @@ public class HiddenCombiPanel extends JPanel{
 
 	public static Color[] combiAleatoire() {
 		Color [] aleatoire = new Color[Mastermind.tailleCombinaison];
-		if(Mastermind.multiColor==true) {
+		if(Mastermind.multiColor) {
 			for(int i=0;i<Mastermind.tailleCombinaison;i++) {
 				aleatoire[i]=Mastermind.couleurs[(int)(Math.random()*Mastermind.nbrCouleurs)];
 			}
-		}if(Mastermind.multiColor==false) {
+		}else {
 			do {
 				for(int i=0;i<=Mastermind.tailleCombinaison;i++) {
 					aleatoire[i]=Mastermind.couleurs[(int)(Math.random()*Mastermind.nbrCouleurs)];
