@@ -25,7 +25,6 @@ public class HiddenCombiPanel extends JPanel{
 
 
 		//		Components creation
-
 		Color[] couleurs = HiddenCombiPanel.combiAleatoire();
 		hiddenCombi = new Combinaison(couleurs);
 
@@ -53,7 +52,7 @@ public class HiddenCombiPanel extends JPanel{
 			for(int i=0;i<Mastermind.tailleCombinaison;i++) {
 				aleatoire[i]=Mastermind.couleurs[(int)(Math.random()*Mastermind.nbrCouleurs)];
 			}
-		}else {
+		}else{
 			//MultiColor inactif
 			do {
 				for(int i=0;i<Mastermind.tailleCombinaison;i++) {

@@ -43,10 +43,10 @@ public class Mastermind extends JFrame implements ComponentListener{
 
 
 		general.setVisible(true);
-		general.setSize(general.getPreferredSize());
+		general.setExtendedState(general.MAXIMIZED_BOTH);
 		panneauJeu.lancerJeu();
 		
-		//System.out.println(ModeOrdinateur.generationCombis().size());
+		System.out.println(ModeOrdinateur.generationCombis().size());
 
 	}
 
@@ -63,7 +63,7 @@ public class Mastermind extends JFrame implements ComponentListener{
 		//		taille max
 		Rectangle bounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
 		//Insets insets = this.getInsets();
-		int width = bounds.width*7/10;
+		int width = bounds.width;
 		int height = bounds.height;
 		this.setPreferredSize(new Dimension(width, height));
 		//this.setSize(800,600);
