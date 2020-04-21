@@ -31,8 +31,8 @@ public class Mastermind extends JFrame implements ComponentListener{
 	static PanneauAccueil accueil = new PanneauAccueil();
 	static PanneauJeu panneauJeu = new PanneauJeu();
 	static PanneauOptions options= new PanneauOptions();
-	
-
+	static PanneauGagnant gagne= new PanneauGagnant(Mastermind.general,"Gagne",true);
+	static PanneauPerdant perdu= new PanneauPerdant(Mastermind.general,"Gagne",true);
 
 	public static void main(String[] args) {
 		
@@ -40,14 +40,17 @@ public class Mastermind extends JFrame implements ComponentListener{
 		general.setContentPane(panneauJeu);
 		//general.setContentPane(accueil);
 		//general.setContentPane(options);
-
+		//general.setContentPane(perdu);
+		//general.setContentPane(gagne);
 
 		general.setVisible(true);
 		general.setExtendedState(general.MAXIMIZED_BOTH);
 		panneauJeu.lancerJeu();
 		
 		System.out.println(ModeOrdinateur.generationCombis().size());
-
+		general.setContentPane(gagne);
+		gagne.setLocationRelativeTo(Mastermind.general);
+		perdu.setLocationRelativeTo(Mastermind.general);
 	}
 
 
