@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.GraphicsEnvironment;
 import java.awt.Insets;
 import java.awt.Rectangle;
@@ -19,7 +20,7 @@ public class Mastermind extends JFrame implements ComponentListener{
 	//Paramètres
 	protected static int nbrCouleurs = 6;
 	protected static int tailleCombinaison = 4;
-	protected static boolean multiColor = true;
+	protected static boolean multiColor = false;
 	protected static int nbrTentatives=(tailleCombinaison+1)*2;
 	protected static Color[] couleurs = {	Color.red, Color.green, 
 											Color.yellow, Color.blue, 
@@ -31,8 +32,8 @@ public class Mastermind extends JFrame implements ComponentListener{
 	static PanneauAccueil accueil = new PanneauAccueil();
 	static PanneauJeu panneauJeu = new PanneauJeu();
 	static PanneauOptions options= new PanneauOptions();
-	static PanneauGagnant gagne= new PanneauGagnant(Mastermind.general,"Gagne",true);
-	static PanneauPerdant perdu= new PanneauPerdant(Mastermind.general,"Perdu",true);
+	static FenetreFin finJeu = new FenetreFin(true);
+
 
 	public static void main(String[] args) {
 		
@@ -42,16 +43,14 @@ public class Mastermind extends JFrame implements ComponentListener{
 		//general.setContentPane(options);
 
 		general.setVisible(true);
-		general.setExtendedState(general.MAXIMIZED_BOTH);
+		general.setExtendedState(Frame.MAXIMIZED_BOTH);
 		panneauJeu.lancerJeu();
 		
 		System.out.println(ModeOrdinateur.generationCombis().size());
-		gagne.setVisible(true);
-		gagne.adjustContraints();
-		perdu.setVisible(true);
-		perdu.adjustContraints();
-		gagne.setLocationRelativeTo(Mastermind.general);
-		perdu.setLocationRelativeTo(Mastermind.general);
+		
+		
+		finJeu.setVisible(true);
+		finJeu.setLocationRelativeTo(Mastermind.general);
 	}
 
 

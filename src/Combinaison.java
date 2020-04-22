@@ -77,45 +77,6 @@ public class Combinaison extends JPanel implements ActionListener{
 	}
 
 
-	/**
-	 * Compare la combinaison du joueur avec la combinaison exacte
-	 * Méthode qui renvoie le nombre de couleurs bien placees
-	 */
-	public int nbrCouleursPlacees(Combinaison  combiJeu) {
-		int res=0;
-		for(int i=0; i<Mastermind.tailleCombinaison ; i++) {
-			if(this.couleurs[i].getCouleur() == combiJeu.couleurs[i].getCouleur()) {	
-				res++;
-			}
-		}
-		return res;
-	}
-
-	/**
-	 * Compare la combinaison du joueur avec la combinaison exacte
-	 * Méthode qui renvoie le nombre de couleurs devinées mais mal placees
-	 */
-	public int nbrCouleursPresentes (Combinaison combiJeu) {
-		int res=0;
-		for(int i=0; i<Mastermind.tailleCombinaison ; i++) {
-			boolean malPlace=false;
-			int j=0;
-			if(combiJeu.couleurs[i].getCouleur()!=this.couleurs[i].getCouleur()) {
-				while(j<Mastermind.tailleCombinaison ) {
-					if(combiJeu.couleurs[i].getCouleur()==this.couleurs[j].getCouleur()) {				
-						malPlace=true;
-						res++;
-						if(Mastermind.multiColor){					
-							break;
-						}
-					}					
-					j++;	
-				}	
-			}		
-		}
-		return res;
-	}
-
 
 	public static int[] evalCombi(Color[] couleursJeu, Color[] couleursCache) {
 
@@ -143,7 +104,7 @@ public class Combinaison extends JPanel implements ActionListener{
 
 		return eval;
 	}
-	
+
 	//Renvoie une copie du tableau de Couleurs de la combinaison
 	public Color[] getCouleurs() {
 		Color[] couleurs = new Color[Mastermind.tailleCombinaison];

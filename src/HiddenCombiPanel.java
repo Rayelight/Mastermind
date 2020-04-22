@@ -2,7 +2,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.util.HashSet;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -48,20 +47,13 @@ public class HiddenCombiPanel extends JPanel{
 
 	public static Color[] combiAleatoire() {
 		int [] aleatoire = new int[Mastermind.tailleCombinaison];
-		if(Mastermind.multiColor) {
-			//MultiColor actif
+		do {
 			for(int i=0;i<Mastermind.tailleCombinaison;i++) {
 				aleatoire[i]=(int)(Math.random()*Mastermind.nbrCouleurs);
-			}
-		}else{
-			//MultiColor inactif
-			do {
-				for(int i=0;i<Mastermind.tailleCombinaison;i++) {
-					aleatoire[i]=(int)(Math.random()*Mastermind.nbrCouleurs);
-				}				
-			}while(ModeOrdinateur.countDistinct(aleatoire)==Mastermind.tailleCombinaison); 		
-		}
+			}				
+		}while(!Mastermind.multiColor&&ModeOrdinateur.countDistinct(aleatoire)!=Mastermind.tailleCombinaison); 		
+
 		return ModeOrdinateur.clone(aleatoire);
 	}
-	
+
 }
