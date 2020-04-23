@@ -7,13 +7,12 @@ import java.awt.event.ComponentEvent;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
 public class  FenetreFin extends JDialog implements ActionListener{
 
-	private JPanel panneauFin;
+	private GradientPanel panneauFin;
 	private JLabel msgFin;
 	private JButton accueil;
 	private JButton retry;
@@ -35,9 +34,11 @@ public class  FenetreFin extends JDialog implements ActionListener{
 		
 		
 		//			 Création du panneau
-		panneauFin=new JPanel();
+		panneauFin=new GradientPanel();
 		panneauFin.setLayout(layout);
 		panneauFin.setBackground(Color.blue);
+		
+
 		
 		//			Creation Widgets
 		//		Création du msgFin

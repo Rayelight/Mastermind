@@ -20,7 +20,7 @@ public class BarreMenu extends JPanel{
 		//			Panel Setup
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.setBackground(Color.magenta);
-
+		this.setAlignmentX(CENTER_ALIGNMENT);
 
 		//		Components creation
 		hiddenCombiPanel = new HiddenCombiPanel() {
@@ -28,21 +28,33 @@ public class BarreMenu extends JPanel{
 			public Dimension getPreferredSize(){
 				return new Dimension(menuWidth(),Mastermind.generalHeight()-3*singleMenuHeight());
 			}
+			public Dimension getMaximumSize(){
+				return getPreferredSize();
+			}
 		};
+		hiddenCombiPanel.setAlignmentY(CENTER_ALIGNMENT);
 		
 		paletteCouleurs = new PaletteCouleurs() {
 			@Override
 			public Dimension getPreferredSize(){
 				return new Dimension(menuWidth(),singleMenuHeight());
 			}
+			public Dimension getMaximumSize(){
+				return getPreferredSize();
+			}
 		};
+		paletteCouleurs.setAlignmentY(CENTER_ALIGNMENT);
 		
 		gameStats = new StatsPartie() {
 			@Override
 			public Dimension getPreferredSize(){
 				return new Dimension(menuWidth(),singleMenuHeight());
 			}
+			public Dimension getMaximumSize(){
+				return getPreferredSize();
+			}
 		};
+		gameStats.setAlignmentY(CENTER_ALIGNMENT);
 
 		
 		panelBoutons = new BoutonsJeu() {
@@ -50,7 +62,11 @@ public class BarreMenu extends JPanel{
 			public Dimension getPreferredSize(){
 				return new Dimension(menuWidth(),singleMenuHeight());
 			}
+			public Dimension getMaximumSize(){
+				return getPreferredSize();
+			}
 		};
+		panelBoutons.setAlignmentY(CENTER_ALIGNMENT);
 
 
 		//			Adding components
@@ -64,6 +80,11 @@ public class BarreMenu extends JPanel{
 
 	public Dimension getPreferredSize() {
 		return new Dimension(menuWidth(), Mastermind.generalHeight());
+	}
+
+	@Override
+	public Dimension getMaximumSize() {
+		return getPreferredSize();
 	}
 	
 	public static int menuWidth(){

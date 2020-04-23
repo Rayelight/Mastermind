@@ -1,8 +1,13 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.LinearGradientPaint;
+import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Point2D;
 
 import javax.swing.JButton;
 
@@ -23,14 +28,39 @@ class RoundButton extends JButton {
 		this();
 		this.couleur=couleur;
 	}
-
+	
 	protected void paintComponent(Graphics g) {
-		if (getModel().isArmed()) {
-			g.setColor(couleur);
+		super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        
+        
+        if (getModel().isArmed()) {
+			g.setColor(couleur.brighter());
 		} else {
 			g.setColor(getBackground());
 		}
-		g.fillOval(0, 0, getSize().width-1, getSize().height-1);
+        
+        //GradientPaint
+        Color secondColor = new Color(getBackground().getRed(), getBackground().getGreen(),
+        		getBackground().getBlue(), 0);
+        
+        GradientPaint gp = new GradientPaint (getWidth()/4, getHeight()/4, getBackground().brighter(), 
+        		getWidth()*3/4, getHeight()*3/4, secondColor); 
+        g2d.setPaint(gp);
+        
+        //LinearGradientPaint
+        Point2D start = new Point2D.Float(getWidth()/4, getHeight()/4);
+        Point2D end = new Point2D.Float(getWidth(), getHeight());
+        float[] dist = {0.25f, 1.0f};
+        Color[] colors = {getBackground(), new HSLColor(getBackground()).adjustTone(80)};
+        LinearGradientPaint p =
+            new LinearGradientPaint(start, end, dist, colors);
+		
+        g2d.setPaint(p);
+        
+		g2d.fillOval(0, 0, getSize().width-1, getSize().height-1);
 	}
 
 	protected void paintBorder(Graphics g) {

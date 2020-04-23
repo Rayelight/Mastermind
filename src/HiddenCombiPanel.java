@@ -1,20 +1,19 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
+import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
-public class HiddenCombiPanel extends JPanel{
+public class HiddenCombiPanel extends GradientPanel{
 
 	Combinaison hiddenCombi;
-
+	protected SpringLayout layout = new SpringLayout();
 
 	public HiddenCombiPanel(){
 		//			Panel Setup
-		this.setLayout(new BorderLayout());
+		this.setLayout(layout);
 		this.setBackground(Color.black);
 		this.addComponentListener(new ComponentAdapter() {
 			@Override
@@ -26,12 +25,20 @@ public class HiddenCombiPanel extends JPanel{
 
 		//		Components creation
 		Color[] couleurs = HiddenCombiPanel.combiAleatoire();
-		hiddenCombi = new Combinaison(couleurs);
+		hiddenCombi = new Combinaison(couleurs){
+			@Override
+			public Dimension getPreferredSize(){
+				return new Dimension(GrilleCouleurs.gridColorWidth(), Combinaison.combinaisonHeight());
+			}
+			public Dimension getMaximumSize(){
+				return getPreferredSize();
+			}
+		};
 
 
 
 		//			Adding components
-		this.add(hiddenCombi, BorderLayout.CENTER);
+		this.add(hiddenCombi);
 
 
 	}
@@ -39,10 +46,8 @@ public class HiddenCombiPanel extends JPanel{
 
 	public void adjustContraints() {
 		//			Adjust Constraints
-		int hInset = (BarreMenu.menuWidth()-GrilleCouleurs.gridColorWidth())/2;
-		int vInset = (this.getHeight()-Combinaison.combinaisonHeight())/2;
-		this.setBorder(BorderFactory.createEmptyBorder(vInset,hInset,vInset,hInset));
-
+		layout.putConstraint(SpringLayout.VERTICAL_CENTER, hiddenCombi, 0, SpringLayout.VERTICAL_CENTER, this);
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, hiddenCombi, 0, SpringLayout.HORIZONTAL_CENTER, this);
 	}
 
 	public static Color[] combiAleatoire() {

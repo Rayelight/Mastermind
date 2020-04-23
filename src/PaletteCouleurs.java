@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -10,11 +9,10 @@ import java.awt.event.ComponentEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
-public class PaletteCouleurs extends JPanel implements ActionListener{
+public class PaletteCouleurs extends GradientPanel implements ActionListener{
 
 	private JLabel titre;
 	private SpringLayout layout;
@@ -24,7 +22,6 @@ public class PaletteCouleurs extends JPanel implements ActionListener{
 
 	public PaletteCouleurs(){
 		//			Panel Setup
-		this.setLayout(new BorderLayout());
 		this.setBackground(Color.pink);
 		layout = new SpringLayout();
 		this.setLayout(layout);
@@ -39,15 +36,18 @@ public class PaletteCouleurs extends JPanel implements ActionListener{
 		});
 
 
+
+
+
 		//		Components creation and adding
 		//Titre
 		titre = new JLabel("Palette Couleurs", JLabel.CENTER){
 			@Override
 			public Dimension getPreferredSize() {
-				return new Dimension(RoundButton.boutonRadius()*Mastermind.tailleCombinaison,RoundButton.boutonRadius());
+				return new Dimension(RoundButton.boutonRadius()*Mastermind.tailleCombinaison,RoundButton.boutonRadius()-4);
 			}
 		};
-		titre.setOpaque(false);
+		titre.setOpaque(true);
 		titre.setForeground(Color.red);
 		titre.setBorder(BorderFactory.createLineBorder(Color.red));
 		titre.addComponentListener(new ComponentAdapter() {

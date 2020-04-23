@@ -7,11 +7,10 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
-public class BoutonsJeu extends JPanel implements ActionListener{
+public class BoutonsJeu extends GradientPanel implements ActionListener{
 
 	private JButton[] boutonsJeu;
 	private SpringLayout layout;

@@ -23,6 +23,7 @@ public class PanneauJeu extends JPanel{
 		//			Components creation
 		plateauJeu = new PlateauJeu();
 		barreMenu = new BarreMenu();
+
 		
 		//			Adding components
 		this.add(plateauJeu);

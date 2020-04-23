@@ -5,11 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
-import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
-public class PlateauJeu extends JPanel implements ActionListener{
+public class PlateauJeu extends GradientPanel implements ActionListener{
 
 
 	protected GrilleCouleurs grilleCouleurs;
@@ -23,6 +22,7 @@ public class PlateauJeu extends JPanel implements ActionListener{
 		this.setBackground(Color.orange);
 		layout = new SpringLayout();
 		this.setLayout(layout);
+		this.setAlignmentX(CENTER_ALIGNMENT);
 		this.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
@@ -41,6 +41,8 @@ public class PlateauJeu extends JPanel implements ActionListener{
 		this.add(grilleCouleurs);
 		this.add(carrePlacement);
 		this.add(carrePresence);
+
+		
 
 
 
@@ -77,6 +79,11 @@ public class PlateauJeu extends JPanel implements ActionListener{
 	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(gameWidth(),Mastermind.generalHeight());
+	}
+	
+	@Override
+	public Dimension getMaximumSize() {
+		return getPreferredSize();
 	}
 	
 	

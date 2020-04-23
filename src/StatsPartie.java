@@ -7,11 +7,10 @@ import java.awt.event.ComponentEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
-public class StatsPartie extends JPanel{
+public class StatsPartie extends GradientPanel{
 
 	JLabel nbrCoupsLabel;
 	TimerLabel timerLabel;
