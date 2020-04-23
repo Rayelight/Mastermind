@@ -38,9 +38,9 @@ public class Mastermind extends JFrame implements ComponentListener{
 	public static void main(String[] args) {
 		
 
-		general.setContentPane(panneauJeu);
+		//general.setContentPane(panneauJeu);
 		//general.setContentPane(accueil);
-		//general.setContentPane(options);
+		general.setContentPane(options);
 
 		general.setVisible(true);
 		general.setExtendedState(Frame.MAXIMIZED_BOTH);
@@ -49,7 +49,7 @@ public class Mastermind extends JFrame implements ComponentListener{
 		System.out.println(ModeOrdinateur.generationCombis().size());
 		
 		
-		finJeu.setVisible(true);
+		//finJeu.setVisible(true);
 		finJeu.setLocationRelativeTo(Mastermind.general);
 	}
 

@@ -18,7 +18,7 @@ public class  FenetreFin extends JDialog implements ActionListener{
 	private JLabel msgFin;
 	private JButton accueil;
 	private JButton retry;
-	protected SpringLayout layout = new SpringLayout();;
+	protected SpringLayout layout = new SpringLayout();
 	private boolean gagnant;
 	private JLabel Entrer;
 	private JTextField Pseudo;
