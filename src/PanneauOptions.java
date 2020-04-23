@@ -2,6 +2,8 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
@@ -10,6 +12,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.SpringLayout;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -28,75 +31,54 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 	private JSlider sliderTailleCombi;
 	private JSlider sliderNbrCouleurs;
 	private JLabel titreOption;
-
-
+	protected SpringLayout layout = new SpringLayout();
+	
 
 	public PanneauOptions() {
 
 		//Panneau global
-		setLayout(null);
+		setLayout(layout);
 		setBackground(Color.white);
+		this.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				adjustContraints();
+			}
+		});	
 
-
+        //		Creation Widgets
 		//Boutons Option
-
-		//	Creation Boutons
 		boutonOption[0] = boutonOption("DeleteScores");
-		boutonOption[0].setBounds(250,450,300,50);
-		this.add(boutonOption[0]);
-
 		boutonOption[1] = boutonOption("Reset Settings");
-		boutonOption[1].setBounds(250,550,300,50);
-		this.add(boutonOption[1]);
-
-		// Texte Option
-
-
+		
+		
 		//	Creation des differents textes
 		textOption[0] = textOption("Activer les aides dans le jeu");
-		textOption[0].setBounds(400,150,400,50);
-		this.add(textOption[0]);
-
 		textOption[1] = textOption("Combinaison avec plus d'une fois la m�me couleur(Default False)");
-		textOption[1].setBounds(400,210,400,50);
-		this.add(textOption[1]);
-
 		textOption[2] = textOption("Nombre de couleurs disponibles(Default 8)");
-		textOption[2].setBounds(400,270,400,50);
-		this.add(textOption[2]);
-
 		textOption[3] = textOption("Nombre de couleurs par combinaison(Default 4)");
-		textOption[3].setBounds(400,330,400,50);
-		this.add(textOption[3]);
+
 
 		//Afiichage du titre Options
-
 		titreOption= new JLabel("Options");
-		titreOption.setBounds(350,20,600,100);
 		titreOption.setBackground(Color.white);
 		titreOption.setForeground(Color.blue);	
-		this.add(titreOption);
 
 
 		// Checkbox
-
 		checkBoxAides = new JCheckBox("");
-		checkBoxAides.setBounds(200,150, 50,50);
 		checkBoxAides.setSelected(false);
 		checkBoxAides.addItemListener(this);
 
 		checkBoxMultiColor = new JCheckBox("");
-		checkBoxMultiColor.setBounds(200,210, 50,50);
 		checkBoxMultiColor.setSelected(false);
 		checkBoxMultiColor.addItemListener(this);
-		this.add(checkBoxAides);
-		this.add(checkBoxMultiColor);
+		
 
 		//Curseurs (nombre de couleurs disponibles)
 		int min = 6;
 		int max = 10;
 		int init = 8; 
-
 
 		sliderNbrCouleurs = new JSlider (JSlider.HORIZONTAL,min, max, init);
 		sliderNbrCouleurs.setMajorTickSpacing(2);
@@ -104,10 +86,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		sliderNbrCouleurs.setSnapToTicks(true);
 		sliderNbrCouleurs.setPaintTicks (true);
 		sliderNbrCouleurs.setPaintLabels (true);
-		sliderNbrCouleurs.setBounds(150,270, 150,50);
 		sliderNbrCouleurs.addChangeListener(this);  
-		this.add(sliderNbrCouleurs);
-
 
 
 		//Curseurs ( nombre de couleurs par combinaison)
@@ -115,19 +94,28 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		int maxi =6;
 		int initi = 4;    
 
-
-
 		sliderTailleCombi = new JSlider (JSlider.HORIZONTAL,mini, maxi, initi);
 		sliderTailleCombi.setMajorTickSpacing (1);
 		sliderTailleCombi.setMinorTickSpacing(0);
 		sliderTailleCombi.setSnapToTicks(true);
 		sliderTailleCombi.setPaintTicks (true);
 		sliderTailleCombi.setPaintLabels (true);
-		sliderTailleCombi.setBounds(150,330, 150,50);
 		sliderTailleCombi.addChangeListener(this); 
+
+
+		//			Ajout Widgets
+		this.add(boutonOption[0]);
+		this.add(boutonOption[1]);
+		this.add(textOption[0]);
+		this.add(textOption[1]);
+		this.add(textOption[2]);
+		this.add(textOption[3]);
+		this.add(titreOption);
+		this.add(checkBoxAides);
+		this.add(checkBoxMultiColor);
+		this.add(sliderNbrCouleurs);
 		this.add(sliderTailleCombi);
-
-
+		
 	}
 
 
@@ -172,7 +160,6 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 	}
 
 
-
 	//Création des Boutons 
 	private JButton boutonOption (String texte) {
 		JButton bouton = new JButton(texte){
@@ -193,6 +180,64 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		text.setOpaque(true);;
 
 		return text;
+	}
+	public void adjustContraints() {
+		//			Adjust Constraints
+
+		//Boutons Constrains
+		layout.putConstraint(SpringLayout.NORTH,  boutonOption[0], 100, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.SOUTH, boutonOption[0], -200,SpringLayout.SOUTH, this);
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, boutonOption[0], 0, SpringLayout.HORIZONTAL_CENTER, this);
+		
+		layout.putConstraint(SpringLayout.NORTH, boutonOption[1], 280, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.SOUTH,  boutonOption[1], -50, SpringLayout.SOUTH, this);
+		layout.putConstraint(SpringLayout.WEST,  boutonOption[1], 70, SpringLayout.WEST, this);
+		
+		
+		//Text Constrains
+		layout.putConstraint(SpringLayout.NORTH, textOption[0], 280, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.SOUTH, textOption[0], -50, SpringLayout.SOUTH, this);
+		layout.putConstraint(SpringLayout.EAST, textOption[0], -70, SpringLayout.EAST, this);
+		
+		layout.putConstraint(SpringLayout.NORTH, textOption[1], 210, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.SOUTH, textOption[1], -130, SpringLayout.SOUTH, this);
+		layout.putConstraint(SpringLayout.WEST, textOption[1], 30, SpringLayout.WEST, this);
+		
+		layout.putConstraint(SpringLayout.NORTH, textOption[2], 210, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.SOUTH, textOption[2], -130, SpringLayout.SOUTH, this);
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, textOption[2], 0, SpringLayout.HORIZONTAL_CENTER, this);
+		layout.putConstraint(SpringLayout.WEST, textOption[2], 150, SpringLayout.WEST, this);
+		
+		layout.putConstraint(SpringLayout.NORTH, textOption[3], 210, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.SOUTH, textOption[3], -130, SpringLayout.SOUTH, this);
+		layout.putConstraint(SpringLayout.EAST, textOption[3],-30, SpringLayout.EAST, this);
+
+		
+		//Titre Constrains
+		layout.putConstraint(SpringLayout.NORTH, titreOption, 210, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.SOUTH, titreOption, -130, SpringLayout.SOUTH, this);
+		layout.putConstraint(SpringLayout.EAST, titreOption,-30, SpringLayout.EAST, this);
+		
+		
+		//Checkbox Constrains
+		layout.putConstraint(SpringLayout.NORTH, checkBoxAides, 210, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.SOUTH, checkBoxAides, -130, SpringLayout.SOUTH, this);
+		layout.putConstraint(SpringLayout.EAST, checkBoxAides,-30, SpringLayout.EAST, this);
+		
+		layout.putConstraint(SpringLayout.NORTH, checkBoxMultiColor, 210, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.SOUTH, checkBoxMultiColor, -130, SpringLayout.SOUTH, this);
+		layout.putConstraint(SpringLayout.EAST, checkBoxMultiColor,-30, SpringLayout.EAST, this);
+		
+		
+		//Sliders Constrains
+		layout.putConstraint(SpringLayout.NORTH, sliderNbrCouleurs, 210, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.SOUTH, sliderNbrCouleurs, -130, SpringLayout.SOUTH, this);
+		layout.putConstraint(SpringLayout.EAST, sliderNbrCouleurs,-30, SpringLayout.EAST, this);
+		
+		layout.putConstraint(SpringLayout.NORTH, sliderTailleCombi, 210, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.SOUTH, sliderTailleCombi, -130, SpringLayout.SOUTH, this);
+		layout.putConstraint(SpringLayout.EAST, sliderTailleCombi,-30, SpringLayout.EAST, this);
+
 	}
 }
 
