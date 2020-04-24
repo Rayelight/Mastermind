@@ -33,6 +33,9 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 	private JLabel titreOption;
 	protected SpringLayout layout = new SpringLayout();
 	
+	static int nombreText=4;
+	static int nombreBouton=2;
+	static double pourcentageEspace =1.0/4.0;
 
 	public PanneauOptions() {
 
@@ -184,62 +187,74 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 	public void adjustContraints() {
 		//			Adjust Constraints
 
-		//Boutons Constrains
-		layout.putConstraint(SpringLayout.NORTH,  boutonOption[0], 100, SpringLayout.NORTH, this);
-		layout.putConstraint(SpringLayout.SOUTH, boutonOption[0], -200,SpringLayout.SOUTH, this);
-		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, boutonOption[0], 0, SpringLayout.HORIZONTAL_CENTER, this);
-		
-		layout.putConstraint(SpringLayout.NORTH, boutonOption[1], 280, SpringLayout.NORTH, this);
-		layout.putConstraint(SpringLayout.SOUTH,  boutonOption[1], -50, SpringLayout.SOUTH, this);
-		layout.putConstraint(SpringLayout.WEST,  boutonOption[1], 70, SpringLayout.WEST, this);
-		
-		
-		//Text Constrains
-		layout.putConstraint(SpringLayout.NORTH, textOption[0], 280, SpringLayout.NORTH, this);
-		layout.putConstraint(SpringLayout.SOUTH, textOption[0], -50, SpringLayout.SOUTH, this);
-		layout.putConstraint(SpringLayout.EAST, textOption[0], -70, SpringLayout.EAST, this);
-		
-		layout.putConstraint(SpringLayout.NORTH, textOption[1], 210, SpringLayout.NORTH, this);
-		layout.putConstraint(SpringLayout.SOUTH, textOption[1], -130, SpringLayout.SOUTH, this);
-		layout.putConstraint(SpringLayout.WEST, textOption[1], 30, SpringLayout.WEST, this);
-		
-		layout.putConstraint(SpringLayout.NORTH, textOption[2], 210, SpringLayout.NORTH, this);
-		layout.putConstraint(SpringLayout.SOUTH, textOption[2], -130, SpringLayout.SOUTH, this);
-		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, textOption[2], 0, SpringLayout.HORIZONTAL_CENTER, this);
-		layout.putConstraint(SpringLayout.WEST, textOption[2], 150, SpringLayout.WEST, this);
-		
-		layout.putConstraint(SpringLayout.NORTH, textOption[3], 210, SpringLayout.NORTH, this);
-		layout.putConstraint(SpringLayout.SOUTH, textOption[3], -130, SpringLayout.SOUTH, this);
-		layout.putConstraint(SpringLayout.EAST, textOption[3],-30, SpringLayout.EAST, this);
-
-		
 		//Titre Constrains
-		layout.putConstraint(SpringLayout.NORTH, titreOption, 210, SpringLayout.NORTH, this);
-		layout.putConstraint(SpringLayout.SOUTH, titreOption, -130, SpringLayout.SOUTH, this);
-		layout.putConstraint(SpringLayout.EAST, titreOption,-30, SpringLayout.EAST, this);
+		layout.putConstraint(SpringLayout.NORTH, titreOption, 20, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, titreOption,0, SpringLayout.HORIZONTAL_CENTER, this);
+		
+		
+		//Boutons Constrains
+		BoutonContraints();
+		//Text Constrains
+		TextContraints();
 		
 		
 		//Checkbox Constrains
-		layout.putConstraint(SpringLayout.NORTH, checkBoxAides, 210, SpringLayout.NORTH, this);
-		layout.putConstraint(SpringLayout.SOUTH, checkBoxAides, -130, SpringLayout.SOUTH, this);
-		layout.putConstraint(SpringLayout.EAST, checkBoxAides,-30, SpringLayout.EAST, this);
-		
-		layout.putConstraint(SpringLayout.NORTH, checkBoxMultiColor, 210, SpringLayout.NORTH, this);
-		layout.putConstraint(SpringLayout.SOUTH, checkBoxMultiColor, -130, SpringLayout.SOUTH, this);
-		layout.putConstraint(SpringLayout.EAST, checkBoxMultiColor,-30, SpringLayout.EAST, this);
+		layout.putConstraint(SpringLayout.EAST, checkBoxAides,-70, SpringLayout.EAST, textOption[0]);
+		layout.putConstraint(SpringLayout.EAST, checkBoxMultiColor, -70, SpringLayout.EAST, textOption[1]);
 		
 		
 		//Sliders Constrains
-		layout.putConstraint(SpringLayout.NORTH, sliderNbrCouleurs, 210, SpringLayout.NORTH, this);
-		layout.putConstraint(SpringLayout.SOUTH, sliderNbrCouleurs, -130, SpringLayout.SOUTH, this);
-		layout.putConstraint(SpringLayout.EAST, sliderNbrCouleurs,-30, SpringLayout.EAST, this);
-		
-		layout.putConstraint(SpringLayout.NORTH, sliderTailleCombi, 210, SpringLayout.NORTH, this);
-		layout.putConstraint(SpringLayout.SOUTH, sliderTailleCombi, -130, SpringLayout.SOUTH, this);
-		layout.putConstraint(SpringLayout.EAST, sliderTailleCombi,-30, SpringLayout.EAST, this);
+		layout.putConstraint(SpringLayout.EAST, sliderNbrCouleurs,-70, SpringLayout.EAST, textOption[2]);
+		layout.putConstraint(SpringLayout.EAST, sliderTailleCombi,-70, SpringLayout.EAST, textOption[3]);
 
 	}
+	public void TextContraints() {
+		//			Text Constraints
+		for(int i=0; i<nombreBouton; i++) {
+			layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, textOption[i], 2*textVgap(), SpringLayout.HORIZONTAL_CENTER, titreOption);
+			layout.putConstraint(SpringLayout.NORTH, textOption[i], textHeight()*2, SpringLayout.NORTH, this);
+		}
+	}
+		public void BoutonContraints() {
+			//			Bouton Constraints
+			for(int i=0; i<nombreBouton; i++) {
+				layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, boutonOption[i], 0, SpringLayout.HORIZONTAL_CENTER, this);
+				layout.putConstraint(SpringLayout.NORTH, boutonOption[i], textHeight()*8, SpringLayout.NORTH, titreOption);
+
+			}
 }
+	//Distance Verticale entre les widgets
+	public static int textVgap() {
+		int vGap = (int) ((Mastermind.generalHeight()*2.0/3.0-textHeight()*4.0)/5.0);
+		return vGap;
+
+	}
+	//Hauteur d'un bouton
+	public static int textHeight() {
+		int textHeight = textWidth()/4;
+		return textHeight;
+
+	}
+	//Largeur d'un bouton
+	public static int textWidth() {
+		int textWidth = (Mastermind.generalWidth()-(nombreText+1)*textHgap())/nombreText;
+		return textWidth;
+
+	}
+	//Distance Horizontale entre les boutons
+	public static int textHgap() {
+		int hGap = (int) (Mastermind.generalWidth()*pourcentageEspace/(pourcentageEspace*(nombreText+1)+nombreText));
+		return hGap;
+
+	}
+
+	//Position de l'axe central vertical des boutons
+	public static int textHbouton(int i) {
+		int textHbouton = textHgap()+textWidth()/2+i*(textHgap()+textWidth()) ;
+		return textHbouton;
+
+	}
 
 
+}
 
