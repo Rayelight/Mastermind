@@ -124,7 +124,7 @@ public class PaletteCouleurs extends GradientPanel implements ActionListener{
 		RoundButton selectedBouton = (RoundButton)e.getSource();
 		boutonsGroup.setSelected(selectedBouton.getModel(), true);
 		Mastermind.getPanneauJeu().setSelectedColor(selectedBouton.getCouleur());
-		
+		System.out.println(selectedBouton.getCouleur());
 	}
 
 

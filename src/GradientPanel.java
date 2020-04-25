@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 public class GradientPanel extends JPanel {
 	
 	GradientPanel(){
-		this.setBorder(BorderFactory.createLineBorder(Color.black,4));
+		this.setBorder(BorderFactory.createLineBorder(Color.decode("#FF5A01"),4));
 	}
 	
 	@Override
@@ -22,8 +22,8 @@ public class GradientPanel extends JPanel {
                 RenderingHints.VALUE_ANTIALIAS_ON);
         //GradientPaint gp = new GradientPaint(0, -getHeight()/2, getBackground().brighter().brighter(),
         // 		0, getHeight()/2,getBackground());
-        GradientPaint gp = new GradientPaint (getWidth()/4, getHeight()/4, Color.red, 
-        		getWidth()*3/4, getHeight()*3/4, Color.orange); 
+        GradientPaint gp = new GradientPaint (getWidth()/4, getHeight()/4, Color.orange, 
+        		getWidth()*3/4, getHeight()*3/4, Color.decode("#FF8701")); 
         g2d.setPaint(gp);
         g2d.fillRect(0, 0, getWidth(), getHeight()); 
 

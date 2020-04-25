@@ -27,6 +27,7 @@ public class PlateauJeu extends GradientPanel implements ActionListener{
 			@Override
 			public void componentResized(ComponentEvent e) {
             	adjustContraints();
+            	repaint();
             }
         });
 		

@@ -10,47 +10,62 @@ import java.awt.event.ComponentListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 @SuppressWarnings("serial")
 public class Mastermind extends JFrame implements ComponentListener{
 
 	//Fenetre
 	private static Mastermind general = new Mastermind();
-	
+
 	//Paramètres
-	protected static int nbrCouleurs = 10;
+	protected static int nbrCouleurs = 6;
 	protected static int tailleCombinaison = 4;
 	protected static boolean multiColor = false;
 	protected static int nbrTentatives=(tailleCombinaison+1)*2;
 	protected static Color[] couleurs = {	Color.red, Color.green, 
-											Color.yellow, Color.blue, 
-											Color.orange, Color.gray, 
-											Color.pink, Color.white,
-											Color.magenta, Color.cyan};
-	
+			Color.yellow, Color.blue, 
+			Color.orange, Color.gray, 
+			Color.pink, Color.white,
+			Color.magenta, Color.cyan};
+
 	//Panneaux
-	static PanneauAccueil accueil = new PanneauAccueil();
-	static PanneauJeu panneauJeu = new PanneauJeu();
-	static PanneauOptions options= new PanneauOptions();
-	static FenetreFin finJeu = new FenetreFin(true);
+	static PanneauAccueil accueil ;
+	static PanneauJeu panneauJeu ;
+	static PanneauOptions options;
+	static FenetreFin finJeu ;
 
 
 	public static void main(String[] args) {
 		
 
-		//general.setContentPane(panneauJeu);
-		//general.setContentPane(accueil);
-		general.setContentPane(options);
+		//		PanneauxCreation
+		accueil = new PanneauAccueil();
+		panneauJeu = new PanneauJeu();
+		options= new PanneauOptions();
+		finJeu = new FenetreFin(true);
+		
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				general.setContentPane(panneauJeu);
+				//general.setContentPane(accueil);
+				//general.setContentPane(options);
 
-		general.setVisible(true);
-		general.setExtendedState(Frame.MAXIMIZED_BOTH);
+				general.setVisible(true);
+				general.setExtendedState(Frame.MAXIMIZED_BOTH);
+			}
+		});
+		
+		
 		panneauJeu.lancerJeu();
-		
+
 		//System.out.println(ModeOrdinateur.generationCombis().size());
-		
-		
+
+
 		//finJeu.setVisible(true);
-		finJeu.setLocationRelativeTo(Mastermind.general);
+		//finJeu.setLocationRelativeTo(Mastermind.general);
+
 	}
 
 
@@ -99,20 +114,20 @@ public class Mastermind extends JFrame implements ComponentListener{
 	public void placementBoutons(){
 		final int difficulte = 5;
 		JButton[] lesBoutons =new JButton[(int) Math.pow(difficulte, 2)];
-		
+
 		for(int i=0; i<lesBoutons.length; i++) {
 			int xEspace = 5;
 			int yEspace = 5;
-			
+
 			int x0 = 10;
 			int y0 = 10;
-			
+
 			int tailleX = 500;
 			int tailleY = 500;
-			
+
 			int x=x0+(tailleX+xEspace)*(i%difficulte);
 			int y=y0+(tailleY+yEspace)*(i/difficulte);
-			
+
 			lesBoutons[i].setBounds(x,y,tailleX,tailleY);
 		}
 	}
@@ -151,7 +166,7 @@ public class Mastermind extends JFrame implements ComponentListener{
 		if((double)general.getWidth()/(double)general.getHeight()<minRatio)
 			this.setSize(new Dimension((int)minWidth, (int)minHeight));
 
-		
+
 		//testingSizes
 		//System.out.println(general.getWidth());
 		//System.out.println(general.getHeight());
@@ -230,7 +245,7 @@ public class Mastermind extends JFrame implements ComponentListener{
 	public static void setCouleurs(Color[] couleurs) {
 		Mastermind.couleurs = couleurs;
 	}
-	
+
 
 }
 

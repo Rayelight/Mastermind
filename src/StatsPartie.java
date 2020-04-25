@@ -41,8 +41,6 @@ public class StatsPartie extends GradientPanel{
 		nbrCoupsLabel = new JLabel() {
 			@Override
 			public Dimension getPreferredSize() {
-
-
 				return new Dimension(BarreMenu.menuWidth()-40,labelsHeight());
 			}
 
@@ -51,6 +49,7 @@ public class StatsPartie extends GradientPanel{
 				int tentatives;
 				try {
 					tentatives =Mastermind.getPanneauJeu().getTentativeActif()+1;
+					//System.out.println(tentatives);
 				}catch(Exception e) {
 					tentatives=1;
 				}
@@ -85,8 +84,6 @@ public class StatsPartie extends GradientPanel{
 		restartBouton = new JButton("Restart") {
 			@Override
 			public Dimension getPreferredSize() {
-
-
 				return new Dimension(boutonsWidth(),labelsHeight());
 			}
 		};
@@ -98,8 +95,6 @@ public class StatsPartie extends GradientPanel{
 		devoileCombiBouton= new JButton("Reveal Code") {
 			@Override
 			public Dimension getPreferredSize() {
-
-
 				return new Dimension(boutonsWidth(),labelsHeight());
 			}
 		};

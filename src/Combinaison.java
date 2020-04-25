@@ -49,7 +49,13 @@ public class Combinaison extends JPanel implements ActionListener{
 		Color couleur = Mastermind.getPanneauJeu().getSelectedColor();
 		if(couleur!=null) {
 			bouton.setCouleur(couleur);
-			testFinTentative();
+			Thread testFinTentative = new Thread() {
+				public void run() {
+					testFinTentative();
+				}
+			};
+			testFinTentative.start();
+
 		}
 	}
 
@@ -84,7 +90,7 @@ public class Combinaison extends JPanel implements ActionListener{
 
 		//		Couleurs bien Placées
 		for(int i=0; i<Mastermind.tailleCombinaison ; i++) {
-			if(couleursJeu[i] == couleursCache[i]) {	
+			if(couleursJeu[i].equals(couleursCache[i])) {	
 				couleursJeu[i]=Color.lightGray;
 				couleursCache[i]= Color.darkGray;
 				eval[0]++;
@@ -94,7 +100,7 @@ public class Combinaison extends JPanel implements ActionListener{
 		//		Couleurs Présentes
 		for(int i=0; i<Mastermind.tailleCombinaison ; i++) {
 			for(int j=0; j<Mastermind.tailleCombinaison ; j++) {
-				if(couleursJeu[i] == couleursCache[j]) {	
+				if(couleursJeu[i].equals(couleursCache[j])) {	
 					couleursJeu[i]=Color.lightGray;
 					couleursCache[j]= Color.darkGray;
 					eval[1]++;
@@ -113,6 +119,15 @@ public class Combinaison extends JPanel implements ActionListener{
 		}
 
 		return couleurs;
+	}
+
+	public void modifierCombi(Color[] couleurs) {
+
+		for(int i=0; i<couleurs.length ; i++) {
+			this.couleurs[i].setCouleur(couleurs[i]);
+			System.out.println(couleurs[i]);
+		}
+
 	}
 
 }
