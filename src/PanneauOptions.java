@@ -214,12 +214,12 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 		for(int i=0; i<nombreOption; i++) {
 		//Horizontale Constrains
-		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, Compenant[i], 2*Hgap(), SpringLayout.EAST, this);
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, Compenant[i], 3*Hgap(), SpringLayout.EAST, this);
 		layout.putConstraint(SpringLayout.EAST, textOption[i],5*Hgap(), SpringLayout.EAST, this);
 		
 		//Verticale Constrains
-		layout.putConstraint(SpringLayout.NORTH, Compenant[i], 10+3*i*Vgap(), SpringLayout.NORTH, this);
-		layout.putConstraint(SpringLayout.NORTH, textOption[i],10+3*i*Vgap(), SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.NORTH, Compenant[i], 10*Vgap()+3*i*Vgap(), SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.NORTH, textOption[i],10*Vgap()+3*i*Vgap(), SpringLayout.NORTH, this);
 		}	
 	}
 	//Distance Verticale entre les widgets
