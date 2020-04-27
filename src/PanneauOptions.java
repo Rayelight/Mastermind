@@ -39,10 +39,9 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 
 	public PanneauOptions() {
-
 		//Panneau global
 		setLayout(layout);
-		setBackground(Color.red);
+		setBackground(Color.white);
 		this.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
@@ -68,11 +67,12 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		titreOption = new JLabel("Options") {
 			@Override
 			public Dimension getPreferredSize(){
-				return new Dimension(6*Hgap(),2*Vgap());
+				return new Dimension(9*Vgap(), 3*Vgap());
+
 			}
 		};
-		titreOption.setBackground(Color.green);
-		titreOption.setForeground(Color.white);	
+		titreOption.setBackground(Color.white);
+		titreOption.setForeground(Color.red);	
 		titreOption.setOpaque(true);
 		titreOption.addComponentListener(new ComponentAdapter() {
 			@Override
@@ -83,41 +83,93 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		});
 
 		// Checkbox
-		checkBoxAides = new JCheckBox("");
+		checkBoxAides = new JCheckBox("") {
+			@Override
+			public Dimension getPreferredSize(){
+				return new Dimension(9*Vgap(), 3*Vgap());
+
+			}
+		};
 		checkBoxAides.setSelected(false);
 		checkBoxAides.addItemListener(this);
+		checkBoxAides.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				checkBoxAides.setFont(new Font("Serif", Font.BOLD, Vgap()/2));
+				checkBoxAides.repaint();
+			}
+		});
+		
+		checkBoxMultiColor = new JCheckBox("") {
+			@Override
+			public Dimension getPreferredSize(){
+				return new Dimension(9*Vgap(), 3*Vgap());
 
-		checkBoxMultiColor = new JCheckBox("");
+			}
+		};
 		checkBoxMultiColor.setSelected(false);
 		checkBoxMultiColor.addItemListener(this);
-
+		checkBoxMultiColor.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				checkBoxMultiColor.setFont(new Font("Serif", Font.BOLD, Vgap()/2));
+				checkBoxMultiColor.repaint();
+			}
+		});
 
 		//Curseurs (nombre de couleurs disponibles)
 		int min = 6;
 		int max = 10;
 		int init = 8; 
+		
+		sliderNbrCouleurs = new JSlider (JSlider.HORIZONTAL,min, max, init) {
+			@Override
+			public Dimension getPreferredSize(){
+				return new Dimension(9*Vgap(), 3*Vgap());
 
-		sliderNbrCouleurs = new JSlider (JSlider.HORIZONTAL,min, max, init);
+			}
+		};
 		sliderNbrCouleurs.setMajorTickSpacing(2);
 		sliderNbrCouleurs.setMinorTickSpacing(0);
 		sliderNbrCouleurs.setSnapToTicks(true);
 		sliderNbrCouleurs.setPaintTicks (true);
 		sliderNbrCouleurs.setPaintLabels (true);
 		sliderNbrCouleurs.addChangeListener(this);  
+		sliderNbrCouleurs.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				sliderNbrCouleurs.setFont(new Font("Serif", Font.BOLD, Vgap()/2));
+				sliderNbrCouleurs.repaint();
+			}
+		});
 
 
 		//Curseurs ( nombre de couleurs par combinaison)
 		int mini = 3;
 		int maxi =6;
 		int initi = 4;    
+		
+		sliderTailleCombi = new JSlider (JSlider.HORIZONTAL,mini, maxi, initi) {
+			@Override
+			public Dimension getPreferredSize(){
+				return new Dimension(9*Vgap(), 3*Vgap());
 
-		sliderTailleCombi = new JSlider (JSlider.HORIZONTAL,mini, maxi, initi);
+			}
+		};
 		sliderTailleCombi.setMajorTickSpacing (1);
 		sliderTailleCombi.setMinorTickSpacing(0);
 		sliderTailleCombi.setSnapToTicks(true);
 		sliderTailleCombi.setPaintTicks (true);
 		sliderTailleCombi.setPaintLabels (true);
 		sliderTailleCombi.addChangeListener(this); 
+		sliderTailleCombi.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				sliderTailleCombi.setFont(new Font("Serif", Font.BOLD, Vgap()/2));
+				sliderTailleCombi.repaint();
+			}
+		});
+		
 
 		//Tableau de JCompenant
 		Compenant[0] = checkBoxAides;
@@ -138,6 +190,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		this.add(checkBoxAides);
 		this.add(checkBoxMultiColor);
 		this.add(sliderNbrCouleurs);
+		this.add(sliderTailleCombi);
 		this.add(sliderTailleCombi);
 
 	}
@@ -187,8 +240,8 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 	private JButton boutonOption (String texte) {
 		JButton bouton = new JButton(texte){
 		};
-		bouton.setBackground(Color.blue);
-		bouton.setForeground(Color.white);
+		bouton.setBackground(Color.white);
+		bouton.setForeground(Color.red);
 		bouton.addActionListener(this);
 
 		return bouton;
@@ -200,13 +253,13 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 			@Override
 			public Dimension getPreferredSize(){
-				return new Dimension(Hgap()*3,Vgap()*2);
+				return new Dimension(Hgap()*8,Vgap()*2);
 			}
 
 
 		};
-		text.setBackground(Color.blue);
-		text.setForeground(Color.white);
+		text.setBackground(Color.white);
+		text.setForeground(Color.red);
 		text.setOpaque(true);;
 
 		return text;
@@ -221,23 +274,24 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 		for(int i=0; i<nombreOption; i++) {
 			//Horizontale Constrains
-			layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, Compenant[i], 3*Hgap(), SpringLayout.EAST, this);
-			layout.putConstraint(SpringLayout.EAST, textOption[i],5*Hgap(), SpringLayout.EAST, this);
+			layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, Compenant[i], (int)(2.5*Hgap()), SpringLayout.WEST, this);
+			layout.putConstraint(SpringLayout.WEST, textOption[i],5*Hgap(), SpringLayout.WEST, this);
 
 			//Verticale Constrains
-			layout.putConstraint(SpringLayout.NORTH, Compenant[i], 10*Vgap()+3*i*Vgap(), SpringLayout.NORTH, this);
-			layout.putConstraint(SpringLayout.NORTH, textOption[i],10*Vgap()+3*i*Vgap(), SpringLayout.NORTH, this);
+			int posV = 2*Vgap()+3*i*Vgap();
+			layout.putConstraint(SpringLayout.NORTH, Compenant[i], posV, SpringLayout.SOUTH, titreOption);
+			layout.putConstraint(SpringLayout.NORTH, textOption[i], posV, SpringLayout.SOUTH, titreOption);
 		}	
 	}
 	//Distance Verticale entre les widgets
 	public static int Vgap() {
-		int vGap = (int)Math.round ((Mastermind.generalHeight())/(3*nombreOption+11.0));
+		int vGap = (int)Math.round ((Mastermind.generalHeight())/(3*nombreOption+8.0));
 		return vGap;
 
 	}
 	//Distance Horizontale entre les widgets
 	public static int Hgap() {
-		int Hgap = (int)Math.round ((Mastermind.generalWidth())/14.0);
+		int Hgap = (int)Math.round (Mastermind.generalWidth()/14.0);
 		return Hgap;
 	}
 }
