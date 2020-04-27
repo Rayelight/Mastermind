@@ -221,12 +221,12 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 		for(int i=0; i<nombreOption; i++) {
 			//Horizontale Constrains
-			layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, Compenant[i], 3*Hgap(), SpringLayout.EAST, this);
-			layout.putConstraint(SpringLayout.EAST, textOption[i],5*Hgap(), SpringLayout.EAST, this);
+			layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, Compenant[i], 3*Hgap(), SpringLayout.WEST, this);
+			layout.putConstraint(SpringLayout.WEST, textOption[i],5*Hgap(), SpringLayout.WEST, this);
 
 			//Verticale Constrains
-			layout.putConstraint(SpringLayout.NORTH, Compenant[i], 10*Vgap()+3*i*Vgap(), SpringLayout.NORTH, this);
-			layout.putConstraint(SpringLayout.NORTH, textOption[i],10*Vgap()+3*i*Vgap(), SpringLayout.NORTH, this);
+			layout.putConstraint(SpringLayout.NORTH, Compenant[i], 8*Vgap()+3*i*Vgap(), SpringLayout.NORTH, this);
+			layout.putConstraint(SpringLayout.NORTH, textOption[i],8*Vgap()+3*i*Vgap(), SpringLayout.NORTH, this);
 		}	
 	}
 	//Distance Verticale entre les widgets
@@ -237,7 +237,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 	}
 	//Distance Horizontale entre les widgets
 	public static int Hgap() {
-		int Hgap = (int)Math.round ((Mastermind.generalWidth())/14.0);
+		int Hgap = (int)Math.round (Mastermind.generalWidth()/14.0);
 		return Hgap;
 	}
 }
