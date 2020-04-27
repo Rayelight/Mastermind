@@ -68,7 +68,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		titreOption = new JLabel("Options") {
 			@Override
 			public Dimension getPreferredSize(){
-				return new Dimension(8*Hgap(),2*Vgap());
+				return new Dimension(9*Vgap(), 3*Vgap());
 			}
 		};
 		titreOption.setBackground(Color.green);
@@ -200,7 +200,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 			@Override
 			public Dimension getPreferredSize(){
-				return new Dimension(Hgap()*3,Vgap()*2);
+				return new Dimension(Hgap()*8,Vgap()*2);
 			}
 
 
@@ -225,13 +225,14 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 			layout.putConstraint(SpringLayout.WEST, textOption[i],5*Hgap(), SpringLayout.WEST, this);
 
 			//Verticale Constrains
-			layout.putConstraint(SpringLayout.NORTH, Compenant[i], 8*Vgap()+3*i*Vgap(), SpringLayout.NORTH, this);
-			layout.putConstraint(SpringLayout.NORTH, textOption[i], 8*Vgap()+3*i*Vgap(), SpringLayout.NORTH, this);
+			int posV = 2*Vgap()+3*i*Vgap();
+			layout.putConstraint(SpringLayout.NORTH, Compenant[i], posV, SpringLayout.SOUTH, titreOption);
+			layout.putConstraint(SpringLayout.NORTH, textOption[i], posV, SpringLayout.SOUTH, titreOption);
 		}	
 	}
 	//Distance Verticale entre les widgets
 	public static int Vgap() {
-		int vGap = (int)Math.round ((Mastermind.generalHeight())/(3*nombreOption+11.0));
+		int vGap = (int)Math.round ((Mastermind.generalHeight())/(3*nombreOption+8.0));
 		return vGap;
 
 	}
