@@ -26,7 +26,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 	private JCheckBox checkBoxAides;
 	private JCheckBox checkBoxMultiColor;
-	private JButton[] boutonOption = new JButton[2];
+	private JButton boutonOption;
 	private JLabel[] textOption = new JLabel[4];
 	private JSlider sliderTailleCombi;
 	private JSlider sliderNbrCouleurs;
@@ -51,8 +51,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
         //		Creation Widgets
 		//Boutons Option
-		boutonOption[0] = boutonOption("DeleteScores");
-		boutonOption[1] = boutonOption("Reset Settings");
+		boutonOption= boutonOption("Reset Settings");
 		
 		
 		//	Creation des differents textes
@@ -107,8 +106,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 
 		//			Ajout Widgets
-		this.add(boutonOption[0]);
-		this.add(boutonOption[1]);
+		this.add(boutonOption);
 		this.add(textOption[0]);
 		this.add(textOption[1]);
 		this.add(textOption[2]);
@@ -151,7 +149,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==boutonOption[1]){
+		if(e.getSource()==boutonOption){
 			sliderNbrCouleurs.setValue(8);
 			sliderTailleCombi.setValue(4);
 			sliderNbrCouleurs.paintAll(sliderNbrCouleurs.getGraphics());
@@ -218,8 +216,8 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		public void BoutonContraints() {
 			//			Bouton Constraints
 			for(int i=0; i<nombreBouton; i++) {
-				layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, boutonOption[i], 0, SpringLayout.HORIZONTAL_CENTER, this);
-				layout.putConstraint(SpringLayout.NORTH, boutonOption[i], textHeight()*8, SpringLayout.NORTH, titreOption);
+				layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, boutonOption, 0, SpringLayout.HORIZONTAL_CENTER, this);
+				layout.putConstraint(SpringLayout.NORTH, boutonOption, textHeight()*8, SpringLayout.NORTH, titreOption);
 
 			}
 }
