@@ -64,8 +64,9 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 		//Afiichage du titre Options
 		titreOption= new JLabel("Options");
-		titreOption.setBackground(Color.white);
-		titreOption.setForeground(Color.blue);	
+		titreOption.setBackground(Color.blue);
+		titreOption.setForeground(Color.white);	
+		titreOption.setOpaque(true);
 
 
 		// Checkbox
