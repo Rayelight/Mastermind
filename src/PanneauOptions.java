@@ -68,7 +68,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		titreOption = new JLabel("Options") {
 			@Override
 			public Dimension getPreferredSize(){
-				return new Dimension(8*Hgap(),2*Vgap());
+				return new Dimension(6*Hgap(),2*Vgap());
 			}
 		};
 		titreOption.setBackground(Color.green);
