@@ -42,7 +42,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 		//Panneau global
 		setLayout(layout);
-		setBackground(Color.white);
+		setBackground(Color.red);
 		this.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
@@ -50,11 +50,11 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 			}
 		});	
 
-        //		Creation Widgets
+		//		Creation Widgets
 		//Boutons Option
 		boutonOption= boutonOption("Reset Settings");
 
-		
+
 		//	Creation des differents textes
 
 		textOption[0] = textOption("Activer les aides dans le jeu");
@@ -62,8 +62,8 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		textOption[2] = textOption("Nombre de couleurs disponibles(Default 8)");
 		textOption[3] = textOption("Nombre de couleurs par combinaison(Default 4)");
 		textOption[4] = textOption("Permet de remettre les settings originaux");
-		
-		
+
+
 		//Affichage du titre Options
 		titreOption = new JLabel("Options") {
 			@Override
@@ -71,7 +71,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 				return new Dimension(8*Hgap(),2*Vgap());
 			}
 		};
-		titreOption.setBackground(Color.blue);
+		titreOption.setBackground(Color.green);
 		titreOption.setForeground(Color.white);	
 		titreOption.setOpaque(true);
 		titreOption.addComponentListener(new ComponentAdapter() {
@@ -81,7 +81,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 				titreOption.repaint();
 			}
 		});
-		
+
 		// Checkbox
 		checkBoxAides = new JCheckBox("");
 		checkBoxAides.setSelected(false);
@@ -90,7 +90,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		checkBoxMultiColor = new JCheckBox("");
 		checkBoxMultiColor.setSelected(false);
 		checkBoxMultiColor.addItemListener(this);
-		
+
 
 		//Curseurs (nombre de couleurs disponibles)
 		int min = 6;
@@ -118,15 +118,15 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		sliderTailleCombi.setPaintTicks (true);
 		sliderTailleCombi.setPaintLabels (true);
 		sliderTailleCombi.addChangeListener(this); 
-		
+
 		//Tableau de JCompenant
 		Compenant[0] = checkBoxAides;
 		Compenant[1] = checkBoxMultiColor;
 		Compenant[2] = sliderNbrCouleurs;
 		Compenant[3] = sliderTailleCombi;
 		Compenant[4] = boutonOption;
-		
-		
+
+
 		//			Ajout Widgets
 		this.add(boutonOption);
 		this.add(textOption[0]);
@@ -139,7 +139,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		this.add(checkBoxMultiColor);
 		this.add(sliderNbrCouleurs);
 		this.add(sliderTailleCombi);
-		
+
 	}
 
 
@@ -197,6 +197,13 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 	//Création des textes 
 	private JLabel textOption (String texte) {
 		JLabel text = new JLabel(texte){
+
+			@Override
+			public Dimension getPreferredSize(){
+				return new Dimension(Hgap()*3,Vgap()*2);
+			}
+
+
 		};
 		text.setBackground(Color.blue);
 		text.setForeground(Color.white);
@@ -210,21 +217,21 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		//Titre Constrains
 		layout.putConstraint(SpringLayout.NORTH, titreOption, 2*Vgap(), SpringLayout.NORTH, this);
 		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, titreOption,0, SpringLayout.HORIZONTAL_CENTER, this);
-		
+
 
 		for(int i=0; i<nombreOption; i++) {
-		//Horizontale Constrains
-		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, Compenant[i], 3*Hgap(), SpringLayout.EAST, this);
-		layout.putConstraint(SpringLayout.EAST, textOption[i],5*Hgap(), SpringLayout.EAST, this);
-		
-		//Verticale Constrains
-		layout.putConstraint(SpringLayout.NORTH, Compenant[i], 10*Vgap()+3*i*Vgap(), SpringLayout.NORTH, this);
-		layout.putConstraint(SpringLayout.NORTH, textOption[i],10*Vgap()+3*i*Vgap(), SpringLayout.NORTH, this);
+			//Horizontale Constrains
+			layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, Compenant[i], 3*Hgap(), SpringLayout.EAST, this);
+			layout.putConstraint(SpringLayout.EAST, textOption[i],5*Hgap(), SpringLayout.EAST, this);
+
+			//Verticale Constrains
+			layout.putConstraint(SpringLayout.NORTH, Compenant[i], 10*Vgap()+3*i*Vgap(), SpringLayout.NORTH, this);
+			layout.putConstraint(SpringLayout.NORTH, textOption[i],10*Vgap()+3*i*Vgap(), SpringLayout.NORTH, this);
 		}	
 	}
 	//Distance Verticale entre les widgets
 	public static int Vgap() {
-		int vGap = (int)Math.round ((Mastermind.generalHeight())/3*nombreOption+11.0);
+		int vGap = (int)Math.round ((Mastermind.generalHeight())/(3*nombreOption+11.0));
 		return vGap;
 
 	}
