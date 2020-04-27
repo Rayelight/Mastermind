@@ -1,5 +1,6 @@
 // Chargement des biblioth�ques Swing et AWT
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
@@ -9,13 +10,14 @@ import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SpringLayout;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
+import java.awt.Dimension;
 
 
 
@@ -27,15 +29,14 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 	private JCheckBox checkBoxAides;
 	private JCheckBox checkBoxMultiColor;
 	private JButton boutonOption;
-	private JLabel[] textOption = new JLabel[4];
+	private JLabel[] textOption = new JLabel[5];
 	private JSlider sliderTailleCombi;
 	private JSlider sliderNbrCouleurs;
 	private JLabel titreOption;
 	protected SpringLayout layout = new SpringLayout();
-	
-	static int nombreText=4;
-	static int nombreBouton=2;
-	static double pourcentageEspace =1.0/4.0;
+	private JComponent[] Compenant = new JComponent[5];
+	static int nombreOption=5;
+
 
 	public PanneauOptions() {
 
@@ -52,22 +53,35 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
         //		Creation Widgets
 		//Boutons Option
 		boutonOption= boutonOption("Reset Settings");
-		
+
 		
 		//	Creation des differents textes
+
 		textOption[0] = textOption("Activer les aides dans le jeu");
 		textOption[1] = textOption("Combinaison avec plus d'une fois la m�me couleur(Default False)");
 		textOption[2] = textOption("Nombre de couleurs disponibles(Default 8)");
 		textOption[3] = textOption("Nombre de couleurs par combinaison(Default 4)");
-
-
-		//Afiichage du titre Options
-		titreOption= new JLabel("Options");
+		textOption[4] = textOption("Permet de remettre les settings originaux");
+		
+		
+		//Affichage du titre Options
+		titreOption = new JLabel("Options") {
+			@Override
+			public Dimension getPreferredSize(){
+				return new Dimension(8*Hgap(),2*Vgap());
+			}
+		};
 		titreOption.setBackground(Color.blue);
 		titreOption.setForeground(Color.white);	
 		titreOption.setOpaque(true);
-
-
+		titreOption.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				titreOption.setFont(new Font("Serif", Font.BOLD, Vgap()/2));
+				titreOption.repaint();
+			}
+		});
+		
 		// Checkbox
 		checkBoxAides = new JCheckBox("");
 		checkBoxAides.setSelected(false);
@@ -104,14 +118,22 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		sliderTailleCombi.setPaintTicks (true);
 		sliderTailleCombi.setPaintLabels (true);
 		sliderTailleCombi.addChangeListener(this); 
-
-
+		
+		//Tableau de JCompenant
+		Compenant[0] = checkBoxAides;
+		Compenant[1] = checkBoxMultiColor;
+		Compenant[2] = sliderNbrCouleurs;
+		Compenant[3] = sliderTailleCombi;
+		Compenant[4] = boutonOption;
+		
+		
 		//			Ajout Widgets
 		this.add(boutonOption);
 		this.add(textOption[0]);
 		this.add(textOption[1]);
 		this.add(textOption[2]);
 		this.add(textOption[3]);
+		this.add(textOption[4]);
 		this.add(titreOption);
 		this.add(checkBoxAides);
 		this.add(checkBoxMultiColor);
@@ -161,7 +183,6 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 	}
 
-
 	//Création des Boutons 
 	private JButton boutonOption (String texte) {
 		JButton bouton = new JButton(texte){
@@ -187,73 +208,30 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		//			Adjust Constraints
 
 		//Titre Constrains
-		layout.putConstraint(SpringLayout.NORTH, titreOption, 20, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.NORTH, titreOption, 2*Vgap(), SpringLayout.NORTH, this);
 		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, titreOption,0, SpringLayout.HORIZONTAL_CENTER, this);
 		
-		
-		//Boutons Constrains
-		BoutonContraints();
-		//Text Constrains
-		TextContraints();
-		
-		
-		//Checkbox Constrains
-		layout.putConstraint(SpringLayout.EAST, checkBoxAides,-70, SpringLayout.EAST, textOption[0]);
-		layout.putConstraint(SpringLayout.EAST, checkBoxMultiColor, -70, SpringLayout.EAST, textOption[1]);
-		
-		
-		//Sliders Constrains
-		layout.putConstraint(SpringLayout.EAST, sliderNbrCouleurs,-70, SpringLayout.EAST, textOption[2]);
-		layout.putConstraint(SpringLayout.EAST, sliderTailleCombi,-70, SpringLayout.EAST, textOption[3]);
 
+		for(int i=0; i<nombreOption; i++) {
+		//Horizontale Constrains
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, Compenant[i], 2*Hgap(), SpringLayout.EAST, this);
+		layout.putConstraint(SpringLayout.EAST, textOption[i],5*Hgap(), SpringLayout.EAST, this);
+		
+		//Verticale Constrains
+		layout.putConstraint(SpringLayout.NORTH, Compenant[i], 10+3*i*Vgap(), SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.NORTH, textOption[i],10+3*i*Vgap(), SpringLayout.NORTH, this);
+		}	
 	}
-	public void TextContraints() {
-		//			Text Constraints
-		for(int i=0; i<nombreBouton; i++) {
-			layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, textOption[i], 2*textVgap(), SpringLayout.HORIZONTAL_CENTER, titreOption);
-			layout.putConstraint(SpringLayout.NORTH, textOption[i], textHeight()*2, SpringLayout.NORTH, this);
-		}
-	}
-		public void BoutonContraints() {
-			//			Bouton Constraints
-			for(int i=0; i<nombreBouton; i++) {
-				layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, boutonOption, 0, SpringLayout.HORIZONTAL_CENTER, this);
-				layout.putConstraint(SpringLayout.NORTH, boutonOption, textHeight()*8, SpringLayout.NORTH, titreOption);
-
-			}
-}
 	//Distance Verticale entre les widgets
-	public static int textVgap() {
-		int vGap = (int) ((Mastermind.generalHeight()*2.0/3.0-textHeight()*4.0)/5.0);
+	public static int Vgap() {
+		int vGap = (int)Math.round ((Mastermind.generalHeight())/3*nombreOption+11.0);
 		return vGap;
 
 	}
-	//Hauteur d'un bouton
-	public static int textHeight() {
-		int textHeight = textWidth()/4;
-		return textHeight;
-
+	//Distance Horizontale entre les widgets
+	public static int Hgap() {
+		int Hgap = (int)Math.round ((Mastermind.generalWidth())/14.0);
+		return Hgap;
 	}
-	//Largeur d'un bouton
-	public static int textWidth() {
-		int textWidth = (Mastermind.generalWidth()-(nombreText+1)*textHgap())/nombreText;
-		return textWidth;
-
-	}
-	//Distance Horizontale entre les boutons
-	public static int textHgap() {
-		int hGap = (int) (Mastermind.generalWidth()*pourcentageEspace/(pourcentageEspace*(nombreText+1)+nombreText));
-		return hGap;
-
-	}
-
-	//Position de l'axe central vertical des boutons
-	public static int textHbouton(int i) {
-		int textHbouton = textHgap()+textWidth()/2+i*(textHgap()+textWidth()) ;
-		return textHbouton;
-
-	}
-
-
 }
 

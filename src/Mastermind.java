@@ -63,8 +63,8 @@ public class Mastermind extends JFrame implements ComponentListener{
 		//System.out.println(ModeOrdinateur.generationCombis().size());
 
 
-		finJeu.setVisible(true);
-		finJeu.setLocationRelativeTo(Mastermind.general);
+		//finJeu.setVisible(true);
+		//finJeu.setLocationRelativeTo(Mastermind.general);
 
 	}
 
