@@ -87,7 +87,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		checkBoxAides = new JCheckBox("") {
 			@Override
 			public Dimension getPreferredSize(){
-				return new Dimension(9*Vgap(), 3*Vgap());
+				return new Dimension(3*Hgap(), 2*Vgap());
 
 			}
 		};
@@ -104,7 +104,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		checkBoxMultiColor = new JCheckBox("") {
 			@Override
 			public Dimension getPreferredSize(){
-				return new Dimension(9*Vgap(), 3*Vgap());
+				return new Dimension(3*Hgap(), 2*Vgap());
 
 			}
 		};
@@ -126,7 +126,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		sliderNbrCouleurs = new JSlider (JSlider.HORIZONTAL,min, max, init) {
 			@Override
 			public Dimension getPreferredSize(){
-				return new Dimension(9*Vgap(), 3*Vgap());
+				return new Dimension(3*Hgap(), 2*Vgap());
 
 			}
 		};
@@ -153,7 +153,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		sliderTailleCombi = new JSlider (JSlider.HORIZONTAL,mini, maxi, initi) {
 			@Override
 			public Dimension getPreferredSize(){
-				return new Dimension(9*Vgap(), 3*Vgap());
+				return new Dimension(3*Hgap(), 2*Vgap());
 
 			}
 		};

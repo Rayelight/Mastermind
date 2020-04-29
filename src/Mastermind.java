@@ -48,7 +48,7 @@ public class Mastermind extends JFrame implements ComponentListener{
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				general.setContentPane(panneauJeu);
+				//general.setContentPane(panneauJeu);
 				//general.setContentPane(accueil);
 				//general.setContentPane(options);
 
