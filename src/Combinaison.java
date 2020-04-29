@@ -127,6 +127,8 @@ public class Combinaison extends JPanel implements ActionListener{
 			this.couleurs[i].setCouleur(couleurs[i]);
 			System.out.println(couleurs[i]);
 		}
+		this.revalidate();
+		this.repaint();
 
 	}
 

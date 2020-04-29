@@ -1,12 +1,12 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 @SuppressWarnings("serial")
 public class PanneauJeu extends JPanel{
@@ -19,7 +19,7 @@ public class PanneauJeu extends JPanel{
 	LinkedList<Color[]> listeCombi = new LinkedList<>();
 	private ExecutorService executor;
 	private boolean fini = false;
-	private boolean modeOrdi = false;
+	private boolean modeOrdi = true;
 
 	public PanneauJeu(){
 
@@ -49,19 +49,24 @@ public class PanneauJeu extends JPanel{
 
 	//		Méthode de gestion de l'évaluation des combinaisons
 	public void evalCombi() {
-		Combinaison combiJeu = plateauJeu.grilleCouleurs.tentatives[tentativeActif];
-		Combinaison combiCache = barreMenu.hiddenCombiPanel.hiddenCombi;
+		System.out.println(tentativeActif);
+		Color[] combiJeu = Arrays.copyOf(plateauJeu.grilleCouleurs.tentatives[tentativeActif].getCouleurs(), Mastermind.tailleCombinaison);
+		Color[] combiCache = Arrays.copyOf(barreMenu.hiddenCombiPanel.hiddenCombi.getCouleurs(), Mastermind.tailleCombinaison);
+
+		ModeOrdinateur.printCombi(combiJeu);
+		ModeOrdinateur.printCombi(combiCache);
+
 
 		//int nbrPresentes = combiCache.nbrCouleursPresentes(combiJeu);
 		//int nbrPlacees = combiCache.nbrCouleursPlacees(combiJeu);
-		int[] evalCombi = Combinaison.evalCombi(combiJeu.getCouleurs(), combiCache.getCouleurs());
+		int[] evalCombi = Combinaison.evalCombi(Arrays.copyOf(combiJeu, combiJeu.length), Arrays.copyOf(combiCache, combiCache.length));
 
 		plateauJeu.carrePresence.tentatives[tentativeActif].setText(""+evalCombi[1]);
 		plateauJeu.carrePlacement.tentatives[tentativeActif].setText(""+evalCombi[0]);
 
 		fini = testFinjeu(evalCombi[0]);
 
-		ajouterThread(new Elimination(combiJeu.getCouleurs(), evalCombi));
+		ajouterThread(new Elimination(Arrays.copyOf(combiJeu, combiJeu.length), evalCombi));
 		if(!fini)
 			activeNextTentative();
 	}
@@ -70,11 +75,14 @@ public class PanneauJeu extends JPanel{
 	//		Méthode pour activer la tentative suivante
 	private void activeNextTentative() {
 		tentativeActif++;
-		
-		if(!modeOrdi )
+
+		if(!modeOrdi ) {
 			plateauJeu.grilleCouleurs.tentatives[tentativeActif].setEnabled(true);
+		}else {
+			//activationOrdi();
+		}
 		repaint();
-		activationOrdi();
+
 	}
 
 
@@ -115,11 +123,7 @@ public class PanneauJeu extends JPanel{
 		}
 
 		public void run() {
-			//System.out.println();
-			//System.out.println(listeCombi);
 			ModeOrdinateur.eliminerInvalides(listeCombi, combiJeu, evalCombi);
-			//System.out.println("Elimination");
-			//System.out.println(listeCombi);
 		}
 	}
 
@@ -130,28 +134,25 @@ public class PanneauJeu extends JPanel{
 		while(!executor.isTerminated()) {}
 
 		//	Mise en place du Mode Ordi
-		modeOrdi = true;
 		plateauJeu.grilleCouleurs.tentatives[tentativeActif].setEnabled(false);
 
 
 		//	Execution du mode ordinateur
 		executor = Executors.newSingleThreadExecutor();
-		while(!fini) {
-			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
-					//Choix Combinaison Aleatoire
-					int numCombi = (int)(Math.random()*listeCombi.size());
-					plateauJeu.grilleCouleurs.tentatives[tentativeActif-1].modifierCombi(listeCombi.getFirst());
-					repaint();
-				}
-			});
-			
 
 
-			//Elimination Invalide
-			evalCombi();
-			repaint();
-		}
+		//Choix Combinaison Aleatoire
+		int numCombi = (int)(Math.random()*listeCombi.size());
+		plateauJeu.grilleCouleurs.tentatives[tentativeActif].modifierCombi(listeCombi.get(numCombi));
+
+		System.out.println("combiModif");
+
+		//Elimination Invalide
+		evalCombi();
+		repaint();
+
+
+
 	}
 
 

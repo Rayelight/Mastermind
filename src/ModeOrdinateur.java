@@ -91,6 +91,8 @@ public class ModeOrdinateur {
 	//que le résultat obtenu en comparant cette dernière avec la combiCache
 	public static void eliminerInvalides(LinkedList<Color[]> listeCombi, Color[] prop, int[] evalCombi) { 
 		//Elimination
+		printCombi(prop);
+		System.out.println(evalCombi[0]+" "+evalCombi[1]);
 		System.out.println("Elimination");
 		int i=0;
 		int a=0;
