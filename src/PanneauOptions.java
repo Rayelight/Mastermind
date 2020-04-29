@@ -29,13 +29,14 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 	private JCheckBox checkBoxAides;
 	private JCheckBox checkBoxMultiColor;
 	private JButton boutonOption;
-	private JLabel[] textOption = new JLabel[5];
+	static int nombreOption=5;
+	private JLabel[] textOption = new JLabel[nombreOption];
 	private JSlider sliderTailleCombi;
 	private JSlider sliderNbrCouleurs;
 	private JLabel titreOption;
 	protected SpringLayout layout = new SpringLayout();
-	private JComponent[] Compenant = new JComponent[5];
-	static int nombreOption=5;
+	private JComponent[] Compenant = new JComponent[nombreOption];
+	
 
 
 	public PanneauOptions() {
@@ -258,9 +259,9 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 
 		};
-		text.setBackground(Color.white);
+		text.setBackground(Color.blue);
 		text.setForeground(Color.red);
-		text.setOpaque(true);;
+		text.setOpaque(true);
 
 		return text;
 	}
@@ -285,7 +286,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 	}
 	//Distance Verticale entre les widgets
 	public static int Vgap() {
-		int vGap = (int)Math.round ((Mastermind.generalHeight())/(3*nombreOption+8.0));
+		int vGap = (int)Math.round ((Mastermind.generalHeight())/(3*nombreOption+11.0));
 		return vGap;
 
 	}
