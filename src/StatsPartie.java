@@ -12,10 +12,10 @@ import javax.swing.SpringLayout;
 @SuppressWarnings("serial")
 public class StatsPartie extends GradientPanel{
 
-	JLabel nbrCoupsLabel;
+	GradientJlabel nbrCoupsLabel;
 	TimerLabel timerLabel;
-	JButton restartBouton;
-	JButton devoileCombiBouton;
+	GradientButton restartBouton;
+	GradientButton devoileCombiBouton;
 	SpringLayout  layout;
 
 	public StatsPartie(){
@@ -38,7 +38,7 @@ public class StatsPartie extends GradientPanel{
 
 		//		Components creation
 		//	Nombre de coup
-		nbrCoupsLabel = new JLabel() {
+		nbrCoupsLabel = new GradientJlabel("") {
 			@Override
 			public Dimension getPreferredSize() {
 				return new Dimension(BarreMenu.menuWidth()-40,labelsHeight());
@@ -57,8 +57,8 @@ public class StatsPartie extends GradientPanel{
 
 			}
 		};
-		nbrCoupsLabel.setBackground(Color.black);
-		nbrCoupsLabel.setOpaque(true);
+		nbrCoupsLabel.setForeground(Color.orange);
+		nbrCoupsLabel.setOpaque(false);
 		nbrCoupsLabel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
 
@@ -73,33 +73,33 @@ public class StatsPartie extends GradientPanel{
 				return new Dimension(BarreMenu.menuWidth()-40,labelsHeight());
 			}
 		};
-		timerLabel.setBackground(Color.black);
-		timerLabel.setOpaque(true);
+		timerLabel.setForeground(Color.red);
+		timerLabel.setOpaque(false);
 		timerLabel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 		timerLabel.setAlignmentX( Component.LEFT_ALIGNMENT );
 
 
 
 		//	Bouton Restart
-		restartBouton = new JButton("Restart") {
+		restartBouton = new GradientButton("Restart") {
 			@Override
 			public Dimension getPreferredSize() {
 				return new Dimension(boutonsWidth(),labelsHeight());
 			}
 		};
-		restartBouton.setBackground(Color.black);
-		restartBouton.setOpaque(true);
+		restartBouton.setBackground(Color.orange);
+		restartBouton.setOpaque(false);
 		restartBouton.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
 		//	Bouton Devoile Combi
-		devoileCombiBouton= new JButton("Reveal Code") {
+		devoileCombiBouton= new GradientButton("Reveal Code") {
 			@Override
 			public Dimension getPreferredSize() {
 				return new Dimension(boutonsWidth(),labelsHeight());
 			}
 		};
-		devoileCombiBouton.setBackground(Color.black);
-		devoileCombiBouton.setOpaque(true);
+		devoileCombiBouton.setBackground(Color.orange);
+		devoileCombiBouton.setOpaque(false);
 		devoileCombiBouton.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
 

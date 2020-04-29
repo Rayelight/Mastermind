@@ -94,7 +94,7 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 
 
 		//		Bouton Scores
-		scores = new JButton("Tableau des Scores"){
+		scores = new GradientButton("Tableau des Scores"){
 			@Override
 			public Dimension getPreferredSize(){
 				return new Dimension(boutonWidth()*3/2,boutonHeight());
@@ -150,14 +150,12 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 
 	//Création des Boutons et paramétrisation
 	private JButton boutonAccueil(String texte) {
-		JButton bouton = new JButton(texte){
+		JButton bouton = new GradientButton(texte){
 			@Override
 			public Dimension getPreferredSize(){
 				return new Dimension(boutonWidth(), boutonHeight());
 			}
 		};
-		bouton.setBackground(Color.cyan);
-		bouton.setForeground(Color.black);
 		bouton.addActionListener(this);
 
 		bouton.addComponentListener(new ComponentAdapter() {

@@ -74,14 +74,14 @@ public class BoutonsJeu extends GradientPanel implements ActionListener{
 	}
 
 	private JButton boutonJeu(String texte) {
-		JButton bouton = new JButton(texte){
+		JButton bouton = new GradientButton(texte){
 			@Override
 			public Dimension getPreferredSize(){
 				return new Dimension(boutonsWidth(), boutonsHeight());
 			}
 		};
-		bouton.setBackground(Color.cyan);
-		bouton.setForeground(Color.black);
+		//bouton.setBackground(Color.blue);
+		//bouton.setForeground(Color.red);
 		bouton.addActionListener(this);
 
 		bouton.addComponentListener(new ComponentAdapter() {
