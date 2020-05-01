@@ -19,9 +19,10 @@ public class Mastermind extends JFrame implements ComponentListener{
 	private static Mastermind general = new Mastermind();
 
 	//Paramètres
-	protected static int nbrCouleurs = 8;
+	protected static int nbrCouleurs = 6;
 	protected static int tailleCombinaison = 4;
-	protected static boolean multiColor = true;
+	protected static boolean multiColor = false;
+	protected static boolean activeAide = false;
 	protected static int nbrTentatives=(tailleCombinaison+1)*2;
 	protected static Color[] couleurs = {	Color.red, Color.green, 
 			Color.yellow, Color.blue, 
@@ -36,6 +37,7 @@ public class Mastermind extends JFrame implements ComponentListener{
 	static FenetreFin finJeu ;
 
 
+
 	public static void main(String[] args) {
 		
 
@@ -47,8 +49,8 @@ public class Mastermind extends JFrame implements ComponentListener{
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				general.setContentPane(panneauJeu);
-				//general.setContentPane(accueil);
+				//general.setContentPane(panneauJeu);
+				general.setContentPane(accueil);
 				//general.setContentPane(options);
 
 				general.setVisible(true);

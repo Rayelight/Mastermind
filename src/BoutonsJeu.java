@@ -26,6 +26,7 @@ public class BoutonsJeu extends GradientPanel implements ActionListener{
 		boutonsJeu[2] = boutonJeu("Règles");
 		boutonsJeu[3] = boutonJeu("Aides");
 
+		boutonsJeu[3].setEnabled(Mastermind.activeAide);
 		
 		
 		//			Adding Components
@@ -107,7 +108,7 @@ public class BoutonsJeu extends GradientPanel implements ActionListener{
 
 		}
 		//Aides
-		if(e.getSource()==boutonsJeu[3]) {
+		if(e.getSource()==boutonsJeu[3]&&!Mastermind.panneauJeu.fini) {
 			Mastermind.panneauJeu.activationOrdi();
 		}
 

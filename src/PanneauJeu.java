@@ -18,7 +18,7 @@ public class PanneauJeu extends JPanel{
 	protected int tentativeActif=0;
 	LinkedList<Color[]> listeCombi = new LinkedList<>();
 	private ExecutorService executor;
-	private boolean fini = false;
+	protected boolean fini = false;
 	private boolean modeOrdi = false;
 	FenetreFin finaleFrame;
 	private boolean gagner;

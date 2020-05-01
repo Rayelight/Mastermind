@@ -23,26 +23,25 @@ import javax.swing.event.ChangeListener;
 public class PanneauOptions extends GradientPanel implements ActionListener, ChangeListener , ItemListener  {
 
 	private JLabel titreOption;
-	
+
 	private int nbrOptions=5;
 	private JComponent[] options = new JComponent[nbrOptions];
 	private JLabel[] labelOption = new JLabel[nbrOptions];
-	
+
 	private JCheckBox checkBoxAides;
 	private JCheckBox checkBoxMultiColor;
 	private JSlider sliderTailleCombi;
 	private JSlider sliderNbrCouleurs;
 	private JButton boutonOption;
+	
+	JButton save;
 
 	
-
-
-
+	
 	public PanneauOptions() {
 
 
 		//			Creation Widgets
-
 
 		//		Titre Options
 		titreOption = new GradientLabel("Options") {
@@ -53,8 +52,6 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 			}
 		};
 		titreOption.setHorizontalAlignment(JLabel.CENTER);
-
-
 
 		//		Options
 		checkBoxAides = checkBoxOption();
@@ -71,16 +68,22 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 		options[4] = boutonOption;
 
 		//		Labels Options
-
 		labelOption[0] = labelOption("Activer les aides dans le jeu");
-		labelOption[1] = labelOption("Combinaison avec plus d'une fois la même couleur(Default False)");
-		labelOption[2] = labelOption("Nombre de couleurs disponibles(Default 8)");
-		labelOption[3] = labelOption("Nombre de couleurs par combinaison(Default 4)");
-		labelOption[4] = labelOption("Permet de remettre les settings originaux");
+		labelOption[1] = labelOption("Combinaison avec plus d'une fois la même couleur");
+		labelOption[2] = labelOption("Nombre de couleurs disponibles");
+		labelOption[3] = labelOption("Nombre de couleurs par combinaison");
+		labelOption[4] = labelOption("Reinitialiser les paramètres par default");
 
+		//		Save Bouton
+		save = boutonOption("Save");
 
-
-
+		//		Default Values
+		checkBoxAides.setSelected(Mastermind.activeAide);
+		checkBoxMultiColor.setSelected(Mastermind.multiColor);
+		sliderNbrCouleurs.setValue(Mastermind.nbrCouleurs);
+		sliderTailleCombi.setValue(Mastermind.tailleCombinaison);
+		
+		
 		//			Ajout Widgets
 		//		Titre
 		this.add(titreOption);
@@ -90,7 +93,11 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 			this.add(options[i]);
 			this.add(labelOption[i]);
 		}
-		
+
+		//		Save
+		this.add(save);
+
+
 		adjustContraints();
 
 	}
@@ -177,18 +184,17 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 
 	//			Listener des Composants
 
-	//		ItemListener
+	//		itemListener
 	public void itemStateChanged(ItemEvent event) {
 		JCheckBox checkboxname=(JCheckBox)event.getSource();
 		boolean valeur=checkboxname.isSelected();
-		if(checkboxname==checkBoxMultiColor && valeur==true) {
-			Mastermind.multiColor=true;
-		}if(checkboxname==checkBoxMultiColor && valeur==false){
-			Mastermind.multiColor=false;
-		}if(checkboxname==checkBoxAides && valeur==true){
-			//affichage du panneau regles
-		}if(checkboxname==checkBoxAides && valeur==false){
-			//enlever le panneau regles 
+		
+		if(checkboxname==checkBoxMultiColor) {
+			Mastermind.multiColor=valeur;
+		}
+		
+		if(checkboxname==checkBoxAides){
+			Mastermind.activeAide=valeur;
 		}
 	}
 
@@ -215,6 +221,10 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 			checkBoxMultiColor.setSelected(false);
 			checkBoxAides.setSelected(false);
 		}
+		
+		if(e.getSource()==save){
+			Mastermind.setPanneauAccueil();
+		}
 
 	}
 
@@ -225,7 +235,7 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 		layout.putConstraint(SpringLayout.NORTH, titreOption, 2*Vgap(), SpringLayout.NORTH, this);
 		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, titreOption,0, SpringLayout.HORIZONTAL_CENTER, this);
 
-
+		//Parameters and Labels Constraints
 		for(int i=0; i<nbrOptions; i++) {
 			//Horizontale Constrains
 			layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, options[i], (int)(2.5*Hgap()), SpringLayout.WEST, this);
@@ -236,15 +246,19 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 			layout.putConstraint(SpringLayout.NORTH, options[i], posV, SpringLayout.SOUTH, titreOption);
 			layout.putConstraint(SpringLayout.NORTH, labelOption[i], posV, SpringLayout.SOUTH, titreOption);
 		}	
+
+		//Save Constrains
+		layout.putConstraint(SpringLayout.SOUTH, save, -Vgap(), SpringLayout.SOUTH, this);
+		layout.putConstraint(SpringLayout.EAST, save, -Vgap(), SpringLayout.EAST, this);
 	}
-	
+
 	//		Distance Verticale entre les widgets
 	public int Vgap() {
 		int vGap = (int)Math.round ((Mastermind.generalHeight())/(3*nbrOptions+11.0));
 		return vGap;
 
 	}
-	
+
 	//		Distance Horizontale entre les widgets
 	public int Hgap() {
 		int Hgap = (int)Math.round (Mastermind.generalWidth()/14.0);
