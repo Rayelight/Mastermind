@@ -1,9 +1,6 @@
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 import javax.swing.SpringLayout;
 
@@ -14,22 +11,12 @@ public class PlateauJeu extends GradientPanel implements ActionListener{
 	protected GrilleCouleurs grilleCouleurs;
 	CarreEval carrePlacement;
 	CarreEval carrePresence;
-
-	protected SpringLayout layout;
+	
 	
 	public PlateauJeu(){
+		
 		//			Panel Setup	
-		this.setBackground(Color.orange);
-		layout = new SpringLayout();
-		this.setLayout(layout);
 		this.setAlignmentX(CENTER_ALIGNMENT);
-		this.addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-            	adjustContraints();
-            	repaint();
-            }
-        });
 		
 		
 		//			Components creation
@@ -43,10 +30,7 @@ public class PlateauJeu extends GradientPanel implements ActionListener{
 		this.add(carrePlacement);
 		this.add(carrePresence);
 
-		
-
-
-
+		adjustContraints();
 
 	}
 

@@ -10,18 +10,16 @@ import java.awt.event.ComponentEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 
 @SuppressWarnings("serial")
-public class PanneauAccueil extends JPanel implements ActionListener{
+public class PanneauAccueil extends GradientPanel implements ActionListener{
 
 	private JLabel titre;
 	private JButton[] boutonsAccueil;
-	private JButton scores;
+	private JButton credits;
 
-	private SpringLayout layout;
 
 	static int nombreBoutons=4;
 	static double pourcentageEspace =1.0/4.0;
@@ -30,18 +28,6 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 
 
 	public PanneauAccueil() {
-
-		layout = new SpringLayout();
-		this.setLayout(layout);
-		this.setBackground(Color.white);
-		this.addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-				adjustContraints();
-			}
-		});
-
-
 
 		//			Boxes Creation
 
@@ -93,21 +79,19 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 
 
 
-		//		Bouton Scores
-		scores = new GradientButton("Tableau des Scores"){
+		//		Bouton credits
+		credits = new GradientButton("Credits"){
 			@Override
 			public Dimension getPreferredSize(){
 				return new Dimension(boutonWidth()*3/2,boutonHeight());
 			}
 		};
-		scores.setBackground(Color.cyan);
-		scores.setForeground(Color.black);
-		scores.addActionListener(this);
-		scores.addComponentListener(new ComponentAdapter() {
+		credits.addActionListener(this);
+		credits.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-				scores.setFont(new Font("Serif", Font.BOLD, boutonHeight()/2));
-				scores.repaint();
+				credits.setFont(new Font("Serif", Font.BOLD, boutonHeight()/2));
+				credits.repaint();
 			}
 		});
 
@@ -119,30 +103,36 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 		for(JButton b : boutonsAccueil) {
 			this.add(b);
 		}
-		this.add(scores);
+		this.add(credits);
 
-
+		adjustContraints();
 	}
 
 
 
 
 	public void actionPerformed(ActionEvent e) {
-
+		//	Jouer
 		if(e.getSource()==boutonsAccueil[0]) {
-
+			Mastermind.setPanneauJeu();
 		}
+		//	Options
 		if(e.getSource()==boutonsAccueil[1]) {
-
+			Mastermind.setPanneauOption(); 
 		}
+		//	Mode Ordinateur
 		if(e.getSource()==boutonsAccueil[2]) {
-			//affichage mode ordinateur 
+			Mastermind.setPanneauJeu();
+			Mastermind.panneauJeu.lancerOrdi();
+			Mastermind.panneauJeu.activationOrdi();
 		}
+		//	Regles
 		if(e.getSource()==boutonsAccueil[3]) {
 			//affichage mode regles 
 		}
-		if(e.getSource()==scores) {
-			//affichage tableau des scores
+		//	Credits
+		if(e.getSource()==credits) {
+			//affichage tableau des credits
 		}
 	}
 
@@ -157,14 +147,6 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 			}
 		};
 		bouton.addActionListener(this);
-
-		bouton.addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-				bouton.setFont(new Font("Serif", Font.BOLD, boutonHeight()*5/12));
-				bouton.repaint();
-			}
-		});
 
 		return bouton;
 	}
@@ -201,7 +183,7 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 
 	//Distance Verticale entre les widgets
 	public static int boutonsVgap() {
-		int vGap = (int) ((Mastermind.generalHeight()*2.0/3.0-boutonHeight()*4.0)/5.0);
+		int vGap = (int) ((Mastermind.generalHeight()*3.0/4.0-boutonHeight()*4.0)/5.0);
 		return vGap;
 
 	}
@@ -218,8 +200,8 @@ public class PanneauAccueil extends JPanel implements ActionListener{
 		boutonsContraints();
 
 		// 		Bouton Score
-		layout.putConstraint(SpringLayout.NORTH, scores, boutonsVgap()*2, SpringLayout.SOUTH, boutonsAccueil[0]);
-		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, scores, 0, SpringLayout.HORIZONTAL_CENTER, this);
+		layout.putConstraint(SpringLayout.NORTH, credits, boutonsVgap()*2, SpringLayout.SOUTH, boutonsAccueil[0]);
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, credits, 0, SpringLayout.HORIZONTAL_CENTER, this);
 
 
 	}

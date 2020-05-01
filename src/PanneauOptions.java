@@ -1,5 +1,4 @@
 // Chargement des biblioth�ques Swing et AWT
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -13,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SpringLayout;
 import javax.swing.event.ChangeEvent;
@@ -22,10 +20,8 @@ import javax.swing.event.ChangeListener;
 
 
 @SuppressWarnings("serial")
-public class PanneauOptions extends JPanel implements ActionListener, ChangeListener , ItemListener  {
-	
-	protected SpringLayout layout = new SpringLayout();
-	
+public class PanneauOptions extends GradientPanel implements ActionListener, ChangeListener , ItemListener  {
+
 	private JLabel titreOption;
 	
 	private int nbrOptions=5;
@@ -43,40 +39,21 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 
 	public PanneauOptions() {
-		//			Panneau global
-		setLayout(layout);
-		setBackground(Color.white);
-		this.addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-				adjustContraints();
-			}
-		});	
-
-
 
 
 		//			Creation Widgets
 
 
 		//		Titre Options
-		titreOption = new JLabel("Options") {
+		titreOption = new GradientLabel("Options") {
 			@Override
 			public Dimension getPreferredSize(){
 				return new Dimension(9*Vgap(), 3*Vgap());
 
 			}
 		};
-		titreOption.setBackground(Color.blue);
-		titreOption.setForeground(Color.red);	
-		titreOption.setOpaque(true);
-		titreOption.addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-				titreOption.setFont(new Font("Serif", Font.BOLD, Vgap()/2));
-				titreOption.repaint();
-			}
-		});
+		titreOption.setHorizontalAlignment(JLabel.CENTER);
+
 
 
 		//		Options
@@ -96,7 +73,7 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 		//		Labels Options
 
 		labelOption[0] = labelOption("Activer les aides dans le jeu");
-		labelOption[1] = labelOption("Combinaison avec plus d'une fois la m�me couleur(Default False)");
+		labelOption[1] = labelOption("Combinaison avec plus d'une fois la même couleur(Default False)");
 		labelOption[2] = labelOption("Nombre de couleurs disponibles(Default 8)");
 		labelOption[3] = labelOption("Nombre de couleurs par combinaison(Default 4)");
 		labelOption[4] = labelOption("Permet de remettre les settings originaux");
@@ -113,7 +90,8 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 			this.add(options[i]);
 			this.add(labelOption[i]);
 		}
-
+		
+		adjustContraints();
 
 	}
 
@@ -172,15 +150,13 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 	//		Création des JButton
 	private JButton boutonOption(String texte) {
-		JButton bouton = new JButton(texte){
+		JButton bouton = new GradientButton(texte){
 
 			@Override
 			public Dimension getPreferredSize(){
 				return new Dimension(Vgap()*6,Vgap()*2);
 			}
 		};
-		bouton.setBackground(Color.white);
-		bouton.setForeground(Color.red);
 		bouton.addActionListener(this);
 
 		return bouton;
@@ -188,20 +164,13 @@ public class PanneauOptions extends JPanel implements ActionListener, ChangeList
 
 	//		Création des JLabels
 	private JLabel labelOption (String texte) {
-		JLabel text = new JLabel(texte){
-
+		JLabel label = new GradientLabel(texte){
 			@Override
 			public Dimension getPreferredSize(){
 				return new Dimension(Hgap()*8,Vgap()*2);
 			}
-
-
 		};
-		text.setBackground(Color.blue);
-		text.setForeground(Color.red);
-		text.setOpaque(true);
-
-		return text;
+		return label;
 	}
 
 

@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -13,49 +12,29 @@ import javax.swing.SpringLayout;
 public class BoutonsJeu extends GradientPanel implements ActionListener{
 
 	private JButton[] boutonsJeu;
-	private SpringLayout layout;
 	static int nombreBoutons=4;
 
 	public BoutonsJeu(){
 
-		//			Panel Setup 
-		layout = new SpringLayout();
-		this.setLayout(layout);
-		this.setBackground(Color.blue);
-		this.setOpaque(true);
-		this.addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-				adjustContraints();
-			}
-		});
-
-
-
 		//			Components creation
-
-
-
 		//		boutonsJeu
 		boutonsJeu = new JButton[nombreBoutons];
 
 		//	Creation Boutons
-		boutonsJeu[0] = boutonJeu("Mode Ordi.");
-		boutonsJeu[1] = boutonJeu("Règles");
-		boutonsJeu[2] = boutonJeu("Options");
+		boutonsJeu[0] = boutonJeu("Accueil");
+		boutonsJeu[1] = boutonJeu("Mode Ordi.");
+		boutonsJeu[2] = boutonJeu("Règles");
 		boutonsJeu[3] = boutonJeu("Aides");
 
-
-
-
-
-		//				Adding Components
+		
+		
+		//			Adding Components
 		//		Ajout des boutons centreaux
 		for(JButton b : boutonsJeu) {
 			this.add(b);
 		}
-
-
+		
+		adjustContraints();
 
 	}
 
@@ -80,10 +59,9 @@ public class BoutonsJeu extends GradientPanel implements ActionListener{
 				return new Dimension(boutonsWidth(), boutonsHeight());
 			}
 		};
-		//bouton.setBackground(Color.blue);
-		//bouton.setForeground(Color.red);
+		
 		bouton.addActionListener(this);
-
+		
 		bouton.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
@@ -96,26 +74,42 @@ public class BoutonsJeu extends GradientPanel implements ActionListener{
 	}
 
 
-	public int boutonsWidth() {
+	public static int boutonsWidth() {
 		int boutonWidth = (int) Math.round((BarreMenu.menuWidth()-40-20)/2.0);
 		return boutonWidth;
 	}
 
-	public int boutonsHeight() {
-		int boutonWidth = (int) Math.round(BarreMenu.singleMenuHeight()/6.5);
-		return boutonWidth;
+	public static int boutonsHeight() {
+		int boutonHeight = StatsPartie.labelsHeight();
+		return boutonHeight;
 
 	}
 	
 	public int vGap() {
-		int boutonWidth = (int) Math.round(boutonsHeight()*1.5);
-		return boutonWidth;
+		int vGap = (int) Math.round((BarreMenu.singleMenuHeight()-6-boutonsHeight()*2)/3.0);
+		return vGap;
 
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) {
+		//Accueil
+		if(e.getSource()==boutonsJeu[0]) {
+			Mastermind.setPanneauAccueil();
+		}
+		//Mode Ordi
+		if(e.getSource()==boutonsJeu[1]) {
+			Mastermind.panneauJeu.lancerOrdi();
+			Mastermind.panneauJeu.activationOrdi();
+		}
+		//Regles
+		if(e.getSource()==boutonsJeu[2]) {
+
+		}
+		//Aides
+		if(e.getSource()==boutonsJeu[3]) {
+			Mastermind.panneauJeu.activationOrdi();
+		}
 
 	}
 }

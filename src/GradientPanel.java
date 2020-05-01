@@ -3,17 +3,37 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
-public class GradientPanel extends JPanel {
+public abstract class GradientPanel extends JPanel {
+	
+	protected SpringLayout layout;
 	
 	GradientPanel(){
+
+		//			Panel Setup 
+		layout = new SpringLayout();
+		this.setLayout(layout);
 		this.setBorder(BorderFactory.createLineBorder(Color.decode("#FF5A01"),4));
+		this.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				adjustContraints();
+				revalidate();
+				repaint();
+
+			}
+		});
 	}
 	
+	public abstract void adjustContraints();
+
 	@Override
     protected void paintComponent(Graphics grphcs) {
         super.paintComponent(grphcs);
@@ -28,6 +48,8 @@ public class GradientPanel extends JPanel {
         g2d.fillRect(0, 0, getWidth(), getHeight()); 
 
     }
+	
+	
 	
 
 

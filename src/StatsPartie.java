@@ -1,44 +1,26 @@
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
-public class StatsPartie extends GradientPanel{
+public class StatsPartie extends GradientPanel implements ActionListener{
 
-	GradientJlabel nbrCoupsLabel;
+	
+	JLabel nbrCoupsLabel;
 	TimerLabel timerLabel;
-	GradientButton restartBouton;
-	GradientButton devoileCombiBouton;
-	SpringLayout  layout;
+	JButton restartBouton;
+	JButton devoileCombiBouton;
+	
 
 	public StatsPartie(){
-		//			Panel Setup
-		layout = new SpringLayout();
-		this.setLayout(layout);
-		this.setBackground(Color.green);
-		this.setOpaque(true);
-		this.addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-				adjustContraints();
-				revalidate();
-				repaint();
-
-			}
-		});
-
-
 
 		//		Components creation
 		//	Nombre de coup
-		nbrCoupsLabel = new GradientJlabel("") {
+		nbrCoupsLabel = new GradientLabel() {
 			@Override
 			public Dimension getPreferredSize() {
 				return new Dimension(BarreMenu.menuWidth()-40,labelsHeight());
@@ -57,50 +39,24 @@ public class StatsPartie extends GradientPanel{
 
 			}
 		};
-		nbrCoupsLabel.setForeground(Color.orange);
-		nbrCoupsLabel.setOpaque(false);
-		nbrCoupsLabel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+
 
 
 
 		//	Timer
 		timerLabel = new TimerLabel(){
-
 			@Override
 			public Dimension getPreferredSize() {
-
-
 				return new Dimension(BarreMenu.menuWidth()-40,labelsHeight());
 			}
 		};
-		timerLabel.setForeground(Color.red);
-		timerLabel.setOpaque(false);
-		timerLabel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-		timerLabel.setAlignmentX( Component.LEFT_ALIGNMENT );
 
-
-
+		
 		//	Bouton Restart
-		restartBouton = new GradientButton("Restart") {
-			@Override
-			public Dimension getPreferredSize() {
-				return new Dimension(boutonsWidth(),labelsHeight());
-			}
-		};
-		restartBouton.setBackground(Color.orange);
-		restartBouton.setOpaque(false);
-		restartBouton.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-
+		restartBouton = boutonJeu("Restart");
+		
 		//	Bouton Devoile Combi
-		devoileCombiBouton= new GradientButton("Reveal Code") {
-			@Override
-			public Dimension getPreferredSize() {
-				return new Dimension(boutonsWidth(),labelsHeight());
-			}
-		};
-		devoileCombiBouton.setBackground(Color.orange);
-		devoileCombiBouton.setOpaque(false);
-		devoileCombiBouton.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+		devoileCombiBouton= boutonJeu("Reveal Code");
 
 
 		//			Adding components
@@ -111,7 +67,19 @@ public class StatsPartie extends GradientPanel{
 
 
 	}
+	
+	private JButton boutonJeu(String texte) {
+		JButton bouton = new GradientButton(texte){
+			@Override
+			public Dimension getPreferredSize(){
+				return new Dimension(boutonsWidth(), labelsHeight());
+			}
+		};
+		
+		bouton.addActionListener(this);
 
+		return bouton;
+	}
 
 	public void adjustContraints() {
 		//	nbrCoupsLabel
@@ -131,14 +99,26 @@ public class StatsPartie extends GradientPanel{
 		layout.putConstraint(SpringLayout.NORTH, devoileCombiBouton, 20, SpringLayout.SOUTH, timerLabel);
 	}
 
-	public int labelsHeight() {
+	public static int labelsHeight() {
 		int labelHeight = (int) Math.round((BarreMenu.singleMenuHeight()-20*4)/3.0);
 		return labelHeight;
 	}
 
-	public int boutonsWidth() {
+	public static int boutonsWidth() {
 		int boutonWidth = (int) Math.round((BarreMenu.menuWidth()-40-20)/2.0);
 		return boutonWidth;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==restartBouton) {
+			Mastermind.setPanneauJeu();
+		}
+		//Mode Ordi
+		if(e.getSource()==devoileCombiBouton) {
+			Mastermind.panneauJeu.reveal();
+		}
+		
 	}
 
 }

@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -6,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.SpringLayout;
@@ -15,41 +13,24 @@ import javax.swing.SpringLayout;
 public class PaletteCouleurs extends GradientPanel implements ActionListener{
 
 	private JLabel titre;
-	private SpringLayout layout;
 	private RoundButton[] boutonsSelection= new RoundButton[Mastermind.nbrCouleurs];
 	private ButtonGroup boutonsGroup = new ButtonGroup();
 
 
 	public PaletteCouleurs(){
-		//			Panel Setup
-		this.setBackground(Color.pink);
-		layout = new SpringLayout();
-		this.setLayout(layout);
-		this.addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-				adjustContraints();
-				revalidate();
-				repaint();
-
-			}
-		});
-
-
-
-
 
 		//		Components creation and adding
 		//Titre
-		titre = new JLabel("Palette Couleurs", JLabel.CENTER){
+		titre = new GradientLabel(){
 			@Override
 			public Dimension getPreferredSize() {
 				return new Dimension(RoundButton.boutonRadius()*Mastermind.tailleCombinaison,RoundButton.boutonRadius()-4);
 			}
 		};
-		titre.setOpaque(true);
-		titre.setForeground(Color.red);
-		titre.setBorder(BorderFactory.createLineBorder(Color.red));
+		titre.setHorizontalAlignment(JLabel.CENTER);
+	    titre.setVerticalAlignment(JLabel.CENTER);
+	    titre.setText("Palette Couleurs");
+		
 		titre.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
@@ -70,8 +51,7 @@ public class PaletteCouleurs extends GradientPanel implements ActionListener{
 			boutonsGroup.add(boutonsSelection[i]);
 		}
 
-
-
+		adjustContraints();
 
 	}
 
@@ -126,10 +106,6 @@ public class PaletteCouleurs extends GradientPanel implements ActionListener{
 		Mastermind.getPanneauJeu().setSelectedColor(selectedBouton.getCouleur());
 		System.out.println(selectedBouton.getCouleur());
 	}
-
-
-
-
 
 }
 
