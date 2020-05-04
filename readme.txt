@@ -19,3 +19,4 @@ HSLColor.java			Classe de gestion des couleurs en mode HSL
 GradientButton.java		Fonction héritage des différents boutons
 GradientLabel.java		Fonction héritage des différents labels
 GradientPanel.java		Fonction héritage des différents panels
+Règles.java			Affichage des règles
