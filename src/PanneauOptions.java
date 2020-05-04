@@ -48,7 +48,7 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 		titreOption = new GradientLabel("Options") {
 			@Override
 			public Dimension getPreferredSize(){
-				return new Dimension(9*Vgap(), 3*Vgap());
+				return new Dimension(9*vGap(), 3*vGap());
 
 			}
 		};
@@ -71,7 +71,7 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 		options[5] = boutonReset;
 
 		//		Labels Options
-		labelOption[0] = labelOption("Activer du Dark Theme");
+		labelOption[0] = labelOption("Activation du Dark Theme");
 		labelOption[1] = labelOption("Activer les aides et le reveal dans le jeu");
 		labelOption[2] = labelOption("Combinaison cachée avec des couleurs multiples");
 		labelOption[3] = labelOption("Nombre de couleurs");
@@ -114,7 +114,7 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 		JCheckBox checkBox = new JCheckBox() {
 			@Override
 			public Dimension getPreferredSize(){
-				return new Dimension(2*Vgap(), 2*Vgap());
+				return new Dimension(2*vGap(), 2*vGap());
 
 			}
 		};
@@ -123,7 +123,7 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 		checkBox.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-				checkBox.setFont(new Font("Serif", Font.BOLD, Vgap()/2));
+				checkBox.setFont(new Font("Serif", Font.BOLD, vGap()/2));
 				checkBox.repaint();
 			}
 		});
@@ -137,7 +137,7 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 		JSlider slider = new JSlider (JSlider.HORIZONTAL, min, max, init) {
 			@Override
 			public Dimension getPreferredSize(){
-				return new Dimension(3*Hgap(), 2*Vgap());
+				return new Dimension(3*hGap(), 2*vGap());
 
 			}
 		};
@@ -151,7 +151,7 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 		slider.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-				slider.setFont(new Font("Serif", Font.BOLD, Vgap()/2));
+				slider.setFont(new Font("Serif", Font.BOLD, vGap()/2));
 				slider.repaint();
 			}
 		});
@@ -166,7 +166,7 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 
 			@Override
 			public Dimension getPreferredSize(){
-				return new Dimension(Vgap()*6,Vgap()*2);
+				return new Dimension(vGap()*6,vGap()*2);
 			}
 		};
 		bouton.addActionListener(this);
@@ -179,7 +179,7 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 		JLabel label = new GradientLabel(texte){
 			@Override
 			public Dimension getPreferredSize(){
-				return new Dimension(Hgap()*8,Vgap()*2);
+				return new Dimension(hGap()*8,vGap()*2);
 			}
 		};
 		return label;
@@ -246,28 +246,28 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 	//		Adjust Constraints
 	public void adjustContraints() {
 		//Titre Constrains
-		layout.putConstraint(SpringLayout.NORTH, titreOption, 2*Vgap(), SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.NORTH, titreOption, 2*vGap(), SpringLayout.NORTH, this);
 		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, titreOption,0, SpringLayout.HORIZONTAL_CENTER, this);
 
 		//Parameters and Labels Constraints
 		for(int i=0; i<nbrOptions; i++) {
 			//Horizontale Constrains
-			layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, options[i], (int)(2.5*Hgap()), SpringLayout.WEST, this);
-			layout.putConstraint(SpringLayout.WEST, labelOption[i],5*Hgap(), SpringLayout.WEST, this);
+			layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, options[i], (int)(2.5*hGap()), SpringLayout.WEST, this);
+			layout.putConstraint(SpringLayout.WEST, labelOption[i],5*hGap(), SpringLayout.WEST, this);
 
 			//Verticale Constrains
-			int posV = 2*Vgap()+3*i*Vgap();
+			int posV = 2*vGap()+3*i*vGap();
 			layout.putConstraint(SpringLayout.NORTH, options[i], posV, SpringLayout.SOUTH, titreOption);
 			layout.putConstraint(SpringLayout.NORTH, labelOption[i], posV, SpringLayout.SOUTH, titreOption);
 		}	
 
 		//Save Constrains
-		layout.putConstraint(SpringLayout.SOUTH, save, -Vgap(), SpringLayout.SOUTH, this);
-		layout.putConstraint(SpringLayout.EAST, save, -Vgap(), SpringLayout.EAST, this);
+		layout.putConstraint(SpringLayout.SOUTH, save, -vGap(), SpringLayout.SOUTH, this);
+		layout.putConstraint(SpringLayout.EAST, save, -vGap(), SpringLayout.EAST, this);
 	}
 
 	//		Distance Verticale entre les widgets
-	public int Vgap() {
+	public int vGap() {
 		int vGap = (int)Math.round ((Mastermind.generalHeight())/(3*nbrOptions+11.0));
 
 		return vGap;
@@ -275,9 +275,9 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 	}
 
 	//		Distance Horizontale entre les widgets
-	public int Hgap() {
-		int Hgap = (int)Math.round (Mastermind.generalWidth()/14.0);
-		return Hgap;
+	public int hGap() {
+		int hGap = (int)Math.round (Mastermind.generalWidth()/14.0);
+		return hGap;
 	}
 }
 
