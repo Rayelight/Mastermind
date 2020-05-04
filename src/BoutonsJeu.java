@@ -105,7 +105,7 @@ public class BoutonsJeu extends GradientPanel implements ActionListener{
 		}
 		//Regles
 		if(e.getSource()==boutonsJeu[2]) {
-
+			new Regles();
 		}
 		//Aides
 		if(e.getSource()==boutonsJeu[3]&&!Mastermind.panneauJeu.fini) {

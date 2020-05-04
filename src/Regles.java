@@ -1,12 +1,13 @@
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JDialog;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
@@ -17,12 +18,12 @@ public class  Regles extends JDialog{
 
 	public  Regles(){
 
-		super(Mastermind.getGeneral(), "Régles", true);
+		super(Mastermind.getGeneral(), "Règles", true);
 
 		//			Parametrage JDialog
 		this.setResizable(true);
 		this.setBackground(Color.red);
-		this.setSize(Mastermind.generalHeight()*2/3, Mastermind.generalHeight()/3);
+		this.setSize(width(), height());
 		this.setContentPane(new PanneauRegles());
 		this.setLocationRelativeTo(Mastermind.getGeneral());
 
@@ -39,28 +40,24 @@ public class  Regles extends JDialog{
 	}
 
 	public int width() {
-		return Mastermind.generalHeight()/3;
+		return Mastermind.generalWidth()*2/3;
 	}
 
 
 	private class PanneauRegles extends GradientPanel implements ActionListener{
 
 		JTextArea texte;
+		JScrollPane scrollPane;
 
 		PanneauRegles(){
 
+			texte = new JTextArea();
 
-			texte = new JTextArea(){
-				@Override
-				public Dimension getPreferredSize() {
-					return new Dimension(width(), height());
-				}
-			};
-
-			texte.setWrapStyleWord(true);
+			
 			texte.setLineWrap(true);
+			texte.setWrapStyleWord(true);
 			texte.setText("Le principe de fonctionnement du jeu est de trouver la combinaison de couleur cachée en haut à droite du panneau. "
-					+ "Pour cela, vous pouvez jouer avec les différents boutons dans la palette de couleurs. "
+					+ "\nPour cela, vous pouvez jouer avec les différents boutons dans la palette de couleurs. "
 					+ "\nL’utilisation des boutons se fait par un clic sur la couleur de votre choix puis vous cliquer sur le bouton en bas à gauche de la grille. "
 					+ "\nEnsuite vous continuer avec ce même principe vers la droite. Vous obtiendriez votre première tentative lorsque vous auriez rempli toute la ligne de boutons. "
 					+ "\nDe plus, avec les différents compteurs vous pourriez avoir des informations sur les couleurs présentes dans la combinaison cachée. "
@@ -80,8 +77,15 @@ public class  Regles extends JDialog{
 					BorderFactory.createLineBorder(borderColor, 2, true),
 					BorderFactory.createEmptyBorder(10,10,10,10)));
 			
-
-			this.add(texte);
+			
+	        scrollPane = new JScrollPane(texte);
+	        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+	        scrollPane.setBackground(Color.black);
+	        scrollPane.setOpaque(false);
+	        
+	        scrollPane.getViewport().setOpaque(false);
+	        
+	        this.add(scrollPane);
 		}
 
 
@@ -89,12 +93,10 @@ public class  Regles extends JDialog{
 
 		public void adjustContraints() {
 			//			Adjust Constraints
-			layout.putConstraint(SpringLayout.NORTH,  texte, 10, SpringLayout.NORTH, this);
-			layout.putConstraint(SpringLayout.EAST, texte, -10, SpringLayout.EAST, this);
-			layout.putConstraint(SpringLayout.SOUTH, texte, -10, SpringLayout.SOUTH, this);
-			layout.putConstraint(SpringLayout.WEST,  texte, 10, SpringLayout.WEST, this);
-
-
+			layout.putConstraint(SpringLayout.NORTH,  scrollPane, 10, SpringLayout.NORTH, this);
+			layout.putConstraint(SpringLayout.EAST, scrollPane, -10, SpringLayout.EAST, this);
+			layout.putConstraint(SpringLayout.SOUTH, scrollPane, -10, SpringLayout.SOUTH, this);
+			layout.putConstraint(SpringLayout.WEST,  scrollPane, 10, SpringLayout.WEST, this);
 
 		}
 
