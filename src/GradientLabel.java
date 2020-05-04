@@ -20,8 +20,9 @@ public class GradientLabel extends JLabel {
 		this.setBackground(Color.blue);
 		this.setForeground(Color.black);
 		this.setOpaque(false);
+		Color borderColor = Mastermind.darkMode?Color.decode("#484321"):Color.white;
 		this.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createLineBorder(Color.white, 2, true),
+				BorderFactory.createLineBorder(borderColor, 2, true),
 				BorderFactory.createEmptyBorder(10,10,10,10)));
 		this.addComponentListener(new ComponentAdapter() {
 			@Override
@@ -31,11 +32,11 @@ public class GradientLabel extends JLabel {
 			}
 		});
 	}
-	
+
 	GradientLabel(String texte){
 		this();
 		this.setText(texte);
-		
+
 	}
 
 	@Override
@@ -49,6 +50,9 @@ public class GradientLabel extends JLabel {
 		GradientPaint gp = new GradientPaint (getWidth()/4, getHeight()/4, Color.blue, 
 				getWidth()*5/4, getHeight()*5/4, Color.cyan); 
 		g2d.setPaint(gp);
+		if(Mastermind.darkMode) {
+			g2d.setColor(Color.decode("#D3CEBA"));
+		}
 		g2d.fillRect(0, 0, getWidth(), getHeight()); 
 		super.paintComponent(grphcs);
 

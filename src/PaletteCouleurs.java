@@ -30,6 +30,7 @@ public class PaletteCouleurs extends GradientPanel implements ActionListener{
 		titre.setHorizontalAlignment(JLabel.CENTER);
 	    titre.setVerticalAlignment(JLabel.CENTER);
 	    titre.setText("Palette Couleurs");
+	    titre.setBorder(null);
 		
 		titre.addComponentListener(new ComponentAdapter() {
 			@Override

@@ -101,7 +101,7 @@ public class BoutonsJeu extends GradientPanel implements ActionListener{
 		//Mode Ordi
 		if(e.getSource()==boutonsJeu[1]) {
 			Mastermind.panneauJeu.lancerOrdi();
-			Mastermind.panneauJeu.activationOrdi();
+			Mastermind.panneauJeu.tacheOrdi();
 		}
 		//Regles
 		if(e.getSource()==boutonsJeu[2]) {

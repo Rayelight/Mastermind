@@ -57,6 +57,7 @@ public class StatsPartie extends GradientPanel implements ActionListener{
 		
 		//	Bouton Devoile Combi
 		devoileCombiBouton= boutonJeu("Reveal Code");
+		devoileCombiBouton.setEnabled(Mastermind.activeAide);
 
 
 		//			Adding components

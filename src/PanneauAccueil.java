@@ -2,6 +2,9 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
@@ -53,6 +56,19 @@ public class PanneauAccueil extends GradientPanel implements ActionListener{
 				return new Dimension(boutonWidth()*2,boutonHeight()*3/2);
 			}
 
+			protected void paintComponent(Graphics grphcs) {
+				 Color borderColor= Mastermind.darkMode?Color.decode("#484321"):Color.black;
+				this.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, borderColor));
+				
+				Graphics2D g2d = (Graphics2D) grphcs;
+				g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+						RenderingHints.VALUE_ANTIALIAS_ON);
+		        g2d.setColor(Color.decode("#D3CEBA"));
+		        if(Mastermind.darkMode)
+		        	g2d.fillRect(0, 0, getWidth(), getHeight()); 
+				
+				super.paintComponent(grphcs);
+			}
 
 		};
 		titre.addComponentListener(new ComponentAdapter() {
@@ -62,8 +78,8 @@ public class PanneauAccueil extends GradientPanel implements ActionListener{
 				titre.repaint();
 			}
 		});
-		titre.setBorder(BorderFactory.createLineBorder(Color.black));
 
+	
 
 
 
@@ -124,11 +140,11 @@ public class PanneauAccueil extends GradientPanel implements ActionListener{
 		if(e.getSource()==boutonsAccueil[2]) {
 			Mastermind.setPanneauJeu();
 			Mastermind.panneauJeu.lancerOrdi();
-			Mastermind.panneauJeu.activationOrdi();
+			Mastermind.panneauJeu.tacheOrdi();
 		}
 		//	Regles
 		if(e.getSource()==boutonsAccueil[3]) {
-			//affichage mode regles 
+			new Regles();
 		}
 		//	Credits
 		if(e.getSource()==credits) {

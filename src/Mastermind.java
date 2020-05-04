@@ -23,6 +23,7 @@ public class Mastermind extends JFrame implements ComponentListener{
 	protected static int tailleCombinaison = 4;
 	protected static boolean multiColor = false;
 	protected static boolean activeAide = true;
+	protected static boolean darkMode = true;
 	protected static int nbrTentatives=(tailleCombinaison+1)*2;
 	protected static Color[] couleurs = {Color.red, Color.green, 
 			Color.yellow, Color.blue, 
@@ -35,6 +36,7 @@ public class Mastermind extends JFrame implements ComponentListener{
 	static PanneauJeu panneauJeu ;
 	static PanneauOptions options;
 
+	
 
 
 	public static void main(String[] args) {
@@ -57,8 +59,6 @@ public class Mastermind extends JFrame implements ComponentListener{
 			}
 		});
 
-
-		panneauJeu.lancerJeu();
 
 
 	}

@@ -12,15 +12,17 @@ import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
 public abstract class GradientPanel extends JPanel {
-	
+
 	protected SpringLayout layout;
-	
+	Color borderColor;
+
 	GradientPanel(){
 
 		//			Panel Setup 
 		layout = new SpringLayout();
 		this.setLayout(layout);
-		this.setBorder(BorderFactory.createLineBorder(Color.decode("#FF5A01"),4));
+
+		
 		this.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
@@ -31,26 +33,32 @@ public abstract class GradientPanel extends JPanel {
 			}
 		});
 	}
-	
+
 	public abstract void adjustContraints();
-
+	
 	@Override
-    protected void paintComponent(Graphics grphcs) {
-        super.paintComponent(grphcs);
-        Graphics2D g2d = (Graphics2D) grphcs;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
-        //GradientPaint gp = new GradientPaint(0, -getHeight()/2, getBackground().brighter().brighter(),
-        // 		0, getHeight()/2,getBackground());
-        GradientPaint gp = new GradientPaint (getWidth()/4, getHeight()/4, Color.orange, 
-        		getWidth()*3/4, getHeight()*3/4, Color.decode("#FF8701")); 
-        g2d.setPaint(gp);
-        g2d.fillRect(0, 0, getWidth(), getHeight()); 
+	protected void paintComponent(Graphics grphcs) {
+		this.borderColor = Mastermind.darkMode?Color.decode("#C4C8BB"):Color.decode("#FF5A01");
+		this.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, borderColor));
+		
+		super.paintComponent(grphcs);
+		Graphics2D g2d = (Graphics2D) grphcs;
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		//GradientPaint gp = new GradientPaint(0, -getHeight()/2, getBackground().brighter().brighter(),
+		// 		0, getHeight()/2,getBackground());
+		GradientPaint gp = new GradientPaint (getWidth()/4, getHeight()/4, Color.orange, 
+				getWidth()*3/4, getHeight()*3/4, Color.decode("#FF8701")); 
+		g2d.setPaint(gp);
+		if(Mastermind.darkMode) {
+        	g2d.setColor(Color.decode("#403A2C"));
+        }
+		g2d.fillRect(0, 0, getWidth(), getHeight()); 
 
-    }
-	
-	
-	
+	}
+
+
+
 
 
 }
