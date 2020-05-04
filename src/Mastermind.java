@@ -22,10 +22,11 @@ public class Mastermind extends JFrame implements ComponentListener{
 	protected static int nbrCouleurs = 6;
 	protected static int tailleCombinaison = 4;
 	protected static boolean multiColor = false;
+	protected static boolean activeAide = false;
 	protected static int nbrTentatives=(tailleCombinaison+1)*2;
 	protected static Color[] couleurs = {	Color.red, Color.green, 
 			Color.yellow, Color.blue, 
-			Color.orange, Color.gray, 
+			Color.decode("#FF8701"), Color.gray, 
 			Color.pink, Color.white,
 			Color.magenta, Color.cyan};
 
@@ -36,6 +37,7 @@ public class Mastermind extends JFrame implements ComponentListener{
 	static FenetreFin finJeu ;
 
 
+
 	public static void main(String[] args) {
 		
 
@@ -43,7 +45,6 @@ public class Mastermind extends JFrame implements ComponentListener{
 		accueil = new PanneauAccueil();
 		panneauJeu = new PanneauJeu();
 		options= new PanneauOptions();
-		finJeu = new FenetreFin(true);
 		
 		
 		SwingUtilities.invokeLater(new Runnable() {
@@ -58,13 +59,13 @@ public class Mastermind extends JFrame implements ComponentListener{
 		});
 		
 		
-		//panneauJeu.lancerJeu();
+		panneauJeu.lancerJeu();
 
-		//System.out.println(ModeOrdinateur.generationCombis().size());
-
-
+		
+		//finJeu = new FenetreFin(true, "temps", 1);
 		//finJeu.setVisible(true);
 		//finJeu.setLocationRelativeTo(Mastermind.general);
+		//finJeu.adjustContraints();
 
 	}
 
@@ -102,8 +103,24 @@ public class Mastermind extends JFrame implements ComponentListener{
 
 	}
 
-
-
+	
+	//	Modification Panneaux
+	public static void setPanneauAccueil() {
+		general.setContentPane(accueil);
+	}
+	
+	
+	public static void setPanneauJeu() {
+		panneauJeu = new PanneauJeu();
+		general.setContentPane(panneauJeu);
+		panneauJeu.lancerJeu();
+	}
+	
+	public static void setPanneauOption() {
+		general.setContentPane(options);
+	}
+	
+	
 
 	//			PanneauJeu Récupération
 	public static PanneauJeu getPanneauJeu() {

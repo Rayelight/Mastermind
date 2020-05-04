@@ -1,16 +1,17 @@
-import java.awt.Color;
+	import java.awt.Color;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
-
+import java.util.ListIterator;
+	
 public class ModeOrdinateur {
-
+	
 	public static LinkedList<Color[]> generationCombis(){
-		int nbrCouleurs =Mastermind.getNbrCouleurs();
+		int nbrCouleurs =Mastermind.getNbrCouleurs();	
 		int tailleCombi =Mastermind.getTailleCombinaison();
 		boolean multiColor = Mastermind.multiColor;
 
-		//			Initialisation
+		//		Initialisation	
 		//LinkedHashMap<Color[], Integer> listeCombi = new LinkedHashMap<>();
 		LinkedList<Color[]> listeCombi = new LinkedList<>();
 
@@ -64,8 +65,8 @@ public class ModeOrdinateur {
 			hs.add(arr[i]); 
 		} 
 
-		// return the size of hashset as  
-		// it consists of all Unique elements  
+		// return the size of hashset as  	
+		// it consists of all Unique elements  	
 		return hs.size();      
 	} 
 
@@ -94,11 +95,31 @@ public class ModeOrdinateur {
 		printCombi(prop);
 		System.out.println(evalCombi[0]+" "+evalCombi[1]);
 		System.out.println("Elimination");
-		int i=0;
+		
+		//Compteur combis avant elimination
 		int a=0;
+
+
+		//Méthode avec itérateur
+		ListIterator<Color[]> it = listeCombi.listIterator();
+		while(it.hasNext()){
+			Color[] combi = Arrays.copyOf(it.next(),Mastermind.tailleCombinaison);
+			printCombi(combi);
+			int[] compar = Combinaison.evalCombi(combi, Arrays.copyOf(prop, prop.length));
+			System.out.println(compar[0]+" "+compar[1]);
+			if(!(compar[0]==evalCombi[0] && compar[1]==evalCombi[1])) {
+				System.out.println("elimine");
+				it.remove();
+			}
+			a++;
+		}
+
+		/*
+		//Méthode sans itérateur
+		int i=0;
 		while(i<listeCombi.size()) {
 			printCombi(listeCombi.get(i));
-			int[] compar = Combinaison.evalCombi(Arrays.copyOf(listeCombi.get(i),listeCombi.get(i).length),
+			int[] compar = Combinaison.evalCombi(Arrays.copyOf(listeCombi.get(i),Mastermind.tailleCombinaison),
 					Arrays.copyOf(prop, prop.length));
 			System.out.println(compar[0]+" "+compar[1]);
 			if(compar[0]==evalCombi[0] && compar[1]==evalCombi[1]) {
@@ -109,17 +130,27 @@ public class ModeOrdinateur {
 			}
 			a++;
 		}
-		System.out.println(a);
+		*/
+		
+		System.out.println("nbrEliminations:"+a);
 		System.out.println("Fin Elimination");
-		
-		
+
+
 		//Affichage combi restantes
-		for(int i1=0; i1<listeCombi.size(); i1++) {
-			printCombi(listeCombi.get(i1));
-		}  
+		printListeCombi(listeCombi);
+	} 
+	
+	
+	//Print la liste de comibnaisons
+	public static void printListeCombi(LinkedList<Color[]> listeCombi) { 
+		ListIterator<Color[]> it1 = listeCombi.listIterator();
+		while(it1.hasNext()){
+			printCombi(it1.next());
+		}
 		System.out.println(listeCombi.size());
 	} 
 	
+	//Print une combinaison sous forme de chiffres
 	public static void printCombi(Color[] combi) { 
 		for(int j=0; j<combi.length; j++) {
 			boolean couleurValide=false;

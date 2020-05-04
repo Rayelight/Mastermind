@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +15,7 @@ public class Combinaison extends JPanel implements ActionListener{
 
 	public Combinaison(){
 		this.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 5));
-		//this.setOpaque(false);
+		this.setOpaque(false);
 		this.setBackground(Color.blue);
 		//this.setBorder(BorderFactory.createLineBorder(Color.black));
 
@@ -29,9 +30,7 @@ public class Combinaison extends JPanel implements ActionListener{
 
 	public Combinaison(Color[] couleurs) {
 		this();
-		for(int i=0; i<Mastermind.tailleCombinaison; i++) {
-			this.couleurs[i].setCouleur(couleurs[i]);
-		}
+		this.modifierCombi(couleurs);
 	}
 
 	public void setEnabled(boolean b){
@@ -42,7 +41,20 @@ public class Combinaison extends JPanel implements ActionListener{
 	}
 
 
+	//		Gestion de la taille
+	public Dimension getPreferredSize(){
+		return new Dimension(GrilleCouleurs.gridColorWidth(), Combinaison.combinaisonHeight());
+	}
+	public Dimension getMaximumSize(){
+		return getPreferredSize();
+	}
+	public static int combinaisonHeight(){
+		int height = (int)Math.round((double)GrilleCouleurs.gridColorHeight()/Mastermind.nbrTentatives);
+		return height;
+	}
 
+
+	//		Méthodes de jeu
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		RoundButton bouton = (RoundButton)(e.getSource());	
@@ -76,14 +88,6 @@ public class Combinaison extends JPanel implements ActionListener{
 		}
 	}
 
-	public static int combinaisonHeight(){
-		int height = (int)Math.round((double)GrilleCouleurs.gridColorHeight()/Mastermind.nbrTentatives);
-		return height;
-
-	}
-
-
-
 	public static int[] evalCombi(Color[] couleursJeu, Color[] couleursCache) {
 
 		int[] eval = {0,0};
@@ -111,7 +115,7 @@ public class Combinaison extends JPanel implements ActionListener{
 		return eval;
 	}
 
-	//Renvoie une copie du tableau de Couleurs de la combinaison
+	//		Renvoie une copie du tableau de Couleurs de la combinaison
 	public Color[] getCouleurs() {
 		Color[] couleurs = new Color[Mastermind.tailleCombinaison];
 		for(int i=0; i<couleurs.length ; i++) {
@@ -120,12 +124,13 @@ public class Combinaison extends JPanel implements ActionListener{
 
 		return couleurs;
 	}
-
+	
+	//		Modifie une combinaison suivants un tableau de couleurs
 	public void modifierCombi(Color[] couleurs) {
 
 		for(int i=0; i<couleurs.length ; i++) {
 			this.couleurs[i].setCouleur(couleurs[i]);
-			System.out.println(couleurs[i]);
+			//System.out.println(couleurs[i]);
 		}
 		this.revalidate();
 		this.repaint();

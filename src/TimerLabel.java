@@ -1,11 +1,10 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
 import javax.swing.Timer;
 
 @SuppressWarnings("serial")
-public class TimerLabel extends JLabel {
+public class TimerLabel extends GradientLabel {
 
 	Timer timer;
 	int time=0;
@@ -43,5 +42,11 @@ public class TimerLabel extends JLabel {
 	@Override
 	public String getText() {
 		return "Temps de jeu: "+getTime();
+	}
+
+	
+	public String stopTimer() {
+		timer.stop();
+		return getTime();
 	}
 }

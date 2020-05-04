@@ -7,13 +7,14 @@ import java.awt.event.ComponentEvent;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
 public class  FenetreFin extends JDialog implements ActionListener{
 
-	private GradientPanel panneauFin;
+	private JPanel panneauFin;
 	private JLabel msgFin;
 	private JButton accueil;
 	private JButton retry;
@@ -23,7 +24,10 @@ public class  FenetreFin extends JDialog implements ActionListener{
 	private JTextField Pseudo;
 	private JButton SaveScore;
 	
-	public  FenetreFin(boolean gagnant){
+	public  FenetreFin(boolean gagnant, String temps, int coups){
+		
+		// TODO super();
+		
 		this.gagnant = gagnant;
 		//			Parametrage JDialog
 		this.setResizable(false);
@@ -38,7 +42,7 @@ public class  FenetreFin extends JDialog implements ActionListener{
 		
 		
 		//			 Création du panneau
-		panneauFin=new GradientPanel();
+		panneauFin=new JPanel();
 		panneauFin.setLayout(layout);
 		panneauFin.setBackground(Color.blue);
 		
@@ -47,7 +51,7 @@ public class  FenetreFin extends JDialog implements ActionListener{
 		//			Creation Widgets
 		//		Création du msgFin
 		if(this.gagnant) {
-			msgFin= new JLabel("Vous avez gagné en temps avec n tentatives :)");
+			msgFin= new JLabel("Vous avez gagné en "+temps+ "avec "+coups+"tentatives!!!");
 		}else {
 			msgFin= new JLabel("Vous avez perdu :(");
 		}
@@ -87,6 +91,8 @@ public class  FenetreFin extends JDialog implements ActionListener{
 		
 		this.add(panneauFin);
 		this.setSize(400,400);
+		
+		this.setVisible(true);
 	}
 
 
