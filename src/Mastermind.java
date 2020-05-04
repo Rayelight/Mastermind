@@ -22,9 +22,9 @@ public class Mastermind extends JFrame implements ComponentListener{
 	protected static int nbrCouleurs = 6;
 	protected static int tailleCombinaison = 4;
 	protected static boolean multiColor = false;
-	protected static boolean activeAide = false;
+	protected static boolean activeAide = true;
 	protected static int nbrTentatives=(tailleCombinaison+1)*2;
-	protected static Color[] couleurs = {	Color.red, Color.green, 
+	protected static Color[] couleurs = {Color.red, Color.green, 
 			Color.yellow, Color.blue, 
 			Color.decode("#FF8701"), Color.gray, 
 			Color.pink, Color.white,
@@ -34,19 +34,18 @@ public class Mastermind extends JFrame implements ComponentListener{
 	static PanneauAccueil accueil ;
 	static PanneauJeu panneauJeu ;
 	static PanneauOptions options;
-	static FenetreFin finJeu ;
 
 
 
 	public static void main(String[] args) {
-		
+
 
 		//		PanneauxCreation
 		accueil = new PanneauAccueil();
-		panneauJeu = new PanneauJeu();
+		//panneauJeu = new PanneauJeu();
 		options= new PanneauOptions();
-		
-		
+
+
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				//general.setContentPane(panneauJeu);
@@ -57,15 +56,10 @@ public class Mastermind extends JFrame implements ComponentListener{
 				general.setExtendedState(Frame.MAXIMIZED_BOTH);
 			}
 		});
-		
-		
+
+
 		panneauJeu.lancerJeu();
 
-		
-		//finJeu = new FenetreFin(true, "temps", 1);
-		//finJeu.setVisible(true);
-		//finJeu.setLocationRelativeTo(Mastermind.general);
-		//finJeu.adjustContraints();
 
 	}
 
@@ -101,26 +95,31 @@ public class Mastermind extends JFrame implements ComponentListener{
 		this.getContentPane().setBackground(Color.blue);
 		this.addComponentListener(this);
 
+
+		//KeyStrokes
+		//this.getRootPane().getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke("F2"), "pleinEcran");
+		//this.getRootPane().getActionMap().put("pleinEcran", anAction);
+
 	}
 
-	
+
 	//	Modification Panneaux
 	public static void setPanneauAccueil() {
 		general.setContentPane(accueil);
 	}
-	
-	
+
+
 	public static void setPanneauJeu() {
 		panneauJeu = new PanneauJeu();
 		general.setContentPane(panneauJeu);
 		panneauJeu.lancerJeu();
 	}
-	
+
 	public static void setPanneauOption() {
 		general.setContentPane(options);
 	}
-	
-	
+
+
 
 	//			PanneauJeu Récupération
 	public static PanneauJeu getPanneauJeu() {
@@ -237,6 +236,10 @@ public class Mastermind extends JFrame implements ComponentListener{
 		return couleurs;
 	}
 
+	public static Mastermind getGeneral() {
+		return general;
+	}
+
 
 	//			Parametres Setters
 	public static void setNbrCouleurs(int nbrCouleurs) {
@@ -262,6 +265,7 @@ public class Mastermind extends JFrame implements ComponentListener{
 	public static void setCouleurs(Color[] couleurs) {
 		Mastermind.couleurs = couleurs;
 	}
+
 
 
 }

@@ -27,7 +27,8 @@ public class TimerLabel extends GradientLabel {
 		if(hours>0) {
 			return (hours + ":" + format(minutes) + ":" + format(seconds));
 		}
-		return (format(minutes) + ":" + format(seconds) + ":" + millis);
+		String millisFormat=(millis==0)?"000":millis+"";
+		return (format(minutes) + ":" + format(seconds) + ":" + millisFormat);
 	}
 
 	public String format(int time) {

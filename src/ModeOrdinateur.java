@@ -29,7 +29,6 @@ public class ModeOrdinateur {
 		while(a<Math.pow(nbrCouleurs, tailleCombi)){
 			//		Ajout de la combinaison
 			if(multiColor||combi.length==countDistinct(combi)) {
-				//listeCombi.put(clone(combi), null);
 				listeCombi.add(clone(combi));
 			}
 
@@ -47,8 +46,8 @@ public class ModeOrdinateur {
 
 			a++;
 		}
-		System.out.println(a);
-		System.out.println(listeCombi.size());
+		//System.out.println(a);
+		//System.out.println(listeCombi.size());
 		return listeCombi;
 
 	}
@@ -77,9 +76,9 @@ public class ModeOrdinateur {
 
 		for(int i=0; i<combi.length; i++) {
 			combiColor[i] = Mastermind.couleurs[combi[i]];
-			System.out.print(combi[i]+" ");
+			//System.out.print(combi[i]+" ");
 		}  
-		System.out.println();
+		//System.out.println();
 
 		return combiColor; 
 	} 
@@ -92,26 +91,26 @@ public class ModeOrdinateur {
 	//que le résultat obtenu en comparant cette dernière avec la combiCache
 	public static void eliminerInvalides(LinkedList<Color[]> listeCombi, Color[] prop, int[] evalCombi) { 
 		//Elimination
-		printCombi(prop);
-		System.out.println(evalCombi[0]+" "+evalCombi[1]);
-		System.out.println("Elimination");
+		//printCombi(prop);
+		//System.out.println(evalCombi[0]+" "+evalCombi[1]);
+		//System.out.println("Elimination");
 		
 		//Compteur combis avant elimination
-		int a=0;
+		//int a=0;
 
 
 		//Méthode avec itérateur
 		ListIterator<Color[]> it = listeCombi.listIterator();
 		while(it.hasNext()){
 			Color[] combi = Arrays.copyOf(it.next(),Mastermind.tailleCombinaison);
-			printCombi(combi);
+			//printCombi(combi);
 			int[] compar = Combinaison.evalCombi(combi, Arrays.copyOf(prop, prop.length));
-			System.out.println(compar[0]+" "+compar[1]);
+			//System.out.println(compar[0]+" "+compar[1]);
 			if(!(compar[0]==evalCombi[0] && compar[1]==evalCombi[1])) {
-				System.out.println("elimine");
+				//System.out.println("elimine");
 				it.remove();
 			}
-			a++;
+			//a++;
 		}
 
 		/*
@@ -132,12 +131,12 @@ public class ModeOrdinateur {
 		}
 		*/
 		
-		System.out.println("nbrEliminations:"+a);
-		System.out.println("Fin Elimination");
+		//System.out.println("nbrEliminations:"+a);
+		//System.out.println("Fin Elimination");
 
 
 		//Affichage combi restantes
-		printListeCombi(listeCombi);
+		//printListeCombi(listeCombi);
 	} 
 	
 	

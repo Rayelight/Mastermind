@@ -57,7 +57,7 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 		checkBoxAides = checkBoxOption();
 		checkBoxMultiColor = checkBoxOption();
 		sliderNbrCouleurs = sliderOption(6, 10, 8, 0, 2);
-		sliderTailleCombi = sliderOption(3, 6, 4, 0, 1);
+		sliderTailleCombi = sliderOption(4, 6, 4, 0, 1);
 		boutonOption= boutonOption("Reset Settings");
 
 		//		Tableau options
@@ -203,11 +203,15 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 	public void stateChanged(ChangeEvent event) {
 		JSlider sliderName = (JSlider)event.getSource();
 		int valeur = sliderName.getValue();
-		if(sliderName==sliderTailleCombi)
+		
+		if(sliderName==sliderTailleCombi) {
 			Mastermind.tailleCombinaison=valeur;
-		if(sliderName==sliderNbrCouleurs)
+			Mastermind.nbrTentatives=(valeur+1)*2;
+		}
+		if(sliderName==sliderNbrCouleurs) {
 			Mastermind.nbrCouleurs=valeur;
-
+		}
+		
 	}       
 
 
