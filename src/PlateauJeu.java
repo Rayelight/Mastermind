@@ -2,6 +2,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
@@ -17,6 +18,7 @@ public class PlateauJeu extends GradientPanel implements ActionListener{
 		
 		//			Panel Setup	
 		this.setAlignmentX(CENTER_ALIGNMENT);
+		this.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 4, borderColor));
 		
 		
 		//			Components creation

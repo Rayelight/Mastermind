@@ -30,6 +30,7 @@ public class PaletteCouleurs extends GradientPanel implements ActionListener{
 		titre.setHorizontalAlignment(JLabel.CENTER);
 	    titre.setVerticalAlignment(JLabel.CENTER);
 	    titre.setText("Palette Couleurs");
+	    titre.setBorder(null);
 		
 		titre.addComponentListener(new ComponentAdapter() {
 			@Override
@@ -104,7 +105,7 @@ public class PaletteCouleurs extends GradientPanel implements ActionListener{
 		RoundButton selectedBouton = (RoundButton)e.getSource();
 		boutonsGroup.setSelected(selectedBouton.getModel(), true);
 		Mastermind.getPanneauJeu().setSelectedColor(selectedBouton.getCouleur());
-		System.out.println(selectedBouton.getCouleur());
+		//System.out.println(selectedBouton.getCouleur());
 	}
 
 }

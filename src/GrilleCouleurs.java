@@ -46,7 +46,7 @@ class GrilleCouleurs  extends JPanel{
 		return grilleCouleursHeight;
 
 	}
-	
+
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
@@ -54,6 +54,10 @@ class GrilleCouleurs  extends JPanel{
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		GradientPaint gp = new GradientPaint (getWidth()/4, getHeight()/4, Color.blue, 
 				getWidth()*5/4, getHeight()*5/4, Color.cyan); 
+		if(Mastermind.darkMode) {
+			gp = new GradientPaint (getWidth()/4, getHeight()/4, Color.decode("#11100F"), 
+					getWidth()*5/4, getHeight()*5/4, Color.decode("#1D1B15")); 
+		}
 		g2d.setPaint(gp);
 		g2d.fillRect(0, 0, getWidth(), getHeight()); 
 	}

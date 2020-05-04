@@ -24,15 +24,16 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 
 	private JLabel titreOption;
 
-	private int nbrOptions=5;
+	private int nbrOptions=6;
 	private JComponent[] options = new JComponent[nbrOptions];
 	private JLabel[] labelOption = new JLabel[nbrOptions];
-
+	
+	private JCheckBox checkBoxDarkMode;
 	private JCheckBox checkBoxAides;
 	private JCheckBox checkBoxMultiColor;
 	private JSlider sliderTailleCombi;
 	private JSlider sliderNbrCouleurs;
-	private JButton boutonOption;
+	private JButton boutonReset;
 	
 	JButton save;
 
@@ -54,30 +55,34 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 		titreOption.setHorizontalAlignment(JLabel.CENTER);
 
 		//		Options
+		checkBoxDarkMode = checkBoxOption();
 		checkBoxAides = checkBoxOption();
 		checkBoxMultiColor = checkBoxOption();
 		sliderNbrCouleurs = sliderOption(6, 10, 8, 0, 2);
-		sliderTailleCombi = sliderOption(3, 6, 4, 0, 1);
-		boutonOption= boutonOption("Reset Settings");
+		sliderTailleCombi = sliderOption(4, 6, 4, 0, 1);
+		boutonReset= boutonReset("Reset Settings");
 
 		//		Tableau options
-		options[0] = checkBoxAides;
-		options[1] = checkBoxMultiColor;
-		options[2] = sliderNbrCouleurs;
-		options[3] = sliderTailleCombi;
-		options[4] = boutonOption;
+		options[0] = checkBoxDarkMode;
+		options[1] = checkBoxAides;
+		options[2] = checkBoxMultiColor;
+		options[3] = sliderNbrCouleurs;
+		options[4] = sliderTailleCombi;
+		options[5] = boutonReset;
 
 		//		Labels Options
-		labelOption[0] = labelOption("Activer les aides dans le jeu");
-		labelOption[1] = labelOption("Combinaison avec plus d'une fois la même couleur");
-		labelOption[2] = labelOption("Nombre de couleurs disponibles");
-		labelOption[3] = labelOption("Nombre de couleurs par combinaison");
-		labelOption[4] = labelOption("Reinitialiser les paramètres par default");
+		labelOption[0] = labelOption("Activer du Dark Theme");
+		labelOption[1] = labelOption("Activer les aides et le reveal dans le jeu");
+		labelOption[2] = labelOption("Combinaison cachée avec des couleurs multiples");
+		labelOption[3] = labelOption("Nombre de couleurs");
+		labelOption[4] = labelOption("Taille Combinaison");
+		labelOption[5] = labelOption("Reinitialiser les paramètres par default");
 
 		//		Save Bouton
-		save = boutonOption("Save");
+		save = boutonReset("Save");
 
 		//		Default Values
+		checkBoxDarkMode.setSelected(Mastermind.darkMode);
 		checkBoxAides.setSelected(Mastermind.activeAide);
 		checkBoxMultiColor.setSelected(Mastermind.multiColor);
 		sliderNbrCouleurs.setValue(Mastermind.nbrCouleurs);
@@ -156,7 +161,7 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 
 
 	//		Création des JButton
-	private JButton boutonOption(String texte) {
+	private JButton boutonReset(String texte) {
 		JButton bouton = new GradientButton(texte){
 
 			@Override
@@ -189,6 +194,10 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 		JCheckBox checkboxname=(JCheckBox)event.getSource();
 		boolean valeur=checkboxname.isSelected();
 		
+		if(checkboxname==checkBoxDarkMode){
+			Mastermind.darkMode=valeur;
+		}
+		
 		if(checkboxname==checkBoxMultiColor) {
 			Mastermind.multiColor=valeur;
 		}
@@ -203,23 +212,28 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 	public void stateChanged(ChangeEvent event) {
 		JSlider sliderName = (JSlider)event.getSource();
 		int valeur = sliderName.getValue();
-		if(sliderName==sliderTailleCombi)
+		
+		if(sliderName==sliderTailleCombi) {
 			Mastermind.tailleCombinaison=valeur;
-		if(sliderName==sliderNbrCouleurs)
+			Mastermind.nbrTentatives=(valeur+1)*2;
+		}
+		if(sliderName==sliderNbrCouleurs) {
 			Mastermind.nbrCouleurs=valeur;
-
+		}
+		
 	}       
 
 
 	//		actionListener
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==boutonOption){
+		if(e.getSource()==boutonReset){
 			sliderNbrCouleurs.setValue(8);
 			sliderTailleCombi.setValue(4);
 			sliderNbrCouleurs.paintAll(sliderNbrCouleurs.getGraphics());
 			sliderTailleCombi.paintAll(sliderTailleCombi.getGraphics());
 			checkBoxMultiColor.setSelected(false);
-			checkBoxAides.setSelected(false);
+			checkBoxAides.setSelected(true);
+			checkBoxDarkMode.setSelected(true);
 		}
 		
 		if(e.getSource()==save){
@@ -255,6 +269,7 @@ public class PanneauOptions extends GradientPanel implements ActionListener, Cha
 	//		Distance Verticale entre les widgets
 	public int Vgap() {
 		int vGap = (int)Math.round ((Mastermind.generalHeight())/(3*nbrOptions+11.0));
+
 		return vGap;
 
 	}

@@ -11,7 +11,7 @@ import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
 public class HiddenCombiPanel extends GradientPanel{
-	
+
 	Combinaison hiddenCombi;
 	JLabel cache;
 
@@ -27,6 +27,10 @@ public class HiddenCombiPanel extends GradientPanel{
 						RenderingHints.VALUE_ANTIALIAS_ON);
 				GradientPaint gp = new GradientPaint (getWidth()/4, getHeight()/4, Color.blue, 
 						getWidth()*5/4, getHeight()*5/4, Color.cyan); 
+				if(Mastermind.darkMode) {
+					gp = new GradientPaint (getWidth()/4, getHeight()/4, Color.decode("#11100F"), 
+							getWidth()*5/4, getHeight()*5/4, Color.decode("#1D1B15")); 
+				}
 				g2d.setPaint(gp);
 				g2d.fillRect(0, 0, getWidth(), getHeight()); 
 			}
@@ -43,13 +47,13 @@ public class HiddenCombiPanel extends GradientPanel{
 		cache.setBackground(Color.black);
 		cache.setBorder(BorderFactory.createLineBorder(Color.white, 2, true));
 		cache.setOpaque(true);
-		
+
 
 		//			Adding components
 		this.add(cache);
 		this.add(hiddenCombi);
-		
-		
+
+
 		adjustContraints();
 
 	}
@@ -73,12 +77,12 @@ public class HiddenCombiPanel extends GradientPanel{
 
 		return ModeOrdinateur.clone(aleatoire);
 	}
-	
+
 	public void afficheCombi() {
 		cache.setOpaque(false);
 		repaint();
 	}
-	
+
 	public void reinitialiserCombi() {
 		Color[] couleurs = HiddenCombiPanel.combiAleatoire();
 		hiddenCombi.modifierCombi(couleurs);

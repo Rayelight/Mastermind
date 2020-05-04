@@ -1,151 +1,165 @@
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
-public class  FenetreFin extends JDialog implements ActionListener{
+public class  FenetreFin extends JDialog{
 
-	private JPanel panneauFin;
-	private JLabel msgFin;
-	private JButton accueil;
-	private JButton retry;
-	protected SpringLayout layout = new SpringLayout();
 	private boolean gagnant;
-	private JLabel Entrer;
-	private JTextField Pseudo;
-	private JButton SaveScore;
-	
+	private String temps;
+	private int coups;
+
+
+
 	public  FenetreFin(boolean gagnant, String temps, int coups){
-		
-		// TODO super();
-		
+
+		super(Mastermind.getGeneral(), "Scores", true);
+
 		this.gagnant = gagnant;
+		this.temps = temps;
+		this.coups = coups;
 		//			Parametrage JDialog
-		this.setResizable(false);
-		this.setBackground(Color.blue);
+		this.setResizable(true);
+		this.setBackground(Color.red);
+		this.setUndecorated(true);
+		this.setSize(Mastermind.generalHeight()/2, Mastermind.generalHeight()/4);
+		this.setContentPane(new PanneauFin());
+		this.setLocationRelativeTo(Mastermind.getGeneral());
 
-		this.addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-				adjustContraints();
-			}
-		});	
-		
-		
-		//			 Création du panneau
-		panneauFin=new JPanel();
-		panneauFin.setLayout(layout);
-		panneauFin.setBackground(Color.blue);
-		
 
-		
-		//			Creation Widgets
-		//		Création du msgFin
-		if(this.gagnant) {
-			msgFin= new JLabel("Vous avez gagné en "+temps+ "avec "+coups+"tentatives!!!");
-		}else {
-			msgFin= new JLabel("Vous avez perdu :(");
-		}
-		msgFin.setOpaque(true);
-		msgFin.setForeground(Color.red);
-		msgFin.setBackground(Color.white);
-
-		//		Création Boutons
-		accueil = boutonGagnant("Accueil");
-		retry = boutonGagnant("Retry");
-
-		
-		//      Création Sauvergade pseudo
-		if(this.gagnant) {
-			Entrer=new JLabel("Entrer le Pseudo");
-			Entrer.setBackground(Color.red);
-			Entrer.setForeground(Color.white);	
-			Entrer.setOpaque(true);
-			
-			Pseudo=new JTextField();
-			Pseudo.setBackground(Color.red);
-			Pseudo.setForeground(Color.white);	
-			Pseudo.setOpaque(true);
-			
-			SaveScore = boutonGagnant("Save Score");
-		}
-		
-		
-		
-		//			Ajout Widgets
-		panneauFin.add(msgFin);
-		panneauFin.add(accueil);
-		panneauFin.add(retry);
-		panneauFin.add(Entrer);
-		panneauFin.add(Pseudo);
-		panneauFin.add(SaveScore);
-		
-		this.add(panneauFin);
-		this.setSize(400,400);
-		
 		this.setVisible(true);
 	}
 
-
-	//Création des Boutons 
-	private JButton boutonGagnant (String texte) {
-		JButton bouton = new JButton(texte){
-		};
-		bouton.setBackground(Color.red);
-		bouton.setForeground(Color.white);
-		bouton.addActionListener(this);
-
-		return bouton;
+	public void dispose() {
+		this.setVisible(false);
 	}
 
 
-	public void adjustContraints() {
-		//			Adjust Constraints
+	private class PanneauFin extends GradientPanel implements ActionListener{
 
-		//msgFin Constrains
-		layout.putConstraint(SpringLayout.NORTH,  msgFin, 100, SpringLayout.NORTH, panneauFin);
-		layout.putConstraint(SpringLayout.SOUTH, msgFin, -200,SpringLayout.SOUTH, panneauFin);
-		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, msgFin, 0, SpringLayout.HORIZONTAL_CENTER, panneauFin);
-		
-		//boutonGagnant Constrains
-		layout.putConstraint(SpringLayout.NORTH, accueil, 280, SpringLayout.NORTH, panneauFin);
-		layout.putConstraint(SpringLayout.SOUTH,  accueil, -50, SpringLayout.SOUTH, panneauFin);
-		layout.putConstraint(SpringLayout.WEST,  accueil, 70, SpringLayout.WEST, panneauFin);
+		private JLabel msgFin;
+		private JButton accueil;
+		private JButton newGame;
 
-		layout.putConstraint(SpringLayout.NORTH, retry, 280, SpringLayout.NORTH, panneauFin);
-		layout.putConstraint(SpringLayout.SOUTH, retry, -50, SpringLayout.SOUTH, panneauFin);
-		layout.putConstraint(SpringLayout.EAST, retry, -70, SpringLayout.EAST, panneauFin);
-		
-		//Entrer Constrains
-		layout.putConstraint(SpringLayout.NORTH, Entrer, 210, SpringLayout.NORTH, panneauFin);
-		layout.putConstraint(SpringLayout.SOUTH, Entrer, -130, SpringLayout.SOUTH, panneauFin);
-		layout.putConstraint(SpringLayout.WEST, Entrer, 30, SpringLayout.WEST, panneauFin);
-		
-		//Pseudo Constrains
-		layout.putConstraint(SpringLayout.NORTH, Pseudo, 210, SpringLayout.NORTH, panneauFin);
-		layout.putConstraint(SpringLayout.SOUTH, Pseudo, -130, SpringLayout.SOUTH, panneauFin);
-		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, Pseudo, 0, SpringLayout.HORIZONTAL_CENTER, panneauFin);
-		layout.putConstraint(SpringLayout.WEST, Pseudo, 150, SpringLayout.WEST, panneauFin);
-		
-		//SaveScore Constrains
-		layout.putConstraint(SpringLayout.NORTH, SaveScore, 210, SpringLayout.NORTH, panneauFin);
-		layout.putConstraint(SpringLayout.SOUTH, SaveScore, -130, SpringLayout.SOUTH, panneauFin);
-		layout.putConstraint(SpringLayout.EAST, SaveScore,-30, SpringLayout.EAST, panneauFin);
+		PanneauFin(){
 
-		
+			//			Creation Widgets
+			//		Création du msgFin
+			msgFin= new JLabel(){
+				@Override
+				public Dimension getPreferredSize() {
+					return new Dimension(hGap()*7, vGap()*2);
+				}
+				protected void paintComponent(Graphics grphcs) {
+
+					Graphics2D g2d = (Graphics2D) grphcs;
+					g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+							RenderingHints.VALUE_ANTIALIAS_ON);
+					//GradientPaint gp = new GradientPaint(0, -getHeight()/2, getBackground().brighter().brighter(),
+					// 		0, getHeight()/2,getBackground());
+					GradientPaint gp = new GradientPaint (getWidth()/4, getHeight()/4, Color.blue, 
+							getWidth()*5/4, getHeight()*5/4, Color.cyan); 
+					g2d.setPaint(gp);
+					if(Mastermind.darkMode) {
+						g2d.setColor(Color.decode("#D3CEBA"));
+					}
+					g2d.fillRect(0, 0, getWidth(), getHeight()); 
+					super.paintComponent(grphcs);
+
+				}
+				
+				public String getText() {
+					if(gagnant) {
+						return "Vous avez gagné en "+temps+ " avec "+coups+" tentatives!!!";
+					}
+					return "Vous avez perdu :(";
+				}
+			};
+
+			msgFin.setFont(new Font("Serif", Font.BOLD, msgFin.getPreferredSize().height*3/12));
+			msgFin.setHorizontalAlignment(JLabel.CENTER);
+
+
+			//		Création Boutons
+			accueil = boutonGagnant("Accueil");
+			newGame = boutonGagnant("New Game");
+
+
+			//			Ajout Widgets
+			this.add(msgFin);
+			this.add(accueil);
+			this.add(newGame);
+
+		}
+
+
+		public void adjustContraints() {
+			//			Adjust Constraints
+
+			//msgFin Constrains
+			layout.putConstraint(SpringLayout.NORTH,  msgFin, vGap(), SpringLayout.NORTH, this);
+			layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, msgFin, 0, SpringLayout.HORIZONTAL_CENTER, this);
+
+			//boutonGagnant Constrains
+			layout.putConstraint(SpringLayout.SOUTH, accueil, -vGap(), SpringLayout.SOUTH, this);
+			layout.putConstraint(SpringLayout.WEST,  accueil, hGap(), SpringLayout.WEST, this);
+
+			layout.putConstraint(SpringLayout.SOUTH, newGame, -vGap(), SpringLayout.SOUTH, this);
+			layout.putConstraint(SpringLayout.EAST, newGame, -hGap(), SpringLayout.EAST, this);
+
+
+
+		}
+
+		//Création des Boutons 
+		private JButton boutonGagnant (String texte) {
+			JButton bouton = new GradientButton(texte){
+				@Override
+				public Dimension getPreferredSize() {
+					return new Dimension(hGap()*3, vGap()*2);
+				}
+			};
+			bouton.setBackground(Color.red);
+			bouton.setForeground(Color.white);
+			bouton.addActionListener(this);
+
+			return bouton;
+		}
+
+		public int vGap() {
+			return (Mastermind.generalHeight()/4)/7;
+		}
+
+		public int hGap() {
+			return (Mastermind.generalHeight()/2)/9;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			//Accueil
+			if(e.getSource()==accueil) {
+				Mastermind.setPanneauAccueil();
+			}
+
+			//NewGame
+			if(e.getSource()==newGame) {
+				Mastermind.setPanneauJeu();
+			}
+
+			dispose();
+		}
 
 	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
 
-	}
 }

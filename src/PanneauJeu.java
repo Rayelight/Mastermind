@@ -20,7 +20,6 @@ public class PanneauJeu extends JPanel{
 	private ExecutorService executor;
 	protected boolean fini = false;
 	private boolean modeOrdi = false;
-	FenetreFin finaleFrame;
 	private boolean gagner;
 	private boolean revealed =false;
 
@@ -52,12 +51,12 @@ public class PanneauJeu extends JPanel{
 
 	//		Méthode de gestion de l'évaluation des combinaisons
 	public void evalCombi() {
-		System.out.println(tentativeActif);
+		//System.out.println(tentativeActif);
 		Color[] combiJeu = Arrays.copyOf(plateauJeu.grilleCouleurs.tentatives[tentativeActif].getCouleurs(), Mastermind.tailleCombinaison);
 		Color[] combiCache = Arrays.copyOf(barreMenu.hiddenCombiPanel.hiddenCombi.getCouleurs(), Mastermind.tailleCombinaison);
 
-		ModeOrdinateur.printCombi(combiJeu);
-		ModeOrdinateur.printCombi(combiCache);
+		//ModeOrdinateur.printCombi(combiJeu);
+		//ModeOrdinateur.printCombi(combiCache);
 
 
 		//int nbrPresentes = combiCache.nbrCouleursPresentes(combiJeu);
@@ -74,8 +73,12 @@ public class PanneauJeu extends JPanel{
 			activeNextTentative();
 		}else {
 			String temps = barreMenu.gameStats.timerLabel.stopTimer();
+			executor.shutdown();
+			
 			if(!modeOrdi&&!revealed)
-				finaleFrame = new FenetreFin(gagner, temps, tentativeActif+1);
+				new FenetreFin(gagner, temps, tentativeActif+1);
+			if(modeOrdi)
+				ordinateur.shutdown();
 		}
 	}
 
@@ -87,7 +90,8 @@ public class PanneauJeu extends JPanel{
 		if(!modeOrdi) {
 			plateauJeu.grilleCouleurs.tentatives[tentativeActif].setEnabled(true);
 		}else {
-			activationOrdi();
+			//activationOrdi();
+			tacheOrdi();
 		}
 		repaint();
 
@@ -99,7 +103,7 @@ public class PanneauJeu extends JPanel{
 			gagner =true;
 			barreMenu.hiddenCombiPanel.afficheCombi();
 			return true;	
-		}else if(Mastermind.nbrTentatives==tentativeActif) {
+		}else if(Mastermind.nbrTentatives==tentativeActif+1) {
 			gagner=false;
 			return true;	
 		}
@@ -136,11 +140,28 @@ public class PanneauJeu extends JPanel{
 		}
 	}
 
-	//	Ajouter une thread à la file
+	//	Thread de génération des combinaisons
+	Runnable activationOrdi = () -> {
+		activationOrdi();
+		
+		try {
+			Thread.sleep(Mastermind.tailleCombinaison*2*100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	};
+	ExecutorService ordinateur = Executors.newSingleThreadExecutor();
+	
+	
+	public void tacheOrdi() {
+		ordinateur.execute(new Thread(activationOrdi));
+	}
+
+	//	Jeu Ordinateur
 	public void activationOrdi() {
 		//	Mise en place du Mode Ordi
 		plateauJeu.grilleCouleurs.tentatives[tentativeActif].setEnabled(false);
-		
+
 		//	Attendre la fin des calculs de partie
 		executor.shutdown();
 		while(!executor.isTerminated()) {}
@@ -155,19 +176,21 @@ public class PanneauJeu extends JPanel{
 		int numCombi = (int)(Math.random()*listeCombi.size());
 		plateauJeu.grilleCouleurs.tentatives[tentativeActif].modifierCombi(listeCombi.get(numCombi));
 		repaint();
-		System.out.println("combiModif");
+		//System.out.println("combiModif");
 
 		//Elimination Invalide
 		evalCombi();
 		repaint();
+		
+		
 
 	}
-	
+
 	//		Bouton Mode Ordinateur
 	public void lancerOrdi() {
 		modeOrdi=true;
 	}
-	
+
 	//		Bouton Reveal Code
 	public void reveal() {
 		barreMenu.hiddenCombiPanel.afficheCombi();
@@ -175,7 +198,7 @@ public class PanneauJeu extends JPanel{
 		//barreMenu.gameStats.timerLabel.stopTimer();
 		//plateauJeu.grilleCouleurs.tentatives[tentativeActif].setEnabled(false);
 		revealed = true;
-		
+
 	}
 
 
@@ -207,6 +230,8 @@ public class PanneauJeu extends JPanel{
 	public Dimension getPreferredSize() {
 		return new Dimension(Mastermind.generalWidth(),Mastermind.generalHeight());
 	}
+
+	
 
 
 
