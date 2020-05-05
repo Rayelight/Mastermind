@@ -1,17 +1,17 @@
-import java.awt.Color;
+	import java.awt.Color;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.ListIterator;
-
+	
 public class ModeOrdinateur {
-
+	
 	public static LinkedList<Color[]> generationCombis(){
-		int nbrCouleurs =Mastermind.getNbrCouleurs();
+		int nbrCouleurs =Mastermind.getNbrCouleurs();	
 		int tailleCombi =Mastermind.getTailleCombinaison();
 		boolean multiColor = Mastermind.multiColor;
 
-		//			Initialisation
+		//		Initialisation	
 		//LinkedHashMap<Color[], Integer> listeCombi = new LinkedHashMap<>();
 		LinkedList<Color[]> listeCombi = new LinkedList<>();
 
@@ -64,8 +64,8 @@ public class ModeOrdinateur {
 			hs.add(arr[i]); 
 		} 
 
-		// return the size of hashset as  
-		// it consists of all Unique elements  
+		// return the size of hashset as  	
+		// it consists of all Unique elements  	
 		return hs.size();      
 	} 
 
