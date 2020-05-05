@@ -1,4 +1,4 @@
-FontDynamicResizing:
+FontDynamicResizing and personalization:
 https://docs.oracle.com/javase/8/docs/api/java/awt/Font.html
 https://docs.oracle.com/javase/tutorial/2d/text/measuringtext.html
 http://imss-www.upmf-grenoble.fr/prevert/Prog/Java/swing/FontMetrics.html
@@ -13,6 +13,8 @@ https://www.developpez.net/forums/d36783/java/interfaces-graphiques-java/awt-swi
 	http://java-sl.com/tip_adapt_label_font_size.html
 	https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-the-maximum-size
 	https://docs.oracle.com/javase/8/docs/technotes/guides/2d/spec/j2d-fonts.html
+	https://stackoverflow.com/questions/5652344/how-can-i-use-a-custom-font-in-java
+	https://www.developpez.net/forums/d32258/java/interfaces-graphiques-java/font-charger-police-d-fichier/
 
 
 DynamicResizing and JFrame Ratio:
@@ -33,7 +35,9 @@ https://stackoverflow.com/questions/2781939/setting-minimum-size-limit-for-a-win
 	http://www.aidewindows.net/materiel_ecran-taille.php
 	https://stackoverflow.com/questions/30198953/how-to-dynamically-control-auto-resize-components-in-java-swing
 	https://stackoverflow.com/questions/27544569/java-how-to-control-jpanel-aspect-ratio
-
+	https://docs.oracle.com/javase/tutorial/uiswing/events/componentlistener.html
+https://alvarotrigo.com/blog/firing-resize-event-only-once-when-resizing-is-finished/
+	http://www.enseignement.polytechnique.fr/informatique/Java/1.8/java/awt/Toolkit.html
 
 Multicolor JLabel
 http://1bestcsharp.blogspot.com/2015/03/java-how-to-change-jlabel-font-color-name-size-style-in-java.html
@@ -57,9 +61,16 @@ https://docs.oracle.com/javase/7/docs/api/javax/swing/JComponent.html
 	https://www.tutorialspoint.com/swing/swing_springlayout.htm
 	https://stackoverflow.com/questions/21622148/how-can-i-center-align-a-component-with-springlayout
 https://stackoverflow.com/questions/24839283/forcing-jpanel-with-gridlayout-to-update-resize
-
-
-
+	https://perso.telecom-paristech.fr/hudry/coursJava/interSwing/box.html
+	https://docs.oracle.com/javase/tutorial/uiswing/layout/problems.html
+https://coderanch.com/t/473101/java/Dynamically-resize-multiple-JPanels-BoxLayout
+https://stackoverflow.com/questions/41943113/jpanel-wont-resize-when-using-boxlayout
+https://stackoverflow.com/questions/21600667/gridlayout-hgap-vgap-not-working-on-jpanel
+https://stackoverflow.com/questions/23871041/setvgap0-sethgap0-not-working-in-gridlayout
+http://imss-www.upmf-grenoble.fr/prevert/Prog/Java/swing/gestionPlace.html
+http://www.java2s.com/Tutorial/Java/0240__Swing/DrawingBordersWithinaBoxLayoutManagedContainer.htm
+	https://stackoverflow.com/questions/22010658/boxlayout-inside-a-borderlayout
+	http://www.java2s.com/Tutorial/Java/0240__Swing/HorizontalAlignmentCENTER.htm
 
 ContentPane and GUI
 https://docs.oracle.com/javase/tutorial/uiswing/components/frame.html
@@ -70,9 +81,10 @@ https://stackoverflow.com/questions/2742270/jframe-setbackground-not-working-why
 https://stackoverflow.com/questions/18628062/what-difference-does-add-method-make-over-setcontentpane
 https://gfx.developpez.com/tutoriel/java/swing/swing-threading/
 	http://echo.nextapp.com/content/echo2/doc/api/2.1/public/app/index.html?nextapp/echo2/app/ContentPane.html
-
-
-
+https://www.jmdoudoux.fr/java/dej/chap-swing.htm
+	https://docs.oracle.com/javase/tutorial/uiswing/painting/closer.html
+	https://www.bogotobogo.com/Java/tutorials/javagraphics3.php
+https://docs.oracle.com/javase/tutorial/uiswing/components/toplevel.html#contentpane
 
 Round Button
 https://stackoverflow.com/questions/423950/rounded-swing-jbutton-using-java
@@ -85,13 +97,15 @@ https://happycoding.io/examples/java/swing/circle-button
 GitHub
 	https://openclassrooms.com/fr/courses/2342361-gerez-votre-code-avec-git-et-github?status=published
 	http://johnatten.com/2012/09/08/basic-git-command-line-reference-for-windows-users/#BASH-NAVIGATE-FILE-SYSTEM
-
+http://www.codeblocq.com/2016/01/Untrack-files-already-added-to-git-repository-based-on-gitignore/
+	https://github.com/collab-uniba/socialcde4eclipse/wiki/How-to-import-a-GitHub-project-into-Eclipse
 
 
 Eclipse
 	https://github.com/collab-uniba/socialcde4eclipse/wiki/How-to-import-a-GitHub-project-into-Eclipse
 	https://waytolearnx.com/2018/11/eclipse-les-raccourcis-clavier-pour-programmer-rapidement.html
 	https://thierry-leriche-dessirier.developpez.com/tutoriels/eclipse/raccourcis/
+http://patatos.over-blog.com/article-todo-list-sous-eclipse-45699065.html
 
 
 Mode PleinEcran
@@ -100,7 +114,7 @@ Mode PleinEcran
 https://docs.oracle.com/javase/7/docs/api/java/awt/Frame.html
 	https://stackoverflow.com/questions/11570356/jframe-in-full-screen-java
 	https://www.tutorialspoint.com/how-to-set-fullscreen-mode-for-java-swing-application
-
+https://stackoverflow.com/questions/6084039/create-custom-operation-for-setdefaultcloseoperation
 
 
 Collections Java
@@ -110,8 +124,12 @@ https://www.java2novice.com/java-collections-and-util/hashmap/entry-set/
 https://www.geeksforgeeks.org/hashmap-keyset-method-in-java/
 https://www.reddit.com/r/learnprogramming/comments/30uhjc/how_do_i_get_the_nth_term_of_a_map/
 	https://java2blog.com/hashmap-in-java-with-examples/
-
-
+	https://www.tutorialspoint.com/get-the-count-of-elements-in-hashmap-in-java
+https://living-sun.com/fr/java/497795-increment-the-the-element-of-the-arraylist-at-particular-position-java.html
+	http://www.apprendre-en-ligne.net/info/IA/index.html
+	http://www.codeurjava.com/2015/09/difference-entre-arraylist-et-linkedlist-en-java.html
+https://docs.oracle.com/javase/8/docs/api/java/util/ListIterator.html
+	https://www.tutorialspoint.com/java/java_using_iterator.htm
 
 Mastermind
 http://www.cs.uni.edu/~wallingf/teaching/cs3530/resources/knuth-mastermind.pdf
@@ -121,6 +139,16 @@ https://arxiv.org/pdf/1305.1010.pdf
 	https://www.dcode.fr/solveur-mastermind
 	https://nebupookins.github.io/JS-Mastermind-Solver/
 	http://www.normalesup.org/~vernade/td6.pdf
+	https://www.dcode.fr/solveur-mastermind
+	https://issuu.com/wile/docs/mastermind
+http://www.nymphomath.ch/info/IA/IA.pdf
+http://doczz.fr/doc/128242/chapitre-10-intelligence-artificielle-et-jeux
+	http://www.apprendre-en-ligne.net/info/IA/index.html
+http://kiwi.emse.fr/INTROINFO/mm-corrige.pdf
+http://hmalherbe.fr/thalesm/gestclasse/documents/Premiere_NSI/Projets/Mastermind/Mastermind.html
+http://car.imt-lille-douai.fr/guillaume/fr/partage/prj-MasterMind.pdf
+https://www.developpez.net/forums/d466144/java/general-java/algo-toutes-combinaisons-possibles/
+
 
 
 
@@ -145,8 +173,133 @@ http://web.archive.org/web/20100207211337/http://www.jguru.com/faq/view.jsp?EID=
 https://stackoverflow.com/questions/10866762/use-of-overriding-getpreferredsize-instead-of-using-setpreferredsize-for-fix
 	https://stackoverflow.com/questions/7229226/should-i-avoid-the-use-of-setpreferredmaximumminimumsize-methods-in-java-swi	
 	http://web.archive.org/web/20110614145256/http://wiki.java.net/twiki/bin/view/Javadesktop/SwingLabsImperialRules?TWIKISID=e1a6667476691b56753dc9b0744828c6#Do_not_use_component_setXXSize
+https://docs.oracle.com/javase/tutorial/java/IandI/index.html
+https://coderanch.com/t/569113/java/Interface-methods-overload-override
+	https://bruce-eckel.developpez.com/livres/java/traduction/tij2/?chap=12&page=3#03.028
+https://www.javamex.com/tutorials/threads/invokelater.shtml
 
-HotKeys
+Fonctions Supplémentaires
 	https://www.codejava.net/java-se/swing/setting-shortcut-key-and-hotkey-for-menu-item-and-button-in-swing
+https://docs.oracle.com/javase/tutorial/uiswing/misc/systemtray.html
+https://docs.oracle.com/javase/8/docs/api/javax/swing/KeyStroke.html#getKeyStroke-java.lang.String-
+	https://docs.oracle.com/javase/tutorial/uiswing/misc/keybinding.html
+https://docs.oracle.com/javase/8/docs/api/java/awt/SplashScreen.html
+https://docs.oracle.com/javase/tutorial/uiswing/misc/splashscreen.html
+https://docs.oracle.com/javase/tutorial/uiswing/misc/printtable.html
+	https://coderanch.com/t/336165/java/print-text-text-area
+	https://www.codejava.net/java-se/swing/redirect-standard-output-streams-to-jtextarea
+https://www.tutorialspoint.com/java/lang/system_setout.htm
+https://docs.oracle.com/javase/7/docs/api/java/io/PrintStream.html
+https://docs.oracle.com/javase/7/docs/api/java/io/OutputStream.html
+
+Interfaces et héritage
+	https://docs.oracle.com/javase/tutorial/java/IandI/index.html
+	https://openclassrooms.com/forum/sujet/java-que-veut-dire-le-static-90744
+http://blog.paumard.org/cours/java/chap07-heritage-interface-interface.html
+
+Composants Swing
+https://docs.oracle.com/javase/8/docs/api/javax/swing/JSlider.html
+https://kodejava.org/how-do-i-set-the-font-and-color-of-jtextarea/
+	https://stackoverflow.com/questions/8858584/how-to-wrap-text-in-a-jtextarea
+	https://docs.oracle.com/javase/tutorial/uiswing/components/index.html
+	https://stackoverflow.com/questions/10177183/java-add-scroll-into-text-area
+https://stackoverflow.com/questions/3517722/java-transparent-jscrollpane
+	https://coderanch.com/t/338507/java/JScrollPane-background-color
+https://docs.oracle.com/javase/7/docs/api/javax/swing/Timer.html	
+	https://stackoverflow.com/questions/22728794/how-to-put-timer-into-a-gui
+https://www.developpez.net/forums/d463236/java/general-java/langage/faire-timer-simplement/
+https://docs.oracle.com/javase/tutorial/uiswing/misc/timer.html
+	https://docs.oracle.com/javase/tutorial/uiswing/misc/index.html
+https://www.baeldung.com/java-timer-and-timertask
+	http://www.java2s.com/Tutorial/Java/0240__Swing/CustomizingJCheckBoxLookandFeel.htm
+http://www.java2s.com/Tutorial/Java/0240__Swing/CustomizingJCheckBoxCheckMarkIcon.htm
+	https://stackoverflow.com/questions/6810581/how-to-center-the-text-in-a-jlabel
 
 
+
+Couleurs et Gradient
+https://htmlcolorcodes.com/fr/
+https://www.developpez.net/forums/d170419/java/general-java/api-couleur-hexadecimal/
+	https://web-color.aliasdmc.fr/couleur-web-violet-rgb-hsl-hexa.html
+	https://stackoverflow.com/questions/14364291/jpanel-gradient-background
+https://docs.oracle.com/javase/7/docs/api/java/awt/GradientPaint.html#getTransparency()
+	http://www.java2s.com/Code/Java/2D-Graphics-GUI/RoundGradientPaintFilldemo.htm
+https://courses.cs.washington.edu/courses/cse341/98au/java/jdk1.2beta4/docs/api/java/awt/GradientPaint.html
+https://docs.oracle.com/javase/7/docs/api/java/awt/MultipleGradientPaint.html
+	https://docs.oracle.com/javase/7/docs/api/java/awt/LinearGradientPaint.html
+	https://www.roseindia.net/java/example/java/swing/GradientColor.shtml
+	https://www.bogotobogo.com/Java/tutorials/javagraphics3.php
+https://docs.oracle.com/javase/7/docs/api/java/awt/RadialGradientPaint.html
+https://stackoverflow.com/questions/6734171/how-do-i-set-the-r-g-b-and-alpha-components-of-a-color
+https://stackoverflow.com/questions/18648142/creating-brighter-color-java
+https://en.wikipedia.org/wiki/HSL_and_HSV
+https://stackoverflow.com/questions/2997656/how-can-i-use-the-hsl-colorspace-in-java
+	https://www.javatips.net/api/EnrichmentMapApp-master/EnrichmentMapApp-develop/EnrichmentMapPlugin/src/main/java/org/baderlab/csplugins/enrichmentmap/view/util/HSLColor.java
+
+
+
+Outils Basiques
+https://www.geeksforgeeks.org/different-ways-for-integer-to-string-conversions-in-java/
+https://riptutorial.com/fr/java/example/3435/copier-des-tableaux
+	https://www.geeksforgeeks.org/count-distinct-elements-in-an-array/
+https://cs-fundamentals.com/java-programming/java-arrays-clone-shallow-deep-copy.php
+https://howtodoinjava.com/array/java-array-clone-shallow-copy/
+https://www.developpez.net/forums/d513299/java/general-java/debuter-java/connaitre-classe-d-objet-verifier-classe/
+
+Thread
+https://www.geeksforgeeks.org/differences-between-wait-and-join-methods-in-java/
+	https://www.avajava.com/tutorials/lessons/how-do-i-determine-if-a-thread-is-alive-or-not.html
+https://stackoverflow.com/questions/5910548/how-to-check-if-thread-is-terminated
+https://www.baeldung.com/java-executor-wait-for-threads
+	https://winterbe.com/posts/2015/04/07/java8-concurrency-tutorial-thread-executor-examples/
+	https://www.jmdoudoux.fr/java/dej/chap-executor.htm
+	https://farenda.com/java/java-single-thread-executor/
+https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Executor.html#execute(java.lang.Runnable)
+https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html
+https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/RunnableScheduledFuture.html
+https://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html
+	https://www.javatpoint.com/multitasking-in-multithreading
+https://stackoverflow.com/questions/5853167/runnable-with-a-parameter
+https://gist.github.com/jsfan3/3a66e711fd0fd233c5e4c467184adb7a
+	https://www.jmdoudoux.fr/java/dej/chap-lambdas.htm
+https://www.geeksforgeeks.org/java-8-consumer-interface-in-java-with-examples/
+https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/How-to-use-Javas-functional-Consumer-interface-example
+https://docs.oracle.com/javase/8/docs/api/java/util/function/BiConsumer.html
+https://stackoverflow.com/questions/49503135/when-are-java-8-consumers-preferable-over-a-runnable-interface
+http://www.java2s.com/Tutorials/Java/Java_Thread/0030__Java_Thread_Producer_Consumer.htm
+
+
+
+Borders
+https://stackoverflow.com/questions/17850198/java-jpanel-two-borders-different-colors
+	https://docs.oracle.com/javase/tutorial/uiswing/components/border.html
+	https://stackoverflow.com/questions/17850198/java-jpanel-two-borders-different-colors
+https://docs.oracle.com/javase/8/docs/api/javax/swing/BorderFactory.html#createLineBorder-java.awt.Color-int-boolean-
+
+
+Buttons
+	https://docs.oracle.com/javase/7/docs/api/javax/swing/ButtonGroup.html
+https://www.oreilly.com/library/view/java-for-dummies/9781118239742/a8_08_9781118239742-ch05.html*
+https://stackoverflow.com/questions/2301123/how-do-i-use-the-button-group-swing-control-in-java
+https://docs.oracle.com/javase/7/docs/api/javax/swing/JToggleButton.html
+https://docs.oracle.com/javase/tutorial/uiswing/components/button.html
+https://docs.oracle.com/javase/8/docs/api/javax/swing/ButtonGroup.html#setSelected-javax.swing.ButtonModel-boolean-
+	https://www.irif.fr/~yunes/cours/annexes/java/docs8/tutorial/uiswing/components/buttongroup.html
+
+
+Dialogs
+https://www.irif.fr/~yunes/cours/annexes/java/docs8/tutorial/uiswing/components/dialog.html
+
+Daltonisme
+http://boutigny.free.fr/Ghislou/Daltonisme/comment_voit_un_dalt.htm
+https://stephaniewalter.design/fr/blog/accessibilite-et-couleurs-outils-et-ressources-pour-concevoir-des-produits-accessible/
+http://www.opticien-lentilles.com/daltonisme/vision_du_daltonien.html
+https://forums.jeuxonline.info/sujet/1192418/site-web-palette-de-couleurs-safe-pour-daltoniens
+https://graphiste.com/blog/site-web-daltoniens
+https://www.24joursdeweb.fr/2017/etre-daltonien-dans-une-equipe/
+
+
+Packages et Jar
+http://blog.paumard.org/cours/java/chap08-paquets.html
+https://openclassrooms.com/forum/sujet/export-jar-could-not-find-main-class
+https://jcrisch.wordpress.com/2016/02/12/creer-un-jar-avec-intellij-idea/
