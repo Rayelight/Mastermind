@@ -59,11 +59,11 @@ public class  Regles extends JDialog{
 			texte.setText("Le principe de fonctionnement du jeu est de trouver la combinaison de couleur cachée en haut à droite du panneau. "
 					+ "\nPour cela, vous pouvez jouer avec les différents boutons dans la palette de couleurs. "
 					+ "\nL’utilisation des boutons se fait par un clic sur la couleur de votre choix puis vous cliquer sur le bouton en bas à gauche de la grille. "
-					+ "\nEnsuite vous continuer avec ce même principe vers la droite. Vous obtiendriez votre première tentative lorsque vous auriez rempli toute la ligne de boutons. "
-					+ "\nDe plus, avec les différents compteurs vous pourriez avoir des informations sur les couleurs présentes dans la combinaison cachée. "
+					+ "\nEnsuite vous continuez avec ce même principe vers la droite. Vous obtiendriez votre première tentative lorsque vous auriez rempli toute la ligne de boutons. "
+					+ "\nDe plus, avec les différents compteurs vous pourriez avoir des informations sur les couleurs présentes dans la combinaison cachée.Le compteur situé dans les carrées permet de savoir les couleurs bien placées alors que le compteur présent dans les carrées permet de connaitre le nombre de couleurs présentes mais mal placées.La combinaison cachée est située en haut a droite du panneau jeu. Cette dernière sera dévoilée lorsque vous finissez le jeu ou si vous appuyez sur le bouton dedié à faire cela. "
 					+ "\nDe plus, vous avez en bas à droite un panneau de boutons qui vous permet d’avoir des fonctionnalités comme le panneau règles, le mode options et le mode ordinateur que je vais vous expliquer."
 					+ "\nVous avez le même principe dans le panneau juste au-dessus pour avoir des informations sur votre avancée et des fonctionnalités de boutons pour redémarrer une partie ou d’avoir la solution de la combinaison. "
-					+ "\nLe mode ordinateur est une résolution de jeu de manière numérique. Si vous voulez utiliser ce mode il vous suffira de cliquer sur le bouton. Pour donner suite à cette appui le mode se mettra en route avec la résolution de la tentative. Vous auriez donc l’affichage des tentatives sur le panneau jeu. "
+					+ "\nLe mode ordinateur est une résolution de jeu de manière numérique. Si vous voulez utiliser ce mode il vous suffira de cliquer sur le bouton. Pour donner suite à cet appui le mode se mettra en route avec la résolution de la tentative. Vous auriez donc l’affichage des tentatives sur le panneau jeu. "
 					+ "\nA la fin de votre partie, vous auriez un panneau de fin qui vous annonce votre résultat aux jeux avec des précisions si vous réussissez à trouver la combinaison cachée."
 					);
 
